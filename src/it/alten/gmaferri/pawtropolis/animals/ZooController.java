@@ -6,14 +6,12 @@ import it.alten.gmaferri.pawtropolis.animals.model.abstracts.WingedAnimal;
 
 import java.lang.reflect.Modifier;
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class Zoo {
+public class ZooController {
     private final Map<Class<? extends Animal>, List<Animal>> animals;
 
-    public Zoo() {
+    public ZooController() {
         this.animals = new HashMap<>();
     }
 

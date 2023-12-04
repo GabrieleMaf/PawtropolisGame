@@ -1,4 +1,4 @@
-package it.alten.gmaferri.pawtropolis.game;
+package it.alten.gmaferri.pawtropolis.game.model;
 
 import java.util.ArrayList;
 import java.util.List;

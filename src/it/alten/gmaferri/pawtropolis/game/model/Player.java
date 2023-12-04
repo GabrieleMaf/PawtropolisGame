@@ -1,4 +1,6 @@
-package it.alten.gmaferri.pawtropolis.game;
+package it.alten.gmaferri.pawtropolis.game.model;
+
+import it.alten.gmaferri.pawtropolis.game.model.Bag;
 
 public class Player {
     private String name;

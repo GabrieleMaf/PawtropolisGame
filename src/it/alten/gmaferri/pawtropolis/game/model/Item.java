@@ -1,4 +1,4 @@
-package it.alten.gmaferri.pawtropolis.game;
+package it.alten.gmaferri.pawtropolis.game.model;
 
 public class Item {
     private String name;

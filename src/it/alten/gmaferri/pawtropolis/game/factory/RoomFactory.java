@@ -1,4 +1,6 @@
-package it.alten.gmaferri.pawtropolis.game;
+package it.alten.gmaferri.pawtropolis.game.factory;
+
+import it.alten.gmaferri.pawtropolis.game.model.Room;
 
 import java.util.Objects;
 import java.util.Random;

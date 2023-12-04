@@ -1,6 +1,7 @@
-package it.alten.gmaferri.pawtropolis.game;
+package it.alten.gmaferri.pawtropolis.game.model;
 
 import it.alten.gmaferri.pawtropolis.animals.model.abstracts.Animal;
+import it.alten.gmaferri.pawtropolis.game.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;

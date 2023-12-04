@@ -1,18 +1,15 @@
 package it.alten.gmaferri.pawtropolis;
 
 import it.alten.gmaferri.pawtropolis.animals.AnimalFactory;
-import it.alten.gmaferri.pawtropolis.animals.Zoo;
+import it.alten.gmaferri.pawtropolis.animals.ZooController;
 import it.alten.gmaferri.pawtropolis.animals.model.Eagle;
 import it.alten.gmaferri.pawtropolis.animals.model.Lion;
 import it.alten.gmaferri.pawtropolis.animals.model.Tiger;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class Main {
     public static void main(String[] args) {
 
-        Zoo zoo = new Zoo();
+        ZooController zoo = new ZooController();
         AnimalFactory animalFactory = AnimalFactory.getInstance();
 
 
