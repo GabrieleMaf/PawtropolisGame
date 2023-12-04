@@ -3,7 +3,6 @@ package it.alten.gmaferri.pawtropolis.animals;
 import it.alten.gmaferri.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.gmaferri.pawtropolis.animals.model.abstracts.TailedAnimal;
 import it.alten.gmaferri.pawtropolis.animals.model.abstracts.WingedAnimal;
-import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Modifier;
 import java.util.*;
@@ -22,7 +21,7 @@ public class Zoo {
         return animals;
     }
 
-    public void addAnimal(@NotNull Animal animal) {
+    public void addAnimal(Animal animal) {
         if (!animals.containsKey(animal.getClass())) {
             animals.put(animal.getClass(), new ArrayList<>());
         }
@@ -31,7 +30,7 @@ public class Zoo {
         }
     }
 
-    public void removeAnimal(@NotNull Animal animal) {
+    public void removeAnimal(Animal animal) {
        if (animals.get(animal.getClass()).remove(animal) && (animals.get(animal.getClass()).isEmpty())) {
            animals.remove(animal.getClass());
        }
@@ -47,7 +46,7 @@ public class Zoo {
                 .collect(Collectors.joining("\n"));
     }
 
-    public <T extends Animal> List<Animal> getAnimalGroup(@NotNull Class<T> tClass){
+    public <T extends Animal> List<Animal> getAnimalGroup(Class<T> tClass){
         if(!Modifier.isAbstract(tClass.getModifiers())){
                 return animals.get(tClass);
         }
