@@ -9,13 +9,11 @@ public class Room {
     private String name;
     private List<Item> items;
     private List<Animal> animals;
-    private List<Room> rooms;
 
     public Room(String name) {
         this.name = name;
         items = new ArrayList<>();
         animals = new ArrayList<>();
-        rooms = new ArrayList<>();
     }
 
     public String getName() {
@@ -42,11 +40,4 @@ public class Room {
         this.animals = animals;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
 }

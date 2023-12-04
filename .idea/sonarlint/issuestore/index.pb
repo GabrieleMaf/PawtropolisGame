@@ -53,3 +53,7 @@ w
 G.idea/sonarlint/issuestore/b/3/b316670496daf7214452bea104530b64c71a73b8,4\7\47575049781f226a5428faef904a0f7514a66b42
 w
 G.idea/sonarlint/issuestore/b/f/bf1b378dd8916caeacce375cc504f9a2ddd3a18b,e\3\e33138d5a0541f800eaef97eb1b0c5a1210fd67f
+i
+9src/it/alten/gmaferri/pawtropolis/game/MapController.java,e\a\eaf2b514c66545168d01b96e7635e41120008357
+g
+7src/it/alten/gmaferri/pawtropolis/game/RoomFactory.java,6\d\6d6412f86d6ef59b21c9db2e86d9432d51f262b4
