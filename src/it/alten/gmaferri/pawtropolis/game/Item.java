@@ -3,12 +3,12 @@ package it.alten.gmaferri.pawtropolis.game;
 public class Item {
     private String name;
     private String description;
-    private final int requireSlot;
+    private final int weight;
 
-    public Item(String name, String description, int requireSlot) {
+    public Item(String name, String description, int weight) {
         this.name = name;
         this.description = description;
-        this.requireSlot = requireSlot;
+        this.weight = weight;
     }
 
     public String getName() {
@@ -27,7 +27,15 @@ public class Item {
         this.description = description;
     }
 
-    public int getRequireSlot() {
-        return requireSlot;
+    public int getWeight() {
+        return weight;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Item{name: \"%s\"," +
+                "description: \"%s\", " +
+                "weight %d%n}",
+                name, description, weight);
     }
 }
