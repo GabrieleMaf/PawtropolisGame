@@ -56,6 +56,13 @@ public class Room {
         this.doors = doors;
     }
 
+    public Item getItemById(Long id){
+        return items.stream()
+                .filter(item -> item.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
     public Player getPlayer() {
         return player;
     }
