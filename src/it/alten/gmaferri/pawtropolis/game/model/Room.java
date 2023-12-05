@@ -5,11 +5,13 @@ import it.alten.gmaferri.pawtropolis.game.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Room {
     private String name;
     private List<Item> items;
     private List<Animal> animals;
+
 
     public Room(String name) {
         this.name = name;
