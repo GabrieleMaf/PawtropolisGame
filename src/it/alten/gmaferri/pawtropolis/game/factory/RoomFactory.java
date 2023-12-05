@@ -22,6 +22,6 @@ public class RoomFactory {
     }
 
     public Room createRoom(){
-        return new Room(Integer.valueOf(randomizer.nextInt()).toString());
+        return new Room(Integer.toString(randomizer.nextInt()));
     }
 }

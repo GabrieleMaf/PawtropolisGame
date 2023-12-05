@@ -23,7 +23,7 @@ public class MapController {
         return new Room[][] {
                 {roomFactory.createRoom(), null, null, null},
                 {roomFactory.createRoom(), roomFactory.createRoom(), roomFactory.createRoom(), null},
-                {roomFactory.createRoom(), roomFactory.createRoom(), null, roomFactory.createRoom() },
+                {roomFactory.createRoom(), roomFactory.createRoom(), null, roomFactory.createRoom()},
                 {roomFactory.createRoom(), roomFactory.createRoom(), null, roomFactory.createRoom()}
         };
 
