@@ -58,9 +58,12 @@ public class Room implements Observable {
         this.doors = doors;
     }
 
-    @Override
-    public void add(Observable observable, Object arg) {
 
+
+    @Override
+    public void add(Item item, String roomName) {
+        items.add(item);
+        notifyObjectAdded(item);
     }
 
     @Override
@@ -77,11 +80,15 @@ public class Room implements Observable {
 
     @Override
     public void notifyObjectAdded(Item item) {
-
+        for(Observer observer : observers){
+            observer.update(this, name);
+        }
     }
 
     @Override
     public void notifyObjectRemoved(Item item) {
-
+        for(Observer observer : observers){
+            observer.remove(this, name);
+        }
     }
 }

@@ -4,7 +4,7 @@ import it.alten.doublechargg.pawtropolis.game.model.Item;
 
 public interface Observable {
 
-    void add(Observable observable, Object arg);
+    void add(Item item, String roomName);
 
     void registerObserver(Observer observer);
 

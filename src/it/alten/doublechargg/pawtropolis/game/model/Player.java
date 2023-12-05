@@ -1,6 +1,9 @@
 package it.alten.doublechargg.pawtropolis.game.model;
 
-public class Player{
+import it.alten.doublechargg.pawtropolis.game.observer.Observable;
+import it.alten.doublechargg.pawtropolis.game.observer.Observer;
+
+public class Player implements Observer {
     private String name;
     private int lifePoint;
     private Bag bag;
@@ -33,5 +36,15 @@ public class Player{
 
     public void setBag(Bag bag) {
         this.bag = bag;
+    }
+
+    @Override
+    public void update(Observable observable, Object arg) {
+
+    }
+
+    @Override
+    public void remove(Observable observable, Object arg) {
+
     }
 }
