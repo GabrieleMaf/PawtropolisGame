@@ -44,9 +44,10 @@ public class Item {
 
     @Override
     public String toString() {
-        return String.format("Item{name:\"%s\", " +
+        return String.format("Item{ID: %d" +
+                "name:\"%s\", " +
                 "description:\"%s\", " +
                 "weight:%d}%n",
-                name, description, weight);
+                id, name, description, weight);
     }
 }

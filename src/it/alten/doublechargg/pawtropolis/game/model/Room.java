@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Room {
     private String name;
@@ -26,6 +27,20 @@ public class Room {
 
     public String getName() {
         return name;
+    }
+
+    public String showDoors(){
+        return doors
+                .keySet()
+                .stream()
+                .map(CardinalPoints::toString)
+                .collect(Collectors.joining(" "));
+    }
+
+    public String showItems(){
+        return items.stream()
+                .map(Item::toString)
+                .collect(Collectors.joining(""));
     }
 
     public void setName(String name) {

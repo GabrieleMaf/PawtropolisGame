@@ -123,3 +123,5 @@ m
 =src/it/alten/doublechargg/pawtropolis/game/MapController.java,0\f\0f48903df6e23762a23a84b95f8e6068af485f1b
 j
 :src/it/alten/doublechargg/pawtropolis/game/model/Door.java,6\b\6b2c1198c43065f401618be968c35ff005d1d2a5
+t
+Dsrc/it/alten/doublechargg/pawtropolis/game/enums/CardinalPoints.java,b\4\b478ddac135a1876156496786cda303cc3a6eadf

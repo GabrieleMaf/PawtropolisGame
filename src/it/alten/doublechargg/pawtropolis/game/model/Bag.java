@@ -26,6 +26,12 @@ public class Bag {
                 .sum();
     }
 
+    public String showBagItems(){
+        return items.stream()
+                .map(Item::toString)
+                .collect(Collectors.joining(""));
+    }
+
     public boolean addItem(Item item){
         if(getTotalWeight() + item.getWeight() < slot ){
             return items.add(item);

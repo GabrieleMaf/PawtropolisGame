@@ -72,11 +72,15 @@ public class Player implements Observer {
     }
 
     public String lookDoors(){
-        return currentRoom.getDoors()
-                .keySet()
-                .stream()
-                .map(CardinalPoints::toString)
-                .collect(Collectors.joining(" "));
+        return currentRoom.showDoors();
+    }
+
+    public String lookRoomItems(){
+        return currentRoom.showItems();
+    }
+
+    public String lookBagItems(){
+        return bag.showItems();
     }
 
     public void enterRoom(Room room){
