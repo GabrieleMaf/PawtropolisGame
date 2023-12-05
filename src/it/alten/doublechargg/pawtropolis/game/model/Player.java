@@ -3,10 +3,11 @@ package it.alten.doublechargg.pawtropolis.game.model;
 import it.alten.doublechargg.pawtropolis.game.observer.Observable;
 import it.alten.doublechargg.pawtropolis.game.observer.Observer;
 
-public class Player implements Observer {
+public class Player {
     private String name;
     private int lifePoint;
     private Bag bag;
+    private Observer observer;
 
     public Player(String name, int lifePoint, Bag bag){
         this.name = name;
@@ -36,15 +37,5 @@ public class Player implements Observer {
 
     public void setBag(Bag bag) {
         this.bag = bag;
-    }
-
-    @Override
-    public void update(Observable observable, Object arg) {
-
-    }
-
-    @Override
-    public void remove(Observable observable, Object arg) {
-
     }
 }

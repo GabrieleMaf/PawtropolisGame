@@ -1,10 +1,12 @@
 package it.alten.doublechargg.pawtropolis.game.observer;
 
+import it.alten.doublechargg.pawtropolis.game.model.Item;
+
 public interface Observer {
 
-    void update(Observable observable, Object arg);
+    void onObjectAdded(Item item, String roomName);
 
-    void remove(Observable observable, Object arg);
+    void onObjectRemoved(Item item, String roomName);
 
 
 

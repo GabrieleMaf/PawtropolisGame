@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
-public class Room implements Observable {
+public class Room {
     private String name;
     private List<Item> items;
     private List<Animal> animals;
     private Map<CardinalPoints, Door> doors;
-    private List<Observer> observers;
 
 
     public Room(String name) {
@@ -23,7 +23,6 @@ public class Room implements Observable {
         items = new ArrayList<>();
         animals = new ArrayList<>();
         doors = new HashMap<>();
-        observers = new ArrayList<>();
     }
 
     public String getName() {
@@ -56,39 +55,5 @@ public class Room implements Observable {
 
     public void setDoors(Map<CardinalPoints, Door> doors) {
         this.doors = doors;
-    }
-
-
-
-    @Override
-    public void add(Item item, String roomName) {
-        items.add(item);
-        notifyObjectAdded(item);
-    }
-
-    @Override
-    public void registerObserver(Observer observer) {
-        if (!observers.contains(observer)){
-            observers.add(observer);
-        }
-    }
-
-    @Override
-    public void removeObserver(Observer observer) {
-        observers.remove(observer);
-    }
-
-    @Override
-    public void notifyObjectAdded(Item item) {
-        for(Observer observer : observers){
-            observer.update(this, name);
-        }
-    }
-
-    @Override
-    public void notifyObjectRemoved(Item item) {
-        for(Observer observer : observers){
-            observer.remove(this, name);
-        }
     }
 }
