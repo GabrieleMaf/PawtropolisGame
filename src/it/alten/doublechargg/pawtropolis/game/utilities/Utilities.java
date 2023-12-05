@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 public class Utilities {
 
+    private Utilities(){}
+
     static Scanner scanner = new Scanner(System.in);
 
     public static Player createPlayer(){

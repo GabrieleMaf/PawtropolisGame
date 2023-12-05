@@ -20,11 +20,11 @@ public class MapController {
         return roomList;
     }
 
-    public void addRoom(Room room){
+    public void addRoom(Room room) {
         roomList.add(room);
     }
 
-    public Room getRoomByName(String name){
+    public Room getRoomByName(String name) {
         return roomList.stream()
                 .filter(room -> room.getName().equals(name))
                 .findFirst()
@@ -53,7 +53,7 @@ public class MapController {
 
     public List<Room> createMap() {
         List<Room> roomMap = new ArrayList<>();
-        for (int i = 0; i<=10; i++){
+        for (int i = 0; i <= 10; i++) {
             roomMap.add(roomFactory.createRoom());
         }
         connectRooms(CardinalPoints.NORTH, roomMap.get(0), roomMap.get(1));
@@ -68,11 +68,12 @@ public class MapController {
         return roomMap;
     }
 
-    public void connectRooms(CardinalPoints cardinalPoint1, Room room1, Room room2){
-        Door door1 = new Door(room1, room2);
-        Door door2 = new Door(room2, room1);
-        room1.getDoors().put(cardinalPoint1, door1);
-        room2.getDoors().put(getOpposite(cardinalPoint1), door2);
+    public void connectRooms(CardinalPoints cardinalPoint1, Room room1, Room room2) {
+        Door door = new Door(room1, room2);
+        room1.getDoors().put(cardinalPoint1, door);
+        door.setRoom1(door.getRoom2());
+        door.setRoom2(door.getRoom1());
+        room2.getDoors().put(getOpposite(cardinalPoint1), door);
     }
 
 

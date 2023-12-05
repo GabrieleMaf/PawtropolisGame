@@ -2,6 +2,8 @@ package it.alten.doublechargg.pawtropolis.game.model;
 
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
+import it.alten.doublechargg.pawtropolis.game.observer.Observable;
+import it.alten.doublechargg.pawtropolis.game.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Room {
+public class Room implements Observable {
     private String name;
     private List<Item> items;
     private List<Animal> animals;
@@ -29,7 +31,7 @@ public class Room {
         return name;
     }
 
-    public String showDoors(){
+    public String showDoors() {
         return doors
                 .keySet()
                 .stream()
@@ -37,7 +39,7 @@ public class Room {
                 .collect(Collectors.joining(" "));
     }
 
-    public String showItems(){
+    public String showItems() {
         return items.stream()
                 .map(Item::toString)
                 .collect(Collectors.joining(""));
@@ -71,7 +73,7 @@ public class Room {
         this.doors = doors;
     }
 
-    public Item getItemById(Long id){
+    public Item getItemById(Long id) {
         return items.stream()
                 .filter(item -> item.getId().equals(id))
                 .findFirst()
@@ -84,5 +86,25 @@ public class Room {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+
+    }
+
+    @Override
+    public void notifyObjectAdded(Item item) {
+
+    }
+
+    @Override
+    public void notifyObjectRemove(Item item) {
+
     }
 }

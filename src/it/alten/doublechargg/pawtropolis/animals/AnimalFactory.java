@@ -1,8 +1,8 @@
 package it.alten.doublechargg.pawtropolis.animals;
 
 import it.alten.doublechargg.pawtropolis.animals.model.Eagle;
-import it.alten.doublechargg.pawtropolis.animals.model.Tiger;
 import it.alten.doublechargg.pawtropolis.animals.model.Lion;
+import it.alten.doublechargg.pawtropolis.animals.model.Tiger;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -13,7 +13,8 @@ public class AnimalFactory {
 
     private static AnimalFactory instance;
 
-    private AnimalFactory(){}
+    private AnimalFactory() {
+    }
 
     public static synchronized AnimalFactory getInstance() {
         if (Objects.isNull(instance))
@@ -26,9 +27,9 @@ public class AnimalFactory {
                 favoriteFoods[randomizer.nextInt(favoriteFoods.length)],
                 randomizer.nextInt(11),
                 between(LocalDate.of(2014, 1, 1), LocalDate.now()),
-                Double.parseDouble(decimalFormat.format(randomizer.nextDouble(225,300))),
+                Double.parseDouble(decimalFormat.format(randomizer.nextDouble(225, 300))),
                 Double.parseDouble(decimalFormat.format(randomizer.nextDouble(0.85, 1.2))),
-                Double.parseDouble(decimalFormat.format(randomizer.nextDouble(0.65,3))));
+                Double.parseDouble(decimalFormat.format(randomizer.nextDouble(0.65, 3))));
 
     }
 
@@ -37,13 +38,13 @@ public class AnimalFactory {
                 favoriteFoods[randomizer.nextInt(favoriteFoods.length)],
                 randomizer.nextInt(11),
                 between(LocalDate.of(2014, 1, 1), LocalDate.now()),
-                Double.parseDouble(decimalFormat.format(randomizer.nextDouble(3,7))),
+                Double.parseDouble(decimalFormat.format(randomizer.nextDouble(3, 7))),
                 Double.parseDouble(decimalFormat.format(randomizer.nextDouble(0.75, 0.84))),
                 Double.parseDouble(decimalFormat.format(randomizer.nextDouble(1.8, 2.3))));
 
     }
 
-    public Eagle createEagle(){
+    public Eagle createEagle() {
         return new Eagle(names[randomizer.nextInt(names.length)],
                 favoriteFoods[randomizer.nextInt(favoriteFoods.length)],
                 randomizer.nextInt(11),

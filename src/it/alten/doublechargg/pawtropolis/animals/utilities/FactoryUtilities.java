@@ -2,7 +2,6 @@ package it.alten.doublechargg.pawtropolis.animals.utilities;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Random;
