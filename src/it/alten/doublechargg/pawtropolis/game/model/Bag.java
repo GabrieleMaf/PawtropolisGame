@@ -31,6 +31,7 @@ public class Bag {
             return items.add(item);
         }
         else {
+            System.err.println("Spazio non disponibile");
             return false;
         }
     }
