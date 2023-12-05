@@ -1,6 +1,10 @@
 package it.alten.doublechargg.pawtropolis.game.model;
 
+import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.observer.Observer;
+
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Player implements Observer {
     private String name;
@@ -41,18 +45,52 @@ public class Player implements Observer {
         this.bag = bag;
     }
 
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
     public void getItem(Item item){
         if(currentRoom.getItems().contains(item) && bag.addItem(item)) {
             currentRoom.getItems().remove(item);
         }
         else if(!currentRoom.getItems().contains(item)){
-            System.err.println("Oggetto non presente");
+            System.err.println("Oggetto non presente nella stanza");
         }
+    }
+
+    public void dropItem(Item item){
+        if(bag.removeItem(item)){
+            currentRoom.getItems().add(item);
+        }
+        else{
+            System.err.println("Oggetto non presente nella borsa");
+        }
+    }
+
+    public String lookDoors(){
+        return currentRoom.getDoors()
+                .keySet()
+                .stream()
+                .map(CardinalPoints::toString)
+                .collect(Collectors.joining(" "));
     }
 
     public void enterRoom(Room room){
         currentRoom = room;
         onEnterRoom(room);
+    }
+
+    public void changeRoom(CardinalPoints cardinalPoint){
+        if (Objects.nonNull(currentRoom.getDoors().get(cardinalPoint))) {
+            enterRoom(currentRoom.getDoors().get(cardinalPoint).getRoom2());
+        }
+        else {
+            System.err.println("Porta non presente");
+        }
     }
 
     @Override

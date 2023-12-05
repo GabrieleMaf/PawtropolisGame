@@ -103,3 +103,23 @@ l
 <src/it/alten/doublechargg/pawtropolis/game/model/Player.java,4\2\420cec91e1a5952950d01faeb71cc786e8f395c9
 _
 /src/it/alten/doublechargg/pawtropolis/Main.java,7\a\7a4b1a09199fa7550b6863b2504d2b3e5e025520
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+}
+Msrc/it/alten/doublechargg/pawtropolis/animals/utilities/FactoryUtilities.java,2\c\2caf5e36c7b9c7cec542d927879f9c42286b707d
+p
+@src/it/alten/doublechargg/pawtropolis/animals/ZooController.java,4\1\41f1128a7c6302cd398aee07a53baf71b1d07187
+j
+:src/it/alten/doublechargg/pawtropolis/game/model/Item.java,3\b\3b5493de5c0b65605ae6661977c1eb6a320be773
+p
+@src/it/alten/doublechargg/pawtropolis/animals/AnimalFactory.java,4\b\4b7ec258c551d9c94c415d8e97db5d2912b04f33
+i
+9src/it/alten/doublechargg/pawtropolis/game/model/Bag.java,d\e\de7b7059b64ebf1f1890310291ad7fa8351f24d3
+s
+Csrc/it/alten/doublechargg/pawtropolis/game/utilities/Utilities.java,8\4\842ca84b7b5aae30c090ee20c54160a7fe5d45e7
+s
+Csrc/it/alten/doublechargg/pawtropolis/game/factory/RoomFactory.java,d\8\d89684d0901d00c3f63881b5d6ca3218e29e381b
+m
+=src/it/alten/doublechargg/pawtropolis/game/MapController.java,0\f\0f48903df6e23762a23a84b95f8e6068af485f1b
+j
+:src/it/alten/doublechargg/pawtropolis/game/model/Door.java,6\b\6b2c1198c43065f401618be968c35ff005d1d2a5
