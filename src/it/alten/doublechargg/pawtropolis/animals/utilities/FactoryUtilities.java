@@ -1,4 +1,4 @@
-package it.alten.gmaferri.pawtropolis.animals.utilities;
+package it.alten.doublechargg.pawtropolis.animals.utilities;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

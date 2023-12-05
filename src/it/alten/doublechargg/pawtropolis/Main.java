@@ -1,10 +1,10 @@
-package it.alten.gmaferri.pawtropolis;
+package it.alten.doublechargg.pawtropolis;
 
-import it.alten.gmaferri.pawtropolis.animals.AnimalFactory;
-import it.alten.gmaferri.pawtropolis.animals.ZooController;
-import it.alten.gmaferri.pawtropolis.animals.model.Eagle;
-import it.alten.gmaferri.pawtropolis.animals.model.Lion;
-import it.alten.gmaferri.pawtropolis.animals.model.Tiger;
+import it.alten.doublechargg.pawtropolis.animals.AnimalFactory;
+import it.alten.doublechargg.pawtropolis.animals.ZooController;
+import it.alten.doublechargg.pawtropolis.animals.model.Eagle;
+import it.alten.doublechargg.pawtropolis.animals.model.Tiger;
+import it.alten.doublechargg.pawtropolis.animals.model.Lion;
 
 public class Main {
     public static void main(String[] args) {

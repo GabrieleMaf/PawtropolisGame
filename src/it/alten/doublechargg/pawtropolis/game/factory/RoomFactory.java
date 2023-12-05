@@ -1,6 +1,6 @@
-package it.alten.gmaferri.pawtropolis.game.factory;
+package it.alten.doublechargg.pawtropolis.game.factory;
 
-import it.alten.gmaferri.pawtropolis.game.model.Room;
+import it.alten.doublechargg.pawtropolis.game.model.Room;
 
 import java.util.Objects;
 import java.util.Random;
@@ -22,6 +22,6 @@ public class RoomFactory {
     }
 
     public Room createRoom(){
-        return new Room(Integer.toString(randomizer.nextInt()));
+        return new Room(Integer.toHexString(randomizer.nextInt()));
     }
 }

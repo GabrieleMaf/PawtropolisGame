@@ -1,8 +1,8 @@
-package it.alten.gmaferri.pawtropolis.animals;
+package it.alten.doublechargg.pawtropolis.animals;
 
-import it.alten.gmaferri.pawtropolis.animals.model.abstracts.Animal;
-import it.alten.gmaferri.pawtropolis.animals.model.abstracts.TailedAnimal;
-import it.alten.gmaferri.pawtropolis.animals.model.abstracts.WingedAnimal;
+import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
+import it.alten.doublechargg.pawtropolis.animals.model.abstracts.TailedAnimal;
+import it.alten.doublechargg.pawtropolis.animals.model.abstracts.WingedAnimal;
 
 import java.lang.reflect.Modifier;
 import java.util.*;

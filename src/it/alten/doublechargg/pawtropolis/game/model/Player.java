@@ -1,8 +1,6 @@
-package it.alten.gmaferri.pawtropolis.game.model;
+package it.alten.doublechargg.pawtropolis.game.model;
 
-import it.alten.gmaferri.pawtropolis.game.model.Bag;
-
-public class Player {
+public class Player{
     private String name;
     private int lifePoint;
     private Bag bag;

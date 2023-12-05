@@ -1,6 +1,6 @@
-package it.alten.gmaferri.pawtropolis.animals.model;
+package it.alten.doublechargg.pawtropolis.animals.model;
 
-import it.alten.gmaferri.pawtropolis.animals.model.abstracts.TailedAnimal;
+import it.alten.doublechargg.pawtropolis.animals.model.abstracts.TailedAnimal;
 
 import java.time.LocalDate;
 

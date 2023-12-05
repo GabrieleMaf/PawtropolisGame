@@ -1,13 +1,13 @@
-package it.alten.gmaferri.pawtropolis.animals;
+package it.alten.doublechargg.pawtropolis.animals;
 
-import it.alten.gmaferri.pawtropolis.animals.model.Eagle;
-import it.alten.gmaferri.pawtropolis.animals.model.Lion;
-import it.alten.gmaferri.pawtropolis.animals.model.Tiger;
+import it.alten.doublechargg.pawtropolis.animals.model.Eagle;
+import it.alten.doublechargg.pawtropolis.animals.model.Tiger;
+import it.alten.doublechargg.pawtropolis.animals.model.Lion;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-import static it.alten.gmaferri.pawtropolis.animals.utilities.FactoryUtilities.*;
+import static it.alten.doublechargg.pawtropolis.animals.utilities.FactoryUtilities.*;
 
 public class AnimalFactory {
 
