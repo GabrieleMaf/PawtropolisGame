@@ -6,14 +6,13 @@ public class Player implements Observer {
     private String name;
     private int lifePoint;
     private Bag bag;
-
     private Room currentRoom;
 
 
-    public Player(String name, int lifePoint, Bag bag){
+    public Player(String name){
         this.name = name;
-        this.lifePoint = lifePoint;
-        this.bag = bag;
+        this.lifePoint = 20;
+        this.bag = new Bag();
         currentRoom = null;
 
     }
@@ -42,22 +41,30 @@ public class Player implements Observer {
         this.bag = bag;
     }
 
-    public void getItem(Item item, Room currentRoom){
-        if(currentRoom.getItems().contains(item)){
-            bag.addItem(item);
+    public void getItem(Item item){
+        if(currentRoom.getItems().contains(item) && bag.addItem(item)) {
+            currentRoom.getItems().remove(item);
         }
+        else if(!currentRoom.getItems().contains(item)){
+            System.err.println("Oggetto non presente");
+        }
+    }
+
+    public void enterRoom(Room room){
+        currentRoom = room;
+        onEnterRoom(room);
     }
 
     @Override
     public void onEnterRoom(Room room) {
         room.setPlayer(this);
-        System.out.printf("%s è entrato nella stanza %s%n", name, room);
+        System.out.printf("%s è entrato nella stanza %s%n", name, room.getName());
     }
 
     @Override
     public void onLeaveRoom(Room room) {
         room.setPlayer(null);
-        System.out.printf("%s ha lasciato la stanza %s%n", name, room);
+        System.out.printf("%s ha lasciato la stanza %s%n", name, room.getName());
     }
 
     @Override
