@@ -10,10 +10,6 @@ public class Main {
 
         Player player1 = new Player("Gioele", 20, new Bag());
 
-        Room room1 = new Room("A1");
-        room1.registerObserver(player1);
-        room1.getItem(new Item("Torch", "A torch", 2), room1);
-        room1.dropItem(room1.getItems().get(0), room1);
 
 
 

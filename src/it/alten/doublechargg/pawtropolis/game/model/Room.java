@@ -2,20 +2,18 @@ package it.alten.doublechargg.pawtropolis.game.model;
 
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
-import it.alten.doublechargg.pawtropolis.game.observer.Observable;
-import it.alten.doublechargg.pawtropolis.game.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class Room {
     private String name;
     private List<Item> items;
     private List<Animal> animals;
     private Map<CardinalPoints, Door> doors;
+    private Player player;
 
 
     public Room(String name) {
@@ -23,6 +21,7 @@ public class Room {
         items = new ArrayList<>();
         animals = new ArrayList<>();
         doors = new HashMap<>();
+        player = null;
     }
 
     public String getName() {
@@ -55,5 +54,13 @@ public class Room {
 
     public void setDoors(Map<CardinalPoints, Door> doors) {
         this.doors = doors;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

@@ -1,22 +1,6 @@
 
-j
-:src/it/alten/gmaferri/pawtropolis/animals/model/Eagle.java,5\5\55c0069c0bcd81bba81bf461ed5e4324a5fe32b2
-f
-6src/it/alten/gmaferri/pawtropolis/game/model/Item.java,1\6\16e17a2be250a4bed82b5bfd12ca893495e74227
-h
-8src/it/alten/gmaferri/pawtropolis/game/model/Player.java,3\a\3a71533d1a2841399772d102fb4aa265a713ae12
-u
-Esrc/it/alten/gmaferri/pawtropolis/animals/model/abstracts/Animal.java,c\2\c2a75e3fa475f9877c532e54e22d613a345d3203
-{
-Ksrc/it/alten/gmaferri/pawtropolis/animals/model/abstracts/WingedAnimal.java,a\c\ac170ba2112b3e39ba87d450041c9289eb002ca0
-{
-Ksrc/it/alten/gmaferri/pawtropolis/animals/model/abstracts/TailedAnimal.java,0\5\057904d7b2ecea4c8183e5f2c8622e1c8a36c4bc
-l
-<src/it/alten/gmaferri/pawtropolis/animals/ZooController.java,d\e\deb70a4cb316c11d18f7388adf9f26431bf412e7
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-f
-6src/it/alten/gmaferri/pawtropolis/game/model/Door.java,0\e\0e7dbd1c3594e1826cdac6e500c8e61935fdb82f
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 w
@@ -109,10 +93,6 @@ Q.idea/sonarlint/securityhotspotstore/b/4/b4a0b63ce8560bbc5de0f9995c20cc861dc2ad
 Q.idea/sonarlint/securityhotspotstore/b/8/b892dd2ef641700befc14801ce4a043ae83fe0fe,9\e\9e88d9bd3008d2b4110e44bff70ed859f10cbd4c
 
 Q.idea/sonarlint/securityhotspotstore/d/1/d1a9a311228aa7ca40d609fb92dad0f56aba2a74,0\c\0c4bcbc257922b4ea0b7f6a55fcf7980a3d9797b
-f
-6src/it/alten/gmaferri/pawtropolis/game/model/Room.java,b\e\be3295df652c3033b701a6e56606211f2cfb1a92
-i
-9src/it/alten/gmaferri/pawtropolis/game/MapController.java,e\a\eaf2b514c66545168d01b96e7635e41120008357
 j
 :src/it/alten/doublechargg/pawtropolis/game/model/Room.java,b\f\bf68d61915444fbbb57282eabd0e876823eb6410
 s
@@ -121,3 +101,5 @@ q
 Asrc/it/alten/doublechargg/pawtropolis/game/observer/Observer.java,1\d\1d003ea4c098efca6eff27eec6f776d31947c7fa
 l
 <src/it/alten/doublechargg/pawtropolis/game/model/Player.java,4\2\420cec91e1a5952950d01faeb71cc786e8f395c9
+_
+/src/it/alten/doublechargg/pawtropolis/Main.java,7\a\7a4b1a09199fa7550b6863b2504d2b3e5e025520
