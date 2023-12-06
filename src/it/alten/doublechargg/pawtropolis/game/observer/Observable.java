@@ -1,14 +1,14 @@
 package it.alten.doublechargg.pawtropolis.game.observer;
 
 import it.alten.doublechargg.pawtropolis.game.model.Item;
+import it.alten.doublechargg.pawtropolis.game.model.Player;
 
 public interface Observable {
-    void registerObserver(Observer observer);
 
-    void removeObserver(Observer observer);
+    void onEnterRoom();
 
-    void notifyObjectAdded(Item item);
+    void onObjectAdded(Item item, Player player);
 
-    void notifyObjectRemove(Item item);
+    void onObjectRemove(Item item, Player player);
 
 }

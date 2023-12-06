@@ -2,8 +2,6 @@ package it.alten.doublechargg.pawtropolis.game.model;
 
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
-import it.alten.doublechargg.pawtropolis.game.observer.Observable;
-import it.alten.doublechargg.pawtropolis.game.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +14,7 @@ public class Room {
     private List<Item> items;
     private List<Animal> animals;
     private Map<CardinalPoints, Door> doors;
-    private Player player;
+    private List<Player> players;
 
 
     public Room(String name) {
@@ -24,7 +22,7 @@ public class Room {
         items = new ArrayList<>();
         animals = new ArrayList<>();
         doors = new HashMap<>();
-        player = null;
+        players=new ArrayList<>();
     }
 
     public String getName() {
@@ -36,9 +34,14 @@ public class Room {
                 .keySet()
                 .stream()
                 .map(CardinalPoints::toString)
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining("\n"));
     }
 
+    public String showAnimals(){
+        return animals.stream()
+                .map(Animal::toString)
+                .collect(Collectors.joining(""));
+    }
     public String showItems() {
         return items.stream()
                 .map(Item::toString)
@@ -80,12 +83,11 @@ public class Room {
                 .orElse(null);
     }
 
-    public Player getPlayer() {
-        return player;
+    public List<Player> getPlayers() {
+        return players;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
-
 }

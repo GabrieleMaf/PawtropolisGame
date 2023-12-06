@@ -58,6 +58,7 @@ public class Player implements Observable{
     public void getItem(Item item) {
         if (currentRoom.getItems().contains(item) && bag.addItem(item)) {
             currentRoom.getItems().remove(item);
+            onObjectAdded(item, this);
         } else if (!currentRoom.getItems().contains(item)) {
             System.err.println("Oggetto non presente nella stanza");
         }
@@ -66,13 +67,14 @@ public class Player implements Observable{
     public void dropItem(Item item) {
         if (bag.removeItem(item)) {
             currentRoom.getItems().add(item);
+            onObjectRemove(item, this);
         } else {
             System.err.println("Oggetto non presente nella borsa");
         }
     }
 
-    public String lookDoors() {
-        return currentRoom.showDoors();
+    public String look() {
+        return String.format("Animali : %s%n")
     }
 
     public String lookRoomItems() {
@@ -85,6 +87,7 @@ public class Player implements Observable{
 
     public void enterRoom(Room room) {
         currentRoom = room;
+        onEnterRoom();
     }
 
     public void changeRoom(CardinalPoints cardinalPoint) {
@@ -97,22 +100,18 @@ public class Player implements Observable{
 
 
     @Override
-    public void registerObserver(Observer observer) {
-        observer
+    public void onEnterRoom() {
+        observer.notifyOnEnterRoom(this);
     }
 
     @Override
-    public void removeObserver(Observer observer) {
-
+    public void onObjectAdded(Item item, Player player) {
+        observer.notifyObjectAdded(item, this);
     }
 
     @Override
-    public void notifyObjectAdded(Item item) {
-
+    public void onObjectRemove(Item item, Player player) {
+        observer.notifyObjectRemove(item, this);
     }
 
-    @Override
-    public void notifyObjectRemove(Item item) {
-
-    }
 }
