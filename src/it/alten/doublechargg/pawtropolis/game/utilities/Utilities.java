@@ -3,6 +3,7 @@ package it.alten.doublechargg.pawtropolis.game.utilities;
 import it.alten.doublechargg.pawtropolis.game.MapController;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
+import it.alten.doublechargg.pawtropolis.game.observer.Observer;
 
 import java.util.Scanner;
 
@@ -12,9 +13,11 @@ public class Utilities {
 
     static Scanner scanner = new Scanner(System.in);
 
+
+
     public static Player createPlayer(){
         System.out.println("Scegli il nome del tuo giocatore");
-        return new Player(scanner.next());
+        return new Player(scanner.next(), );
     }
 
     public static void startGame(Player player1){

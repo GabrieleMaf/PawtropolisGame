@@ -1,22 +1,25 @@
 package it.alten.doublechargg.pawtropolis.game.model;
 
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
+import it.alten.doublechargg.pawtropolis.game.observer.Observable;
 import it.alten.doublechargg.pawtropolis.game.observer.Observer;
 
 import java.util.Objects;
 
-public class Player implements Observer {
+public class Player implements Observable{
     private String name;
     private int lifePoint;
     private Bag bag;
     private Room currentRoom;
+    private final Observer observer;
 
 
-    public Player(String name) {
+    public Player(String name, Observer observer) {
         this.name = name;
         this.lifePoint = 20;
         this.bag = new Bag();
         currentRoom = null;
+        this.observer = observer;
 
     }
 
@@ -82,7 +85,6 @@ public class Player implements Observer {
 
     public void enterRoom(Room room) {
         currentRoom = room;
-        onEnterRoom(room);
     }
 
     public void changeRoom(CardinalPoints cardinalPoint) {
@@ -93,22 +95,24 @@ public class Player implements Observer {
         }
     }
 
+
     @Override
-    public void onEnterRoom(Room room) {
-        room.setPlayer(this);
-        System.out.printf("%s è entrato nella stanza %s%n", name, room.getName());
+    public void registerObserver(Observer observer) {
+        observer
     }
 
     @Override
-    public void onObjectAdded(Item item, Room room) {
+    public void removeObserver(Observer observer) {
 
-        System.out.printf("%s ha preso l'oggetto %s nella stanza %s%n", name, item.getName(), room.getName());
     }
 
     @Override
-    public void onObjectRemove(Item item, Room room) {
-        System.out.printf("%s ha lasciato l'oggetto %s nella stanza %s%n", name, item.getName(), room.getName());
+    public void notifyObjectAdded(Item item) {
+
     }
 
+    @Override
+    public void notifyObjectRemove(Item item) {
 
+    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Room implements Observable {
+public class Room {
     private String name;
     private List<Item> items;
     private List<Animal> animals;
@@ -88,23 +88,4 @@ public class Room implements Observable {
         this.player = player;
     }
 
-    @Override
-    public void registerObserver(Observer observer) {
-
-    }
-
-    @Override
-    public void removeObserver(Observer observer) {
-
-    }
-
-    @Override
-    public void notifyObjectAdded(Item item) {
-
-    }
-
-    @Override
-    public void notifyObjectRemove(Item item) {
-
-    }
 }
