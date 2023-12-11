@@ -10,8 +10,6 @@ import java.util.Scanner;
 public class GameController implements Observer {
 
     private Scanner scanner = new Scanner(System.in);
-    private boolean gameEnded = false;
-
 
     public Player createPlayer(){
         System.out.println("Scegli il nome del tuo giocatore");
@@ -19,51 +17,60 @@ public class GameController implements Observer {
     }
 
     public void startGame(Player player1){
-        Scanner scanner = new Scanner(System.in);
         MapController map = new MapController();
 
         player1.enterRoom(map.getRoomList().get(0));
-        do {
-            System.out.println("Cosa vuoi fare?");
-            System.out.println("1-Guarda nella stanza");
-            System.out.println("2-Cambia stanza");
-            System.out.println("3-Esci dal gioco");
-            switch (scanner.nextInt()){
-                case 1:
-                    System.out.println(player1.look());
-                    break;
-                case 2:
-                    System.out.println("Quale porta scegli?");
-                    System.out.println("1-NORTH");
-                    System.out.println("2-EAST");
-                    System.out.println("3-WEST");
-                    System.out.println("4-SOUTH");
-                    switch (scanner.nextInt()){
-                        case 1:
-                            player1.changeRoom(CardinalPoints.NORTH);
-                            break;
-                        case 2:
-                            player1.changeRoom(CardinalPoints.EAST);
-                            break;
-                        case 3:
-                            player1.changeRoom(CardinalPoints.WEST);
-                            break;
-                        case 4:
-                            player1.changeRoom(CardinalPoints.SOUTH);
-                            break;
-                        default:
-                            System.err.println("Operazione non permessa");
-                            break;
-                    }
-                    break;
-                case 3:
-                    gameEnded = true;
-                    break;
+        System.out.println(getHelp());
+        while (true){
+            chooseInput(scanner.next(), player1);
+        }
+    }
+
+    public CardinalPoints getCardinalPoint(String input){
+
+            switch (input.toLowerCase()){
+                case "north":
+                    return CardinalPoints.NORTH;
+                case  "east":
+                    return CardinalPoints.EAST;
+                case "west":
+                    return CardinalPoints.WEST;
+                case "south":
+                    return CardinalPoints.SOUTH;
                 default:
-                    System.err.println("Operazione non permessa");
-                    break;
+                    throw new IllegalArgumentException("Punto cardinale inesistente");
             }
-        } while (!gameEnded);
+
+
+    }
+
+    public String getHelp(){
+        return String.format("Elenco comandi:%n" +
+                "1) - bag: Guarda gli oggetti nella borsa%n" +
+                "2) - look: Guarda la stanza%n" +
+                "3) - go: Cambia stanza%n" +
+                "4) - exit: Esci dal gioco");
+    }
+
+    public void chooseInput(String input, Player player){
+        switch (input.toLowerCase()){
+            case "bag":
+                System.out.println(player.lookBagItems());
+                break;
+            case "look":
+                System.out.println(player.look());
+                break;
+            case "go":
+                System.out.println("Scrivi la cordinata");
+                player.changeRoom(getCardinalPoint(scanner.next().toLowerCase()));
+                break;
+            case "exit":
+                System.exit(0);
+            default:
+                System.out.println(getHelp());
+
+        }
+
     }
 
     @Override

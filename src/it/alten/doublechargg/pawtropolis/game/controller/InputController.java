@@ -22,12 +22,5 @@ public class InputController {
         }
     }
 
-    public static void chooseCommand(String input, Player player){
-        switch(input){
-            case "bag":
-                System.out.println(player.getBag().showBagItems());
-            case "look":
 
-        }
-    }
 }

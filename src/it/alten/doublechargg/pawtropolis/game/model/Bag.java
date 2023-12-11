@@ -28,6 +28,9 @@ public class Bag {
     }
 
     public String showBagItems() {
+        if(items.isEmpty()){
+            return "Borsa vuota";
+        }
         return items.stream()
                 .map(Item::toString)
                 .collect(Collectors.joining(""));
