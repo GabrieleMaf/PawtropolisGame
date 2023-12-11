@@ -1,7 +1,0 @@
-
-G	java:S1069"+Replace this use of System.out by a logger.(ÎîÁ8§Û¨ÃÅ1
-L	java:S106;"+Replace this use of System.err by a logger.(¡Á¢éûÿÿÿÿ8©Û¨ÃÅ1
-G	java:S106B"+Replace this use of System.out by a logger.(Òäé„8ªÛ¨ÃÅ1
-L	java:S106D"+Replace this use of System.err by a logger.(è™İÓùÿÿÿÿ8«Û¨ÃÅ1
-L	java:S106b"+Replace this use of System.out by a logger.(¥ş·¶úÿÿÿÿ8¯Û¨ÃÅ1
-L	java:S106i"+Replace this use of System.err by a logger.(áš¼Åúÿÿÿÿ8²Û¨ÃÅ1
