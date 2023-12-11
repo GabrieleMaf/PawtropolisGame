@@ -3,6 +3,7 @@ package it.alten.doublechargg.pawtropolis.animals;
 import it.alten.doublechargg.pawtropolis.animals.model.Eagle;
 import it.alten.doublechargg.pawtropolis.animals.model.Lion;
 import it.alten.doublechargg.pawtropolis.animals.model.Tiger;
+import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -52,5 +53,16 @@ public class AnimalFactory {
                 Double.parseDouble(decimalFormat.format(randomizer.nextDouble(200, 250))),
                 Double.parseDouble(decimalFormat.format(randomizer.nextDouble(0.9, 1.2))),
                 Double.parseDouble(decimalFormat.format(randomizer.nextDouble(0.7, 1))));
+    }
+
+    public Animal createAnimal(){
+        switch (randomizer.nextInt(2)){
+            case 0:
+                return createEagle();
+            case 1:
+                return createLion();
+            default:
+                return createTiger();
+        }
     }
 }

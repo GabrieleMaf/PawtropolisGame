@@ -29,25 +29,6 @@ public class Room {
         return name;
     }
 
-    public String showDoors() {
-        return doors
-                .keySet()
-                .stream()
-                .map(CardinalPoints::toString)
-                .collect(Collectors.joining("\n"));
-    }
-
-    public String showAnimals(){
-        return animals.stream()
-                .map(Animal::getNameFormat)
-                .collect(Collectors.joining(""));
-    }
-    public String showItems() {
-        return items.stream()
-                .map(Item::getName)
-                .collect(Collectors.joining(""));
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -76,6 +57,14 @@ public class Room {
         this.doors = doors;
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
     public Item getItemById(Long id) {
         return items.stream()
                 .filter(item -> item.getId().equals(id))
@@ -83,11 +72,30 @@ public class Room {
                 .orElse(null);
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public String showDoors() {
+        return doors
+                .keySet()
+                .stream()
+                .map(CardinalPoints::toString)
+                .collect(Collectors.joining("\n"));
     }
 
-    public void setPlayers(List<Player> players) {
-        this.players = players;
+    public String showAnimals(){
+        return animals.stream()
+                .map(Animal::getNameFormat)
+                .collect(Collectors.joining(""));
+    }
+    public String showItems() {
+        return items.stream()
+                .map(Item::getName)
+                .collect(Collectors.joining(""));
+    }
+
+    public String showContent(){
+        return String.format("You are in room %s%n" +
+                "Items: %s%n" +
+                "NPC: %s%n" +
+                "Doors: %s",
+                name, showItems(), showAnimals(), showDoors());
     }
 }

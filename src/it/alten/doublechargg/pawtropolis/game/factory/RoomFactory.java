@@ -1,5 +1,6 @@
 package it.alten.doublechargg.pawtropolis.game.factory;
 
+import it.alten.doublechargg.pawtropolis.animals.AnimalFactory;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 
@@ -7,6 +8,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class RoomFactory {
+    AnimalFactory animalFactory = AnimalFactory.getInstance();
     private static RoomFactory instance = null;
     static int idRoom = 0;
 
@@ -34,6 +36,11 @@ public class RoomFactory {
         Room room =  new Room(Integer.toString(idRoom));
         while (room.getItems().size() <= 4){
             room.getItems().add(items[randomizer.nextInt(items.length)]);
+
+        }
+
+        while (room.getAnimals().size() <= randomizer.nextInt(5)){
+            room.getAnimals().add(animalFactory.createAnimal());
         }
         return room;
     }

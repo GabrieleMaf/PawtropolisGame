@@ -1,17 +1,19 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
-import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
+import it.alten.doublechargg.pawtropolis.game.utilities.MyLogger;
 
 import java.util.Scanner;
 
 public class GameController {
+    MyLogger logger = MyLogger.getInstance();
+    private Player player1;
 
     private Scanner scanner = new Scanner(System.in);
 
     public Player createPlayer() {
-        System.out.println("Scegli il nome del tuo giocatore");
+        logger.logInfo("Scegli il nome del tuo giocatore");
         return new Player(scanner.next());
     }
 
@@ -19,7 +21,7 @@ public class GameController {
         MapController map = new MapController();
 
         player1.enterRoom(map.getRoomList().get(0));
-        System.out.println(getHelp());
+        logger.logInfo(getHelp());
         while (true) {
             chooseInput(scanner.next(), player1);
         }
@@ -43,6 +45,8 @@ public class GameController {
 
     }
 
+    //Sistemare l'input dei comandi
+
     public String getHelp() {
         return String.format("Elenco comandi:%n" +
                 "1) - bag: Guarda gli oggetti nella borsa%n" +
@@ -54,19 +58,19 @@ public class GameController {
     public void chooseInput(String input, Player player) {
         switch (input.toLowerCase()) {
             case "bag":
-                System.out.println(player.lookBagItems());
+                logger.logInfo(player.lookBagItems());
                 break;
             case "look":
-                System.out.println(player.look());
+                logger.logInfo(player.lookRoom());
                 break;
             case "go":
-                System.out.println("Scrivi la cordinata");
+                logger.logInfo("Scrivi la cordinata");
                 player.changeRoom(getCardinalPoint(scanner.next().toLowerCase()));
                 break;
             case "exit":
                 System.exit(0);
             default:
-                System.out.println(getHelp());
+                logger.logInfo(getHelp());
 
         }
     }
