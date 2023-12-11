@@ -25,12 +25,12 @@ public class GameController implements Observer {
         player1.enterRoom(map.getRoomList().get(0));
         do {
             System.out.println("Cosa vuoi fare?");
-            System.out.println("1-Elenca le porte");
+            System.out.println("1-Guarda nella stanza");
             System.out.println("2-Cambia stanza");
             System.out.println("3-Esci dal gioco");
             switch (scanner.nextInt()){
                 case 1:
-                    System.out.println(player1.lookDoors());
+                    System.out.println(player1.look());
                     break;
                 case 2:
                     System.out.println("Quale porta scegli?");
