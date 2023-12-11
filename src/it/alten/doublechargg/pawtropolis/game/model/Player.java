@@ -74,7 +74,17 @@ public class Player implements Observable{
     }
 
     public String look() {
-        return String.format("Animali : %s%n")
+        return String.format("Animali : %s%n%n" +
+                             "Oggetti: %s%n"  +
+                             "Porte: %s%n", lookAnimals(), lookRoomItems(), lookDoors());
+    }
+
+    public String lookDoors(){
+        return currentRoom.showDoors();
+    }
+
+    public String lookAnimals(){
+        return currentRoom.showAnimals();
     }
 
     public String lookRoomItems() {
