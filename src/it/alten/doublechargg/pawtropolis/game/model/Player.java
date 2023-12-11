@@ -1,25 +1,21 @@
 package it.alten.doublechargg.pawtropolis.game.model;
 
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
-import it.alten.doublechargg.pawtropolis.game.observer.Observable;
-import it.alten.doublechargg.pawtropolis.game.observer.Observer;
 
 import java.util.Objects;
 
-public class Player implements Observable{
+public class Player{
     private String name;
     private int lifePoint;
     private Bag bag;
     private Room currentRoom;
-    private final Observer observer;
 
 
-    public Player(String name, Observer observer) {
+    public Player(String name) {
         this.name = name;
         this.lifePoint = 20;
         this.bag = new Bag();
         currentRoom = null;
-        this.observer = observer;
 
     }
 
@@ -58,7 +54,7 @@ public class Player implements Observable{
     public void getItem(Item item) {
         if (currentRoom.getItems().contains(item) && bag.addItem(item)) {
             currentRoom.getItems().remove(item);
-            onObjectAdded(item, this);
+            System.out.printf("%s ha preso l'oggetto %s dalla stanza %s%n", this.name, item.getName(), currentRoom.getName());
         } else if (!currentRoom.getItems().contains(item)) {
             System.err.println("Oggetto non presente nella stanza");
         }
@@ -67,16 +63,18 @@ public class Player implements Observable{
     public void dropItem(Item item) {
         if (bag.removeItem(item)) {
             currentRoom.getItems().add(item);
-            onObjectRemove(item, this);
+            System.out.printf("%s ha gettato l'oggetto %s nella stanza %s%n", this.name, item.getName(), currentRoom.getName());
         } else {
             System.err.println("Oggetto non presente nella borsa");
         }
     }
 
     public String look() {
-        return String.format("Animali : %s%n%n" +
-                             "Oggetti: %s%n"  +
-                             "Porte: %s%n", lookAnimals(), lookRoomItems(), lookDoors());
+        return String.format("You are in the room %s%n" +
+                        "Items: %s%n"+
+                        "Animals: %s%n" +
+                        "Doors: %s%n",
+                currentRoom.getName(),lookAnimals(), lookRoomItems(), lookDoors());
     }
 
     public String lookDoors(){
@@ -97,7 +95,7 @@ public class Player implements Observable{
 
     public void enterRoom(Room room) {
         currentRoom = room;
-        onEnterRoom();
+        System.out.printf("%s è entrato nella stanza %s%n", this.name, currentRoom.getName());
     }
 
     public void changeRoom(CardinalPoints cardinalPoint) {
@@ -106,22 +104,6 @@ public class Player implements Observable{
         } else {
             System.err.println("Porta non presente");
         }
-    }
-
-
-    @Override
-    public void onEnterRoom() {
-        observer.notifyOnEnterRoom(this);
-    }
-
-    @Override
-    public void onObjectAdded(Item item, Player player) {
-        observer.notifyObjectAdded(item, this);
-    }
-
-    @Override
-    public void onObjectRemove(Item item, Player player) {
-        observer.notifyObjectRemove(item, this);
     }
 
 }

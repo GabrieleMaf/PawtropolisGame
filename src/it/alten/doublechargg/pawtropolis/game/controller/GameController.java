@@ -3,17 +3,16 @@ package it.alten.doublechargg.pawtropolis.game.controller;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
-import it.alten.doublechargg.pawtropolis.game.observer.Observer;
 
 import java.util.Scanner;
 
-public class GameController implements Observer {
+public class GameController {
 
     private Scanner scanner = new Scanner(System.in);
 
     public Player createPlayer(){
         System.out.println("Scegli il nome del tuo giocatore");
-        return new Player(scanner.next(), this);
+        return new Player(scanner.next());
     }
 
     public void startGame(Player player1){
@@ -40,7 +39,6 @@ public class GameController implements Observer {
                 default:
                     throw new IllegalArgumentException("Punto cardinale inesistente");
             }
-
 
     }
 
@@ -71,20 +69,5 @@ public class GameController implements Observer {
 
         }
 
-    }
-
-    @Override
-    public void notifyOnEnterRoom(Player player) {
-        System.out.printf("%s è entrato nella stanza %s%n", player.getName(), player.getCurrentRoom().getName());
-    }
-
-    @Override
-    public void notifyObjectAdded(Item item, Player player) {
-        System.out.printf("%s è ha preso l'oggetto %s dalla stanza%n", player.getName(), item.getName());
-    }
-
-    @Override
-    public void notifyObjectRemove(Item item, Player player) {
-        System.out.printf("%s è ha preso l'oggetto %s dalla stanza%n", player.getName(), item.getName());
     }
 }

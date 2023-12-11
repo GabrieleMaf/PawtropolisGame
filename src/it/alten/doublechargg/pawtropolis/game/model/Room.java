@@ -39,12 +39,12 @@ public class Room {
 
     public String showAnimals(){
         return animals.stream()
-                .map(Animal::toString)
+                .map(Animal::getNameFormat)
                 .collect(Collectors.joining(""));
     }
     public String showItems() {
         return items.stream()
-                .map(Item::toString)
+                .map(Item::getName)
                 .collect(Collectors.joining(""));
     }
 
