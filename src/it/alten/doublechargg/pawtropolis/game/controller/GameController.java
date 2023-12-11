@@ -10,39 +10,40 @@ public class GameController {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public Player createPlayer(){
+    public Player createPlayer() {
         System.out.println("Scegli il nome del tuo giocatore");
         return new Player(scanner.next());
     }
 
-    public void startGame(Player player1){
+    public void startGame(Player player1) {
         MapController map = new MapController();
 
         player1.enterRoom(map.getRoomList().get(0));
         System.out.println(getHelp());
-        while (true){
+        while (true) {
             chooseInput(scanner.next(), player1);
         }
     }
 
-    public CardinalPoints getCardinalPoint(String input){
+    public CardinalPoints getCardinalPoint(String input) {
 
-            switch (input.toLowerCase()){
-                case "north":
-                    return CardinalPoints.NORTH;
-                case  "east":
-                    return CardinalPoints.EAST;
-                case "west":
-                    return CardinalPoints.WEST;
-                case "south":
-                    return CardinalPoints.SOUTH;
-                default:
-                    throw new IllegalArgumentException("Punto cardinale inesistente");
-            }
+        switch (input.toLowerCase()) {
+            case "north":
+                return CardinalPoints.NORTH;
+            case "east":
+                return CardinalPoints.EAST;
+            case "west":
+                return CardinalPoints.WEST;
+            case "south":
+                return CardinalPoints.SOUTH;
+            default:
+                throw new IllegalArgumentException("Punto cardinale inesistente");
+        }
+
 
     }
 
-    public String getHelp(){
+    public String getHelp() {
         return String.format("Elenco comandi:%n" +
                 "1) - bag: Guarda gli oggetti nella borsa%n" +
                 "2) - look: Guarda la stanza%n" +
@@ -50,8 +51,8 @@ public class GameController {
                 "4) - exit: Esci dal gioco");
     }
 
-    public void chooseInput(String input, Player player){
-        switch (input.toLowerCase()){
+    public void chooseInput(String input, Player player) {
+        switch (input.toLowerCase()) {
             case "bag":
                 System.out.println(player.lookBagItems());
                 break;
@@ -68,6 +69,6 @@ public class GameController {
                 System.out.println(getHelp());
 
         }
-
     }
+
 }
