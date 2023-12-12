@@ -1,26 +1,20 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
-import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
-import it.alten.doublechargg.pawtropolis.game.model.Room;
 import it.alten.doublechargg.pawtropolis.game.utilities.MyLogger;
 import it.alten.doublechargg.pawtropolis.game.utilities.Utilities;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Objects;
-import java.util.Random;
 import java.util.stream.Collectors;
 
-public class InputController {
+public class CommandController {
 
     private static final MyLogger logger = MyLogger.getInstance();
 
 
-    public static String readString() {
+   /*public static String readString() {
         InputStreamReader input = new InputStreamReader(System.in);
         BufferedReader inputReader = new BufferedReader(input);
         try {
@@ -29,7 +23,7 @@ public class InputController {
             System.err.println("Error while reading user input");
             return "";
         }
-    }
+    }*/
 
     public static void goCommand(CardinalPoints cardinalPoint, Player player) {
         if (Objects.nonNull(player.getCurrentRoom().getDoors().get(cardinalPoint))) {
@@ -57,19 +51,44 @@ public class InputController {
         }
         return player.getBag().getItems().stream()
                 .map(Item::toString)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(""));
     }
 
-    public static void getCommand(Player player){
-        if (player.getCurrentRoom.getItems().contains(item) && bag.addItem(item)) {
-            currentRoom.getItems().remove(item);
-            logger.logInfo(String.format("%s get the %s from the room%n", this.name, item.getName()));
-        } else if (!currentRoom.getItems().contains(item)) {
+    public static void getCommand(Player player, String itemName){
+        Item item = Utilities.getItemByNameFromRoom(itemName, player);
+        if (player.getCurrentRoom().getItems().contains(item)) {
+            if (item.getWeight() + Utilities.getTotalWeight(player.getBag()) < player.getBag().getSlot()) {
+                player.getBag().getItems().add(item);
+                player.getCurrentRoom().getItems().remove(item);
+                logger.logInfo(String.format("%s got the %s from the room%n", player.getName(), item.getName()));
+            }
+            else {
+                logger.logWarning("Not enough space in bag");
+            }
+        }
+        else {
             logger.logInfo("Item not present in this room");
         }
     }
 
+    public static void dropCommand(Player player, String itemName){
+        Item item = Utilities.getItemByNameFromBag(itemName, player);
+        if (player.getBag().getItems().remove(item)) {
+            player.getCurrentRoom().getItems().add(item);
+            logger.logInfo(String.format("%s dropped the %s in the room%n", player.getName(), item.getName()));
+        } else {
+            logger.logInfo("Item not present in the bag");
+        }
+    }
 
-
+    public static String helpCommand() {
+        return String.format("Command List:%n" +
+                "1) - bag: Look the items in your bag%n" +
+                "2) - look: Look around in the room, doors, items and animals%n" +
+                "3) - go <direction>: Change room. Command example: go north%n" +
+                "4) - get <item>: Get an item from room. Command example: get torch%n" +
+                "5) - drop <item>: Drop an item into the room. Command example: drop torch%n" +
+                "6) - exit: Exit from game");
+    }
 
 }

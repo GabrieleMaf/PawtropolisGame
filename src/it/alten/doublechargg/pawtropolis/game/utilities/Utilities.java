@@ -3,7 +3,7 @@ package it.alten.doublechargg.pawtropolis.game.utilities;
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
-import it.alten.doublechargg.pawtropolis.game.model.Door;
+import it.alten.doublechargg.pawtropolis.game.model.Bag;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 
@@ -17,13 +17,10 @@ public class Utilities {
     private static Scanner scanner = new Scanner(System.in);
     private static GameController gameController = new GameController();
 
-    public static String getAnimalsOfCurrentRoom(Player player){
-        return player.getCurrentRoom()
-                .getAnimals()
-                .stream()
-                .map(Animal::getNameFormat)
-                .collect(Collectors.joining(", "));
-
+    public static int getTotalWeight(Bag bag) {
+        return bag.getItems().stream()
+                .mapToInt(Item::getWeight)
+                .sum();
     }
 
     public static String getItemsOfCurrentRoom(Player player){
@@ -32,6 +29,15 @@ public class Utilities {
                 .stream()
                 .map(Item::getName)
                 .collect(Collectors.joining(", "));
+    }
+
+    public static String getAnimalsOfCurrentRoom(Player player){
+        return player.getCurrentRoom()
+                .getAnimals()
+                .stream()
+                .map(Animal::getNameFormat)
+                .collect(Collectors.joining(", "));
+
     }
 
     public static String getDoorsOfCurrentRoom(Player player){
@@ -62,6 +68,20 @@ public class Utilities {
                 .orElse(null);
     }
 
+    public static CardinalPoints getCardinalPoint(String input) {
 
+        switch (input.toLowerCase()) {
+            case "north":
+                return CardinalPoints.NORTH;
+            case "east":
+                return CardinalPoints.EAST;
+            case "west":
+                return CardinalPoints.WEST;
+            case "south":
+                return CardinalPoints.SOUTH;
+            default:
+                throw new IllegalArgumentException("Non existent cardinal point");
+        }
 
+    }
 }

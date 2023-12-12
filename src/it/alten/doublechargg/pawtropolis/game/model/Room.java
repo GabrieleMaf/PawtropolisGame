@@ -3,8 +3,10 @@ package it.alten.doublechargg.pawtropolis.game.model;
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
 
 public class Room {
 
@@ -52,40 +54,4 @@ public class Room {
     public void setDoors(EnumMap<CardinalPoints, Door> doors) {
         this.doors = doors;
     }
-
-    public Item getItemById(Long id) {
-        return items.stream()
-                .filter(item -> item.getId().equals(id))
-                .findFirst()
-                .orElse(null);
-    }
-
-
-    public String showDoors() {
-        return doors
-                .keySet()
-                .stream()
-                .map(CardinalPoints::toString)
-                .collect(Collectors.joining("\n"));
-    }
-
-    public String showAnimals(){
-        return animals.stream()
-                .map(Animal::getNameFormat)
-                .collect(Collectors.joining(", "));
-    }
-    public String showItems() {
-        return items.stream()
-                .map(Item::getName)
-                .collect(Collectors.joining(", "));
-    }
-
-    public String showContent(){
-        return String.format("You are in room %s%n" +
-                "Items: %s%n" +
-                "NPC: %s%n" +
-                "Doors: %s",
-                name, showItems(), showAnimals(), showDoors());
-    }
-
 }
