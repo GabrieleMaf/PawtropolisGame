@@ -2,15 +2,18 @@ package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
+import it.alten.doublechargg.pawtropolis.game.model.Room;
 import it.alten.doublechargg.pawtropolis.game.utilities.MyLogger;
 
 import java.util.Scanner;
 
 public class GameController {
-    MyLogger logger = MyLogger.getInstance();
-    private Player player1;
 
+    private MyLogger logger = MyLogger.getInstance();
     private Scanner scanner = new Scanner(System.in);
+
+    private Player player1;
+    private Room room;
 
     public Player createPlayer() {
         logger.logInfo("Scegli il nome del tuo giocatore");
@@ -20,7 +23,7 @@ public class GameController {
     public void startGame(Player player1) {
         MapController map = new MapController();
 
-        player1.enterRoom(map.getRoomList().get(0));
+        player1.setCurrentRoom(map.getRoomList().get(0));
         logger.logInfo(getHelp());
         while (true) {
             chooseInput(scanner.next(), player1);
@@ -56,7 +59,8 @@ public class GameController {
     }
 
     public void chooseInput(String input, Player player) {
-        switch (input.toLowerCase()) {
+        String[] command = input.toLowerCase().split("\s");
+        switch (command[0]) {
             case "bag":
                 logger.logInfo(player.lookBagItems());
                 break;
@@ -64,11 +68,23 @@ public class GameController {
                 logger.logInfo(player.lookRoom());
                 break;
             case "go":
-                logger.logInfo("Scrivi la cordinata");
-                player.changeRoom(getCardinalPoint(scanner.next().toLowerCase()));
+                if (command.length == 2) {
+                    player.changeRoom(getCardinalPoint(command[1]));
+                }
+                break;
+            case "get":
+                if (command.length == 2){
+                    player.getItem(player.getItemByNameFromRoom(command[1]));
+                }
+                break;
+            case "drop":
+                if (command.length == 2) {
+                    player.dropItem(player.getItemByNameFromBag(command[1]));
+                }
                 break;
             case "exit":
                 System.exit(0);
+                break;
             default:
                 logger.logInfo(getHelp());
 

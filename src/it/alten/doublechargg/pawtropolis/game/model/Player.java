@@ -6,12 +6,12 @@ import it.alten.doublechargg.pawtropolis.game.utilities.MyLogger;
 import java.util.Objects;
 
 public class Player{
+
+    private static final MyLogger logger = MyLogger.getInstance();
     private final String name;
     private int lifePoint;
     private final Bag bag;
     private Room currentRoom;
-
-    private static final MyLogger logger = MyLogger.getInstance();
 
     public Player(String name) {
         this.name = name;
@@ -45,15 +45,10 @@ public class Player{
         this.currentRoom = currentRoom;
     }
 
-    //unire il metodo enterRoom con changeRoom.
-    public void enterRoom(Room room) {
-        currentRoom = room;
-        logger.logInfo(String.format("%s è entrato nella stanza %s%n", this.name, currentRoom.getName()));
-    }
-
     public void changeRoom(CardinalPoints cardinalPoint) {
         if (Objects.nonNull(currentRoom.getDoors().get(cardinalPoint))) {
-            enterRoom(currentRoom.getDoors().get(cardinalPoint).getRoom2());
+            currentRoom = currentRoom.getDoors().get(cardinalPoint).getRoom2();
+            logger.logInfo(String.format("%s è entrato nella stanza %s%n", this.name, currentRoom.getName()));
         } else {
             logger.logInfo("Porta non presente");
         }
@@ -65,6 +60,20 @@ public class Player{
 
     public String lookBagItems() {
         return bag.showBagItems();
+    }
+
+    public Item getItemByNameFromRoom(String name){
+        return currentRoom.getItems().stream()
+                .filter(item -> item.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Item getItemByNameFromBag(String name){
+        return bag.getItems().stream()
+                .filter(item -> item.getName().equals(name))
+                .findFirst()
+                .orElse(null);
     }
 
     public void getItem(Item item) {

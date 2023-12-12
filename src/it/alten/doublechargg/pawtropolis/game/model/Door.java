@@ -1,6 +1,7 @@
 package it.alten.doublechargg.pawtropolis.game.model;
 
 public class Door {
+
     private Room room1;
     private Room room2;
 

@@ -10,11 +10,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Room {
+
     private String name;
     private List<Item> items;
     private List<Animal> animals;
     private Map<CardinalPoints, Door> doors;
-    private List<Player> players;
 
 
     public Room(String name) {
@@ -22,7 +22,6 @@ public class Room {
         items = new ArrayList<>();
         animals = new ArrayList<>();
         doors = new HashMap<>();
-        players=new ArrayList<>();
     }
 
     public String getName() {
@@ -57,20 +56,13 @@ public class Room {
         this.doors = doors;
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-
     public Item getItemById(Long id) {
         return items.stream()
                 .filter(item -> item.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
+
 
     public String showDoors() {
         return doors
@@ -98,4 +90,5 @@ public class Room {
                 "Doors: %s",
                 name, showItems(), showAnimals(), showDoors());
     }
+
 }

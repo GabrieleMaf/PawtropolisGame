@@ -8,7 +8,6 @@ import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class Bag {
-
     private static final MyLogger logger = MyLogger.getInstance();
 
     private final List<Item> items;
@@ -21,6 +20,10 @@ public class Bag {
 
     public int getSlot() {
         return slot;
+    }
+
+    public List<Item> getItems(){
+        return items;
     }
 
     public String showBagItems() {
