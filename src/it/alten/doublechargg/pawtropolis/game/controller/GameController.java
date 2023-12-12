@@ -17,7 +17,7 @@ public class GameController {
 
     public Player createPlayer() {
         logger.logInfo("Scegli il nome del tuo giocatore");
-        return new Player(scanner.next());
+        return new Player(scanner.nextLine());
     }
 
     public void startGame(Player player1) {
@@ -26,7 +26,7 @@ public class GameController {
         player1.setCurrentRoom(map.getRoomList().get(0));
         logger.logInfo(getHelp());
         while (true) {
-            chooseInput(scanner.next(), player1);
+            chooseInput(scanner.nextLine(), player1);
         }
     }
 
@@ -59,7 +59,7 @@ public class GameController {
     }
 
     public void chooseInput(String input, Player player) {
-        String[] command = input.toLowerCase().split("\s");
+        String[] command = input.toLowerCase().split(" ");
         switch (command[0]) {
             case "bag":
                 logger.logInfo(player.lookBagItems());
@@ -68,17 +68,17 @@ public class GameController {
                 logger.logInfo(player.lookRoom());
                 break;
             case "go":
-                if (command.length == 2) {
+                if (command.length > 1) {
                     player.changeRoom(getCardinalPoint(command[1]));
                 }
                 break;
             case "get":
-                if (command.length == 2){
+                if (command.length > 1){
                     player.getItem(player.getItemByNameFromRoom(command[1]));
                 }
                 break;
             case "drop":
-                if (command.length == 2) {
+                if (command.length > 1) {
                     player.dropItem(player.getItemByNameFromBag(command[1]));
                 }
                 break;
