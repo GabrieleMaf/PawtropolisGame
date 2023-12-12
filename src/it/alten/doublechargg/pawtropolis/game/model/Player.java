@@ -45,45 +45,6 @@ public class Player{
         this.currentRoom = currentRoom;
     }
 
-    public void changeRoom(CardinalPoints cardinalPoint) {
-        if (Objects.nonNull(currentRoom.getDoors().get(cardinalPoint))) {
-            currentRoom = currentRoom.getDoors().get(cardinalPoint).getRoom2();
-            logger.logInfo(String.format("%s entered the room %s%n", this.name, currentRoom.getName()));
-        } else {
-            logger.logInfo("Not existant door");
-        }
-    }
-
-    public String lookRoom() {
-        return currentRoom.showContent();
-    }
-
-    public String lookBagItems() {
-        return bag.showBagItems();
-    }
-
-    public Item getItemByNameFromRoom(String name){
-        return currentRoom.getItems().stream()
-                .filter(item -> item.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public Item getItemByNameFromBag(String name){
-        return bag.getItems().stream()
-                .filter(item -> item.getName().equalsIgnoreCase(name.toLowerCase()))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public void getItem(Item item) {
-        if (currentRoom.getItems().contains(item) && bag.addItem(item)) {
-            currentRoom.getItems().remove(item);
-            logger.logInfo(String.format("%s get the %s from the room%n", this.name, item.getName()));
-        } else if (!currentRoom.getItems().contains(item)) {
-            logger.logInfo("Item not present in this room");
-        }
-    }
 
     public void dropItem(Item item) {
         if (bag.removeItem(item)) {

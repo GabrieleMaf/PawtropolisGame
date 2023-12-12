@@ -12,9 +12,6 @@ public class GameController {
     private MyLogger logger = MyLogger.getInstance();
     private Scanner scanner = new Scanner(System.in);
 
-    private Player player1;
-    private Room room;
-
     public Player createPlayer() {
         logger.logInfo("Choose your name");
         return new Player(scanner.nextLine());
@@ -72,7 +69,7 @@ public class GameController {
                 break;
             case "go":
                 if (command.length > 1) {
-                    player.changeRoom(getCardinalPoint(command[1]));
+                    InputController.goCommand(getCardinalPoint(command[1]), player);
                 }
                 break;
             case "get":

@@ -25,15 +25,6 @@ public class Bag {
         return items;
     }
 
-    public String showBagItems() {
-        if(items.isEmpty()){
-            logger.logWarning("Empty bag");
-            return " ";
-        }
-        return items.stream()
-                .map(Item::toString)
-                .collect(Collectors.joining(", "));
-    }
 
     public int getTotalWeight() {
         return items.stream()
