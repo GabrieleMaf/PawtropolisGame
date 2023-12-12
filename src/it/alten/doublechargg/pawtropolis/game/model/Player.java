@@ -48,9 +48,9 @@ public class Player{
     public void changeRoom(CardinalPoints cardinalPoint) {
         if (Objects.nonNull(currentRoom.getDoors().get(cardinalPoint))) {
             currentRoom = currentRoom.getDoors().get(cardinalPoint).getRoom2();
-            logger.logInfo(String.format("%s è entrato nella stanza %s%n", this.name, currentRoom.getName()));
+            logger.logInfo(String.format("%s entered the room %s%n", this.name, currentRoom.getName()));
         } else {
-            logger.logInfo("Porta non presente");
+            logger.logInfo("Not existant door");
         }
     }
 
@@ -64,14 +64,14 @@ public class Player{
 
     public Item getItemByNameFromRoom(String name){
         return currentRoom.getItems().stream()
-                .filter(item -> item.getName().equals(name))
+                .filter(item -> item.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
     }
 
     public Item getItemByNameFromBag(String name){
         return bag.getItems().stream()
-                .filter(item -> item.getName().equals(name))
+                .filter(item -> item.getName().equalsIgnoreCase(name.toLowerCase()))
                 .findFirst()
                 .orElse(null);
     }
@@ -79,18 +79,18 @@ public class Player{
     public void getItem(Item item) {
         if (currentRoom.getItems().contains(item) && bag.addItem(item)) {
             currentRoom.getItems().remove(item);
-            logger.logInfo(String.format("%s ha preso l'oggetto %s dalla stanza %s%n", this.name, item.getName(), currentRoom.getName()));
+            logger.logInfo(String.format("%s get the %s from the room%n", this.name, item.getName()));
         } else if (!currentRoom.getItems().contains(item)) {
-            logger.logInfo(String.format("Oggetto %s non presente nella stanza", item.getName()));
+            logger.logInfo("Item not present in this room");
         }
     }
 
     public void dropItem(Item item) {
         if (bag.removeItem(item)) {
             currentRoom.getItems().add(item);
-            logger.logInfo(String.format("%s ha gettato l'oggetto %s nella stanza %s%n", this.name, item.getName(), currentRoom.getName()));
+            logger.logInfo(String.format("%s dropped the %s in the room%n", this.name, item.getName()));
         } else {
-            logger.logInfo("Oggetto non presente nella borsa");
+            logger.logInfo("Item not present in the bag");
         }
     }
 }

@@ -3,10 +3,7 @@ package it.alten.doublechargg.pawtropolis.game.model;
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Room {
@@ -14,14 +11,14 @@ public class Room {
     private String name;
     private List<Item> items;
     private List<Animal> animals;
-    private Map<CardinalPoints, Door> doors;
+    private EnumMap<CardinalPoints, Door> doors;
 
 
     public Room(String name) {
         this.name = name;
         items = new ArrayList<>();
         animals = new ArrayList<>();
-        doors = new HashMap<>();
+        doors = new EnumMap<>(CardinalPoints.class);
     }
 
     public String getName() {
@@ -52,7 +49,7 @@ public class Room {
         return doors;
     }
 
-    public void setDoors(Map<CardinalPoints, Door> doors) {
+    public void setDoors(EnumMap<CardinalPoints, Door> doors) {
         this.doors = doors;
     }
 
@@ -75,12 +72,12 @@ public class Room {
     public String showAnimals(){
         return animals.stream()
                 .map(Animal::getNameFormat)
-                .collect(Collectors.joining(""));
+                .collect(Collectors.joining(", "));
     }
     public String showItems() {
         return items.stream()
                 .map(Item::getName)
-                .collect(Collectors.joining(""));
+                .collect(Collectors.joining(", "));
     }
 
     public String showContent(){

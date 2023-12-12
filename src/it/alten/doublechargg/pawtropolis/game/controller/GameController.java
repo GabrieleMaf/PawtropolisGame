@@ -16,7 +16,7 @@ public class GameController {
     private Room room;
 
     public Player createPlayer() {
-        logger.logInfo("Scegli il nome del tuo giocatore");
+        logger.logInfo("Choose your name");
         return new Player(scanner.nextLine());
     }
 
@@ -26,6 +26,7 @@ public class GameController {
         player1.setCurrentRoom(map.getRoomList().get(0));
         logger.logInfo(getHelp());
         while (true) {
+            logger.logInfo("Write your action");
             chooseInput(scanner.nextLine(), player1);
         }
     }
@@ -42,7 +43,7 @@ public class GameController {
             case "south":
                 return CardinalPoints.SOUTH;
             default:
-                throw new IllegalArgumentException("Punto cardinale inesistente");
+                throw new IllegalArgumentException("Non existent cardinal point");
         }
 
 
@@ -51,11 +52,13 @@ public class GameController {
     //Sistemare l'input dei comandi
 
     public String getHelp() {
-        return String.format("Elenco comandi:%n" +
-                "1) - bag: Guarda gli oggetti nella borsa%n" +
-                "2) - look: Guarda la stanza%n" +
-                "3) - go: Cambia stanza%n" +
-                "4) - exit: Esci dal gioco");
+        return String.format("Command List:%n" +
+                "1) - bag: Look the items in your bag%n" +
+                "2) - look: Look around in the room, doors, items and animals%n" +
+                "3) - go <direction>: Change room. Command example: go north%n" +
+                "4) - get <item>: Get an item from room. Command example: get torch%n" +
+                "5) - drop <item>: Drop an item into the room. Command example: drop torch%n" +
+                "6) - exit: Exit from game");
     }
 
     public void chooseInput(String input, Player player) {

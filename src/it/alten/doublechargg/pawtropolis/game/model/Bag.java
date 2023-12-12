@@ -4,7 +4,6 @@ import it.alten.doublechargg.pawtropolis.game.utilities.MyLogger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class Bag {
@@ -28,12 +27,12 @@ public class Bag {
 
     public String showBagItems() {
         if(items.isEmpty()){
-            logger.logWarning("Borsa vuota");
+            logger.logWarning("Empty bag");
             return " ";
         }
         return items.stream()
                 .map(Item::toString)
-                .collect(Collectors.joining(""));
+                .collect(Collectors.joining(", "));
     }
 
     public int getTotalWeight() {
@@ -44,10 +43,10 @@ public class Bag {
 
     public boolean addItem(Item item) {
         if (getTotalWeight() + item.getWeight() < slot) {
-            logger.logInfo(String.format("Oggetto aggiunto: %s", item));
+            logger.logInfo(String.format("Added %s", item.getName()));
             return items.add(item);
         } else {
-            logger.logWarning(String.format("Spazio non sufficiente per aggiungere l'oggetto: %s", item));
+            logger.logWarning(String.format("Not enough space to add %s", item.getName()));
             return false;
         }
     }
