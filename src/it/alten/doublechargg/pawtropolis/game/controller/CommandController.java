@@ -27,26 +27,26 @@ public class CommandController {
 
     public static void goCommand(CardinalPoints cardinalPoint, Player player) {
         if (Objects.nonNull(player.getCurrentRoom().getDoors().get(cardinalPoint))) {
-            player.setCurrentRoom( player.getCurrentRoom().getDoors().get(cardinalPoint).getRoom2());
+            player.setCurrentRoom(player.getCurrentRoom().getDoors().get(cardinalPoint).getRoom2());
             logger.logInfo(String.format("%s entered the room %s%n", player.getName(), player.getCurrentRoom().getName()));
         } else {
             logger.logInfo("Not existant door");
         }
     }
 
-    public static String lookCommand(Player player){
-        return String.format("You are in room %s%n"+
-                "Items: %s%n" +
-                 "NPC: %s%n" +
-                 "Doors: %s",
-        player.getCurrentRoom().getName(),
-        Utilities.getItemsOfCurrentRoom(player),
-        Utilities.getAnimalsOfCurrentRoom(player),
-        Utilities.getDoorsOfCurrentRoom(player));
+    public static String lookCommand(Player player) {
+        return String.format("You are in room %s%n" +
+                        "Items: %s%n" +
+                        "NPC: %s%n" +
+                        "Doors: %s",
+                player.getCurrentRoom().getName(),
+                Utilities.getItemsOfCurrentRoom(player),
+                Utilities.getAnimalsOfCurrentRoom(player),
+                Utilities.getDoorsOfCurrentRoom(player));
     }
 
-    public static String bagCommand(Player player){
-        if(player.getBag().getItems().isEmpty()){
+    public static String bagCommand(Player player) {
+        if (player.getBag().getItems().isEmpty()) {
             return "Empty bag";
         }
         return player.getBag().getItems().stream()
@@ -54,24 +54,22 @@ public class CommandController {
                 .collect(Collectors.joining(""));
     }
 
-    public static void getCommand(Player player, String itemName){
+    public static void getCommand(Player player, String itemName) {
         Item item = Utilities.getItemByNameFromRoom(itemName, player);
         if (player.getCurrentRoom().getItems().contains(item)) {
             if (item.getWeight() + Utilities.getTotalWeight(player.getBag()) < player.getBag().getSlot()) {
                 player.getBag().getItems().add(item);
                 player.getCurrentRoom().getItems().remove(item);
                 logger.logInfo(String.format("%s got the %s from the room%n", player.getName(), item.getName()));
-            }
-            else {
+            } else {
                 logger.logWarning("Not enough space in bag");
             }
-        }
-        else {
+        } else {
             logger.logInfo("Item not present in this room");
         }
     }
 
-    public static void dropCommand(Player player, String itemName){
+    public static void dropCommand(Player player, String itemName) {
         Item item = Utilities.getItemByNameFromBag(itemName, player);
         if (player.getBag().getItems().remove(item)) {
             player.getCurrentRoom().getItems().add(item);

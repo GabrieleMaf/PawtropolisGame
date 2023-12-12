@@ -17,7 +17,7 @@ public class Bag {
         return slot;
     }
 
-    public List<Item> getItems(){
+    public List<Item> getItems() {
         return items;
     }
 

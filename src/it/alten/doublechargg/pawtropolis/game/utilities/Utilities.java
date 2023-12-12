@@ -1,29 +1,25 @@
 package it.alten.doublechargg.pawtropolis.game.utilities;
 
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
-import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Bag;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Utilities {
 
-    private Utilities(){}
-
-    private static Scanner scanner = new Scanner(System.in);
-    private static GameController gameController = new GameController();
-
+    private Utilities() {
+    }
+    
     public static int getTotalWeight(Bag bag) {
         return bag.getItems().stream()
                 .mapToInt(Item::getWeight)
                 .sum();
     }
 
-    public static String getItemsOfCurrentRoom(Player player){
+    public static String getItemsOfCurrentRoom(Player player) {
         return player.getCurrentRoom()
                 .getItems()
                 .stream()
@@ -31,7 +27,7 @@ public class Utilities {
                 .collect(Collectors.joining(", "));
     }
 
-    public static String getAnimalsOfCurrentRoom(Player player){
+    public static String getAnimalsOfCurrentRoom(Player player) {
         return player.getCurrentRoom()
                 .getAnimals()
                 .stream()
@@ -40,7 +36,7 @@ public class Utilities {
 
     }
 
-    public static String getDoorsOfCurrentRoom(Player player){
+    public static String getDoorsOfCurrentRoom(Player player) {
         return player.getCurrentRoom()
                 .getDoors()
                 .keySet()
@@ -50,7 +46,7 @@ public class Utilities {
 
     }
 
-    public static Item getItemByNameFromRoom(String name, Player player){
+    public static Item getItemByNameFromRoom(String name, Player player) {
         return player.getCurrentRoom()
                 .getItems()
                 .stream()
@@ -59,7 +55,7 @@ public class Utilities {
                 .orElse(null);
     }
 
-    public static Item getItemByNameFromBag(String name, Player player){
+    public static Item getItemByNameFromBag(String name, Player player) {
         return player.getBag()
                 .getItems()
                 .stream()

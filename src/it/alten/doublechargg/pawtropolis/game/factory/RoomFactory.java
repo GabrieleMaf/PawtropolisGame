@@ -15,31 +15,31 @@ public class RoomFactory {
     Random randomizer = new Random();
 
     Item[] items = {
-            new Item(1L,"Sword", "A sword", 7),
-            new Item(2L,"Knife", "A knife", 4),
-            new Item(3L,"Torch", "A Torch", 2)
+            new Item(1L, "Sword", "A sword", 7),
+            new Item(2L, "Knife", "A knife", 4),
+            new Item(3L, "Torch", "A Torch", 2)
     };
 
-    private RoomFactory(){
+    private RoomFactory() {
 
     }
 
-    public static synchronized RoomFactory getInstance(){
-        if(Objects.isNull(instance)){
+    public static synchronized RoomFactory getInstance() {
+        if (Objects.isNull(instance)) {
             instance = new RoomFactory();
         }
         return instance;
     }
 
-    public Room createRoom(){
+    public Room createRoom() {
         idRoom++;
-        Room room =  new Room(Integer.toString(idRoom));
-        while (room.getItems().size() <= 4){
+        Room room = new Room(Integer.toString(idRoom));
+        while (room.getItems().size() <= 4) {
             room.getItems().add(items[randomizer.nextInt(items.length)]);
 
         }
 
-        while (room.getAnimals().size() <= randomizer.nextInt(5)){
+        while (room.getAnimals().size() <= randomizer.nextInt(5)) {
             room.getAnimals().add(animalFactory.createAnimal());
         }
         return room;

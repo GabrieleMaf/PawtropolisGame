@@ -28,7 +28,6 @@ public class GameController {
     }
 
 
-
     public void chooseInput(String input, Player player) {
         String[] command = input.toLowerCase().split(" ");
         switch (command[0]) {
@@ -44,7 +43,7 @@ public class GameController {
                 }
                 break;
             case "get":
-                if (command.length > 1){
+                if (command.length > 1) {
                     CommandController.getCommand(player, command[1]);
                 }
                 break;

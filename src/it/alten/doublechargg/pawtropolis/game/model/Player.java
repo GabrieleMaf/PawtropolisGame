@@ -1,6 +1,6 @@
 package it.alten.doublechargg.pawtropolis.game.model;
 
-public class Player{
+public class Player {
 
     private final String name;
     private int lifePoint;
