@@ -11,8 +11,6 @@ public class Player {
         this.name = name;
         this.lifePoint = 20;
         this.bag = new Bag();
-        currentRoom = null;
-
     }
 
     public String getName() {

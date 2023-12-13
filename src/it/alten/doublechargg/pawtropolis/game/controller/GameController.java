@@ -1,8 +1,8 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
-import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.MyLogger;
-import it.alten.doublechargg.pawtropolis.game.utilities.Utilities;
+import it.alten.doublechargg.pawtropolis.game.model.Player;
+import it.alten.doublechargg.pawtropolis.game.utilities.CardinalPointsUtils;
 
 import java.util.Scanner;
 
@@ -68,7 +68,7 @@ public class GameController {
                 break;
             case "go":
                 if (command.length > 1) {
-                    commandController.goCommand(Utilities.getCardinalPoint(command[1]));
+                    commandController.goCommand(CardinalPointsUtils.getCardinalPoint(command[1]));
                 }
                 break;
             case "get":

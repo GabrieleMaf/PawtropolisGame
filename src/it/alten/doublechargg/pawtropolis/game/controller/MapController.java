@@ -1,10 +1,10 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
-import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.RoomFactory;
+import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Door;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
-import it.alten.doublechargg.pawtropolis.game.utilities.Utilities;
+import it.alten.doublechargg.pawtropolis.game.utilities.CardinalPointsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class MapController {
         Door door1 = new Door(room1, room2);
         room1.getDoors().put(cardinalPoint1, door1);
         Door door2 = new Door(room2, room1);
-        room2.getDoors().put(Utilities.getOppositeCardinalPoint(cardinalPoint1), door2);
+        room2.getDoors().put(CardinalPointsUtils.getOppositeCardinalPoint(cardinalPoint1), door2);
     }
 
 

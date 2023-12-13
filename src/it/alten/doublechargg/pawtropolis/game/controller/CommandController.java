@@ -4,7 +4,8 @@ import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.MyLogger;
-import it.alten.doublechargg.pawtropolis.game.utilities.Utilities;
+import it.alten.doublechargg.pawtropolis.game.utilities.ItemUtils;
+import it.alten.doublechargg.pawtropolis.game.utilities.RoomUtils;
 
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -33,9 +34,9 @@ public class CommandController {
                         "NPC: %s%n" +
                         "Doors: %s",
                 player.getCurrentRoom().getName(),
-                Utilities.getItemsOfCurrentRoom(player),
-                Utilities.getAnimalsOfCurrentRoom(player),
-                Utilities.getDoorsOfCurrentRoom(player));
+                RoomUtils.getItemsOfCurrentRoom(player),
+                RoomUtils.getAnimalsOfCurrentRoom(player),
+                RoomUtils.getDoorsOfCurrentRoom(player));
     }
 
     public String bagCommand() {
@@ -48,9 +49,9 @@ public class CommandController {
     }
 
     public void getCommand(String itemName) {
-        Item item = Utilities.getItemByNameFromRoom(itemName, player);
+        Item item = ItemUtils.getItemByNameFromRoom(itemName, player);
         if (player.getCurrentRoom().getItems().contains(item)) {
-            if (item.getWeight() + Utilities.getTotalWeight(player.getBag()) < player.getBag().getSlot()) {
+            if (item.getWeight() + ItemUtils.getTotalWeight(player) < player.getBag().getSlot()) {
                 player.getBag().getItems().add(item);
                 player.getCurrentRoom().getItems().remove(item);
                 logger.logInfo(String.format("%s got the %s from the room%n", player.getName(), item.getName()));
@@ -63,7 +64,7 @@ public class CommandController {
     }
 
     public void dropCommand(String itemName) {
-        Item item = Utilities.getItemByNameFromBag(itemName, player);
+        Item item = ItemUtils.getItemByNameFromBag(itemName, player);
         if (player.getBag().getItems().remove(item)) {
             player.getCurrentRoom().getItems().add(item);
             logger.logInfo(String.format("%s dropped the %s in the room%n", player.getName(), item.getName()));

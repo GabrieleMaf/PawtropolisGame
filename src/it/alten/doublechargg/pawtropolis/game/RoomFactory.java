@@ -34,11 +34,10 @@ public class RoomFactory {
     public Room createRoom() {
         idRoom++;
         Room room = new Room(Integer.toString(idRoom));
-        while (room.getItems().size() <= 4) {
+        while (room.getItems().size() <= randomizer.nextInt(4)) {
             room.getItems().add(items[randomizer.nextInt(items.length)]);
 
         }
-
         while (room.getAnimals().size() <= randomizer.nextInt(5)) {
             room.getAnimals().add(animalFactory.createAnimal());
         }
