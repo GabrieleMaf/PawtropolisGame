@@ -4,6 +4,7 @@ import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.factory.RoomFactory;
 import it.alten.doublechargg.pawtropolis.game.model.Door;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
+import it.alten.doublechargg.pawtropolis.game.utilities.Utilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,36 +21,6 @@ public class MapController {
         return roomList;
     }
 
-    public void addRoom(Room room) {
-        roomList.add(room);
-    }
-
-    public Room getRoomByName(String name) {
-        return roomList.stream()
-                .filter(room -> room.getName().equals(name))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public CardinalPoints getOpposite(CardinalPoints cardinalPoint) {
-        switch (cardinalPoint) {
-            case NORTH -> {
-                return CardinalPoints.SOUTH;
-            }
-            case SOUTH -> {
-                return CardinalPoints.NORTH;
-            }
-            case EAST -> {
-                return CardinalPoints.WEST;
-            }
-            case WEST -> {
-                return CardinalPoints.EAST;
-            }
-            default -> {
-                return null;
-            }
-        }
-    }
 
     public List<Room> createMap() {
         List<Room> roomMap = new ArrayList<>();
@@ -72,7 +43,7 @@ public class MapController {
         Door door1 = new Door(room1, room2);
         room1.getDoors().put(cardinalPoint1, door1);
         Door door2 = new Door(room2, room1);
-        room2.getDoors().put(getOpposite(cardinalPoint1), door2);
+        room2.getDoors().put(Utilities.getOppositeCardinalPoint(cardinalPoint1), door2);
     }
 
 

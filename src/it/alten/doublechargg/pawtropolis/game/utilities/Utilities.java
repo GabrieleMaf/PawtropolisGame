@@ -1,10 +1,12 @@
 package it.alten.doublechargg.pawtropolis.game.utilities;
 
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
+import it.alten.doublechargg.pawtropolis.game.controller.MapController;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Bag;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
+import it.alten.doublechargg.pawtropolis.game.model.Room;
 
 import java.util.stream.Collectors;
 
@@ -78,6 +80,33 @@ public class Utilities {
             default:
                 throw new IllegalArgumentException("Non existent cardinal point");
         }
+    }
 
+    public static CardinalPoints getOppositeCardinalPoint(CardinalPoints cardinalPoint) {
+        switch (cardinalPoint) {
+            case NORTH -> {
+                return CardinalPoints.SOUTH;
+            }
+            case SOUTH -> {
+                return CardinalPoints.NORTH;
+            }
+            case EAST -> {
+                return CardinalPoints.WEST;
+            }
+            case WEST -> {
+                return CardinalPoints.EAST;
+            }
+            default -> {
+                return null;
+            }
+        }
+    }
+
+    public static Room getRoomByName(String name, MapController map) {
+        return map.getRoomList()
+                .stream()
+                .filter(room -> room.getName().equals(name))
+                .findFirst()
+                .orElse(null);
     }
 }

@@ -12,20 +12,13 @@ import java.util.stream.Collectors;
 public class CommandController {
 
     private static final MyLogger logger = MyLogger.getInstance();
+    private Player player;
 
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
-   /*public static String readString() {
-        InputStreamReader input = new InputStreamReader(System.in);
-        BufferedReader inputReader = new BufferedReader(input);
-        try {
-            return inputReader.readLine();
-        } catch (IOException e) {
-            System.err.println("Error while reading user input");
-            return "";
-        }
-    }*/
-
-    public static void goCommand(CardinalPoints cardinalPoint, Player player) {
+    public void goCommand(CardinalPoints cardinalPoint) {
         if (Objects.nonNull(player.getCurrentRoom().getDoors().get(cardinalPoint))) {
             player.setCurrentRoom(player.getCurrentRoom().getDoors().get(cardinalPoint).getRoom2());
             logger.logInfo(String.format("%s entered the room %s%n", player.getName(), player.getCurrentRoom().getName()));
@@ -34,7 +27,7 @@ public class CommandController {
         }
     }
 
-    public static String lookCommand(Player player) {
+    public String lookCommand() {
         return String.format("You are in room %s%n" +
                         "Items: %s%n" +
                         "NPC: %s%n" +
@@ -45,7 +38,7 @@ public class CommandController {
                 Utilities.getDoorsOfCurrentRoom(player));
     }
 
-    public static String bagCommand(Player player) {
+    public String bagCommand() {
         if (player.getBag().getItems().isEmpty()) {
             return "Empty bag";
         }
@@ -54,7 +47,7 @@ public class CommandController {
                 .collect(Collectors.joining(""));
     }
 
-    public static void getCommand(Player player, String itemName) {
+    public void getCommand(String itemName) {
         Item item = Utilities.getItemByNameFromRoom(itemName, player);
         if (player.getCurrentRoom().getItems().contains(item)) {
             if (item.getWeight() + Utilities.getTotalWeight(player.getBag()) < player.getBag().getSlot()) {
@@ -69,7 +62,7 @@ public class CommandController {
         }
     }
 
-    public static void dropCommand(Player player, String itemName) {
+    public void dropCommand(String itemName) {
         Item item = Utilities.getItemByNameFromBag(itemName, player);
         if (player.getBag().getItems().remove(item)) {
             player.getCurrentRoom().getItems().add(item);
