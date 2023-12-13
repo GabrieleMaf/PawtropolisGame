@@ -8,7 +8,7 @@ import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import static it.alten.doublechargg.pawtropolis.animals.utilities.FactoryUtilities.*;
+import static it.alten.doublechargg.pawtropolis.animals.utilities.FactoryUtils.*;
 
 public class AnimalFactory {
 

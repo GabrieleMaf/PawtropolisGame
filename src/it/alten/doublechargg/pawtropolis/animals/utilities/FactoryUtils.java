@@ -7,9 +7,9 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class FactoryUtilities {
+public class FactoryUtils {
 
-    private FactoryUtilities(){}
+    private FactoryUtils(){}
 
     public static final DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
     public static final DecimalFormat decimalFormat=new DecimalFormat("#.##", symbols);

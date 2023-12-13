@@ -1,9 +1,11 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
+import it.alten.doublechargg.pawtropolis.game.model.Bag;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.MyLogger;
+import it.alten.doublechargg.pawtropolis.game.utilities.BagUtils;
 import it.alten.doublechargg.pawtropolis.game.utilities.ItemUtils;
 import it.alten.doublechargg.pawtropolis.game.utilities.RoomUtils;
 
@@ -43,7 +45,9 @@ public class CommandController {
         if (player.getBag().getItems().isEmpty()) {
             return "Empty bag";
         }
-        return player.getBag().getItems().stream()
+        return player.getBag()
+                .getItems()
+                .stream()
                 .map(Item::toString)
                 .collect(Collectors.joining(""));
     }
@@ -51,7 +55,7 @@ public class CommandController {
     public void getCommand(String itemName) {
         Item item = ItemUtils.getItemByNameFromRoom(itemName, player);
         if (player.getCurrentRoom().getItems().contains(item)) {
-            if (item.getWeight() + ItemUtils.getTotalWeight(player) < player.getBag().getSlot()) {
+            if (item.getWeight() <= BagUtils.getFreeSpace(player)) {
                 player.getBag().getItems().add(item);
                 player.getCurrentRoom().getItems().remove(item);
                 logger.logInfo(String.format("%s got the %s from the room%n", player.getName(), item.getName()));
@@ -80,7 +84,8 @@ public class CommandController {
                 "3) - go <direction>: Change room. Command example: go north%n" +
                 "4) - get <item>: Get an item from room. Command example: get torch%n" +
                 "5) - drop <item>: Drop an item into the room. Command example: drop torch%n" +
-                "6) - exit: Exit from game");
+                "6) - help: Prints this command%n" +
+                "7) - exit: Exit from game");
     }
 
 }

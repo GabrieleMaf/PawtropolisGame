@@ -84,8 +84,11 @@ public class GameController {
             case "exit":
                 System.exit(0);
                 break;
-            default:
+            case "help":
                 logger.logInfo(CommandController.helpCommand());
+                break;
+            default:
+                logger.logError("No valid input");
 
         }
     }

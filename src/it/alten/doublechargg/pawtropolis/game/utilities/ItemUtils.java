@@ -5,13 +5,7 @@ import it.alten.doublechargg.pawtropolis.game.model.Player;
 
 public class ItemUtils {
 
-    public static int getTotalWeight(Player player) {
-        return player.getBag()
-                .getItems()
-                .stream()
-                .mapToInt(Item::getWeight)
-                .sum();
-    }
+
     public static Item getItemByNameFromRoom(String name, Player player) {
         return player.getCurrentRoom()
                 .getItems()
