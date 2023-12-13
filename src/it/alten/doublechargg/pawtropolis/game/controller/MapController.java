@@ -1,7 +1,7 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
-import it.alten.doublechargg.pawtropolis.game.factory.RoomFactory;
+import it.alten.doublechargg.pawtropolis.game.RoomFactory;
 import it.alten.doublechargg.pawtropolis.game.model.Door;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 import it.alten.doublechargg.pawtropolis.game.utilities.Utilities;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MapController {
     private final List<Room> roomList;
-    private RoomFactory roomFactory = RoomFactory.getInstance();
+    private final RoomFactory roomFactory = RoomFactory.getInstance();
 
     public MapController() {
         roomList = createMap();

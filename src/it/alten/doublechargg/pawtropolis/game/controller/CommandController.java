@@ -3,7 +3,7 @@ package it.alten.doublechargg.pawtropolis.game.controller;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
-import it.alten.doublechargg.pawtropolis.game.utilities.MyLogger;
+import it.alten.doublechargg.pawtropolis.game.MyLogger;
 import it.alten.doublechargg.pawtropolis.game.utilities.Utilities;
 
 import java.util.Objects;
@@ -23,7 +23,7 @@ public class CommandController {
             player.setCurrentRoom(player.getCurrentRoom().getDoors().get(cardinalPoint).getRoom2());
             logger.logInfo(String.format("%s entered the room %s%n", player.getName(), player.getCurrentRoom().getName()));
         } else {
-            logger.logInfo("Not existant door");
+            logger.logInfo("Not existent door");
         }
     }
 

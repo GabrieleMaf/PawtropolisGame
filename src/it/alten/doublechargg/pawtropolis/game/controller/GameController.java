@@ -1,7 +1,7 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.model.Player;
-import it.alten.doublechargg.pawtropolis.game.utilities.MyLogger;
+import it.alten.doublechargg.pawtropolis.game.MyLogger;
 import it.alten.doublechargg.pawtropolis.game.utilities.Utilities;
 
 import java.util.Scanner;

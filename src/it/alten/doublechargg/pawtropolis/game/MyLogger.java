@@ -1,4 +1,4 @@
-package it.alten.doublechargg.pawtropolis.game.utilities;
+package it.alten.doublechargg.pawtropolis.game;
 
 import java.util.Objects;
 import java.util.logging.Level;

@@ -55,14 +55,11 @@ public class AnimalFactory {
                 Double.parseDouble(decimalFormat.format(randomizer.nextDouble(0.7, 1))));
     }
 
-    public Animal createAnimal(){
-        switch (randomizer.nextInt(2)){
-            case 0:
-                return createEagle();
-            case 1:
-                return createLion();
-            default:
-                return createTiger();
-        }
+    public Animal createAnimal() {
+        return switch (randomizer.nextInt(2)) {
+            case 0 -> createEagle();
+            case 1 -> createLion();
+            default -> createTiger();
+        };
     }
 }

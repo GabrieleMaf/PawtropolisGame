@@ -15,10 +15,10 @@ public class Utilities {
     private Utilities() {
     }
 
-    public static String getNameFormat(Animal animal){
+    public static String getNameFormat(Animal animal) {
         return String.format("%s(%s)", animal.getName(), animal.getClass().getSimpleName());
     }
-    
+
     public static int getTotalWeight(Bag bag) {
         return bag.getItems().stream()
                 .mapToInt(Item::getWeight)
