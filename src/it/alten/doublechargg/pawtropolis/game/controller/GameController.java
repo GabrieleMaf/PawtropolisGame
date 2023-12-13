@@ -59,38 +59,41 @@ public class GameController {
 
     public void chooseInput(String input) {
         String[] command = input.toLowerCase().split("\\s+");
-        switch (command[0]) {
-            case "bag":
-                logger.logInfo(commandController.bagCommand());
-                break;
-            case "look":
-                logger.logInfo(commandController.lookCommand());
-                break;
-            case "go":
-                if (command.length > 1) {
-                    commandController.goCommand(CardinalPointsUtils.getCardinalPoint(command[1]));
-                }
-                break;
-            case "get":
-                if (command.length > 1) {
-                    commandController.getCommand(command[1]);
-                }
-                break;
-            case "drop":
-                if (command.length > 1) {
-                    commandController.dropCommand(command[1]);
-                }
-                break;
-            case "exit":
-                System.exit(0);
-                break;
-            case "help":
-                logger.logInfo(CommandController.helpCommand());
-                break;
-            default:
-                logger.logError("No valid input");
-
+        if (command.length > 0) {
+            switch (command[0]) {
+                case "bag":
+                    logger.logInfo(commandController.bagCommand());
+                    break;
+                case "look":
+                    logger.logInfo(commandController.lookCommand());
+                    break;
+                case "go":
+                    if (command.length > 1) {
+                        commandController.goCommand(CardinalPointsUtils.getCardinalPoint(command[1]));
+                    }
+                    break;
+                case "get":
+                    if (command.length > 1) {
+                        commandController.getCommand(command[1]);
+                    }
+                    break;
+                case "drop":
+                    if (command.length > 1) {
+                        commandController.dropCommand(command[1]);
+                    }
+                    break;
+                case "exit":
+                    System.exit(0);
+                    break;
+                case "help":
+                    logger.logInfo(CommandController.helpCommand());
+                    break;
+                default:
+                    logger.logError("No valid input");
+            }
+        }
+        else {
+            logger.logError("No valid input");
         }
     }
-
 }

@@ -1,10 +1,9 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
+import it.alten.doublechargg.pawtropolis.game.MyLogger;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
-import it.alten.doublechargg.pawtropolis.game.model.Bag;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
-import it.alten.doublechargg.pawtropolis.game.MyLogger;
 import it.alten.doublechargg.pawtropolis.game.utilities.BagUtils;
 import it.alten.doublechargg.pawtropolis.game.utilities.ItemUtils;
 import it.alten.doublechargg.pawtropolis.game.utilities.RoomUtils;
@@ -63,7 +62,7 @@ public class CommandController {
                 logger.logWarning("Not enough space in bag");
             }
         } else {
-            logger.logInfo("Item not present in this room");
+            logger.logWarning("Item not present in this room");
         }
     }
 
@@ -73,7 +72,7 @@ public class CommandController {
             player.getCurrentRoom().getItems().add(item);
             logger.logInfo(String.format("%s dropped the %s in the room%n", player.getName(), item.getName()));
         } else {
-            logger.logInfo("Item not present in the bag");
+            logger.logWarning("Item not present in the bag");
         }
     }
 
