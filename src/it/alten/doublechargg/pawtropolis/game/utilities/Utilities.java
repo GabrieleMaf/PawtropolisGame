@@ -14,6 +14,10 @@ public class Utilities {
 
     private Utilities() {
     }
+
+    public static String getNameFormat(Animal animal){
+        return String.format("%s(%s)", animal.getName(), animal.getClass().getSimpleName());
+    }
     
     public static int getTotalWeight(Bag bag) {
         return bag.getItems().stream()
@@ -33,7 +37,7 @@ public class Utilities {
         return player.getCurrentRoom()
                 .getAnimals()
                 .stream()
-                .map(Animal::getNameFormat)
+                .map(Utilities::getNameFormat)
                 .collect(Collectors.joining(", "));
 
     }
@@ -61,25 +65,19 @@ public class Utilities {
         return player.getBag()
                 .getItems()
                 .stream()
-                .filter(item -> item.getName().equalsIgnoreCase(name.toLowerCase()))
+                .filter(item -> item.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
     }
 
     public static CardinalPoints getCardinalPoint(String input) {
-
-        switch (input.toLowerCase()) {
-            case "north":
-                return CardinalPoints.NORTH;
-            case "east":
-                return CardinalPoints.EAST;
-            case "west":
-                return CardinalPoints.WEST;
-            case "south":
-                return CardinalPoints.SOUTH;
-            default:
-                throw new IllegalArgumentException("Non existent cardinal point");
-        }
+        return switch (input.toLowerCase()) {
+            case "north" -> CardinalPoints.NORTH;
+            case "east" -> CardinalPoints.EAST;
+            case "west" -> CardinalPoints.WEST;
+            case "south" -> CardinalPoints.SOUTH;
+            default -> throw new IllegalArgumentException("Non existent cardinal point");
+        };
     }
 
     public static CardinalPoints getOppositeCardinalPoint(CardinalPoints cardinalPoint) {
@@ -93,11 +91,8 @@ public class Utilities {
             case EAST -> {
                 return CardinalPoints.WEST;
             }
-            case WEST -> {
-                return CardinalPoints.EAST;
-            }
             default -> {
-                return null;
+                return CardinalPoints.EAST;
             }
         }
     }
@@ -109,4 +104,5 @@ public class Utilities {
                 .findFirst()
                 .orElse(null);
     }
+
 }

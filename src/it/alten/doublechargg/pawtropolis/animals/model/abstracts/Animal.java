@@ -79,8 +79,4 @@ public abstract class Animal {
                 ", height:" + height;
     }
 
-    public String getNameFormat(){
-        return String.format("%s(%s)", name, this.getClass().getSimpleName());
-    }
-
 }
