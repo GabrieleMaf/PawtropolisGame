@@ -3,10 +3,10 @@ package it.alten.doublechargg.pawtropolis.game.enums;
 import java.util.Arrays;
 
 public enum CardinalPoints {
-    NORTH("north"),
-    EAST("east"),
-    SOUTH("south"),
-    WEST("west");
+    NORTH("North"),
+    EAST("East"),
+    SOUTH("South"),
+    WEST("West");
 
     private final String name;
     CardinalPoints(String name) {
@@ -37,7 +37,7 @@ public enum CardinalPoints {
 
     public static CardinalPoints findByName(String name){
         return Arrays.stream(values())
-                .filter(cardinalPoint -> cardinalPoint.name().equals(name))
+                .filter(cardinalPoint -> cardinalPoint.name().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
     }

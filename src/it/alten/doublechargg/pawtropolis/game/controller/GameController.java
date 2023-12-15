@@ -27,6 +27,7 @@ public class GameController {
 
     public void startGame() throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         MapController map = new MapController();
+        map.createMap();
         commandController.setPlayer(createPlayer());
         commandController.setCurrentRoom(map.getRoomList().getFirst());
         commandController.associateCommands();
@@ -39,12 +40,16 @@ public class GameController {
 
     public void chooseInput(String input) throws InvocationTargetException, IllegalAccessException {
         String[] command = input.toLowerCase().split("\\s+");
-        Method method = commandController.getCommands().get(command[0]);
-        if (Objects.nonNull(method)) {
-            if (method.getParameters().length > 0) {
-                logger.logInfo((String) method.invoke(commandController, command[1]));
+        if (command.length > 0) {
+            Method method = commandController.getCommands().get(command[0]);
+            if (Objects.nonNull(method)) {
+                if (command.length > 1) {
+                    logger.logInfo((String) method.invoke(commandController, command[1]));
+                } else {
+                    logger.logInfo((String) method.invoke(commandController));
+                }
             } else {
-                logger.logInfo((String) method.invoke(commandController));
+                logger.logError("Not valid input");
             }
         } else {
             logger.logError("Not valid input");

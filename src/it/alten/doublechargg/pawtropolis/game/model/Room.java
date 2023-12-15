@@ -3,10 +3,7 @@ package it.alten.doublechargg.pawtropolis.game.model;
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Room {
@@ -73,7 +70,7 @@ public class Room {
     private String getAdjacentRoomListAsString() {
         return adjacentRooms.keySet()
                 .stream()
-                .map(CardinalPoints::toString)
+                .map(CardinalPoints::getName)
                 .collect(Collectors.joining(", "));
 
     }

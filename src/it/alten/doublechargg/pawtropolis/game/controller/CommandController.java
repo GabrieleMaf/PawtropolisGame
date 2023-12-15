@@ -56,7 +56,7 @@ public class CommandController {
     public String goCommand(String cardinalPointName) {
         CardinalPoints cardinalPoint = CardinalPoints.findByName(cardinalPointName);
         if(Objects.isNull(cardinalPoint)){
-            return "Not Valid Input";
+            return "Not valid input";
         }
         if (Objects.nonNull(currentRoom.getAdjacentRooms().get(cardinalPoint))) {
             currentRoom = (currentRoom.getAdjacentRooms().get(cardinalPoint));
