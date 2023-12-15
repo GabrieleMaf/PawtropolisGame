@@ -2,7 +2,6 @@ package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
-import it.alten.doublechargg.pawtropolis.game.utilities.CardinalPointsUtils;
 import it.alten.doublechargg.pawtropolis.game.utilities.RoomFactory;
 
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class MapController {
 
     public void connectRooms(CardinalPoints cardinalPoint, Room room1, Room room2) {
         room1.getAdjacentRooms().put(cardinalPoint, room2);
-        room2.getAdjacentRooms().put(CardinalPointsUtils.getOppositeCardinalPoint(cardinalPoint), room1);
+        room2.getAdjacentRooms().put(CardinalPoints.getOppositeCardinalPoint(cardinalPoint), room1);
     }
 
 }

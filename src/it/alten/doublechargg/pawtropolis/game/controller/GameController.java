@@ -1,9 +1,11 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
-import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.utilities.MyLogger;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class GameController {
@@ -13,7 +15,7 @@ public class GameController {
     private final Scanner scanner = new Scanner(System.in);
     private final CommandController commandController;
 
-    public GameController(){
+    public GameController() {
         this.commandController = new CommandController();
     }
 
@@ -23,42 +25,30 @@ public class GameController {
         return new Player(scanner.nextLine());
     }
 
-    public void startGame(){
+    public void startGame() throws InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         MapController map = new MapController();
         commandController.setPlayer(createPlayer());
         commandController.setCurrentRoom(map.getRoomList().getFirst());
-        logger.logInfo(CommandController.helpCommand());
+        commandController.associateCommands();
+        logger.logInfo(commandController.helpCommand());
         while (true) {
             logger.logInfo("Write your action");
             chooseInput(scanner.nextLine());
         }
     }
 
-    public void chooseInput(String input) {
+    public void chooseInput(String input) throws InvocationTargetException, IllegalAccessException {
         String[] command = input.toLowerCase().split("\\s+");
-        if (command.length > 0) {
-            switch (command[0]){
-                case "go":
-                    commandController.goCommand(CardinalPoints.valueOf(command[1].toUpperCase()));
-                    break;
-                case "bag":
-                    logger.logInfo(commandController.bagCommand());
-                    break;
-                case "look":
-                    logger.logInfo(commandController.lookCommand());
-                    break;
-                case "get":
-                    commandController.getCommand(command[1]);
-                    break;
-                case "drop":
-                    commandController.dropCommand(command[1]);
-                    break;
-                case "exit":
-                    System.exit(0);
-                    break;
-                default:
-                    logger.logInfo(CommandController.helpCommand());
+        Method method = commandController.getCommands().get(command[0]);
+        if (Objects.nonNull(method)) {
+            if (method.getParameters().length > 0) {
+                logger.logInfo((String) method.invoke(commandController, command[1]));
+            } else {
+                logger.logInfo((String) method.invoke(commandController));
             }
+        } else {
+            logger.logError("Not valid input");
         }
     }
 }
+
