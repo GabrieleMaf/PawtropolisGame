@@ -1,54 +1,32 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
-import it.alten.doublechargg.pawtropolis.game.MyLogger;
+import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
-import it.alten.doublechargg.pawtropolis.game.utilities.CardinalPointsUtils;
+import it.alten.doublechargg.pawtropolis.game.utilities.MyLogger;
 
 import java.util.Scanner;
 
 public class GameController {
 
-    private MyLogger logger = MyLogger.getInstance();
-    private Scanner scanner = new Scanner(System.in);
-    private CommandController commandController;
 
-    public GameController() {
+    private final MyLogger logger = MyLogger.getInstance();
+    private final Scanner scanner = new Scanner(System.in);
+    private final CommandController commandController;
+
+    public GameController(){
         this.commandController = new CommandController();
     }
 
-    public MyLogger getLogger() {
-        return logger;
-    }
-
-    public void setLogger(MyLogger logger) {
-        this.logger = logger;
-    }
-
-    public Scanner getScanner() {
-        return scanner;
-    }
-
-    public void setScanner(Scanner scanner) {
-        this.scanner = scanner;
-    }
-
-    public CommandController getCommandController() {
-        return commandController;
-    }
-
-    public void setCommandController(CommandController commandController) {
-        this.commandController = commandController;
-    }
 
     public Player createPlayer() {
         logger.logInfo("Choose your name");
         return new Player(scanner.nextLine());
     }
 
-    public void startGame(Player player) {
+    public void startGame(){
         MapController map = new MapController();
-        commandController.setPlayer(player);
-        player.setCurrentRoom(map.getRoomList().get(0));
+        commandController.setPlayer(createPlayer());
+        commandController.setCurrentRoom(map.getRoomList().getFirst());
         logger.logInfo(CommandController.helpCommand());
         while (true) {
             logger.logInfo("Write your action");
@@ -56,44 +34,31 @@ public class GameController {
         }
     }
 
-
     public void chooseInput(String input) {
         String[] command = input.toLowerCase().split("\\s+");
         if (command.length > 0) {
-            switch (command[0]) {
+            switch (command[0]){
+                case "go":
+                    commandController.goCommand(CardinalPoints.valueOf(command[1].toUpperCase()));
+                    break;
                 case "bag":
                     logger.logInfo(commandController.bagCommand());
                     break;
                 case "look":
                     logger.logInfo(commandController.lookCommand());
                     break;
-                case "go":
-                    if (command.length > 1) {
-                        commandController.goCommand(CardinalPointsUtils.getCardinalPoint(command[1]));
-                    }
-                    break;
                 case "get":
-                    if (command.length > 1) {
-                        commandController.getCommand(command[1]);
-                    }
+                    commandController.getCommand(command[1]);
                     break;
                 case "drop":
-                    if (command.length > 1) {
-                        commandController.dropCommand(command[1]);
-                    }
+                    commandController.dropCommand(command[1]);
                     break;
                 case "exit":
                     System.exit(0);
                     break;
-                case "help":
-                    logger.logInfo(CommandController.helpCommand());
-                    break;
                 default:
-                    logger.logError("No valid input");
+                    logger.logInfo(CommandController.helpCommand());
             }
-        }
-        else {
-            logger.logError("No valid input");
         }
     }
 }

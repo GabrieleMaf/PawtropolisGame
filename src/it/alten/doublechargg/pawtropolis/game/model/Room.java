@@ -7,20 +7,27 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Room {
 
+    private static int idRoom = 1;
+    private final List<Item> items;
+    private final List<Animal> animals;
+    private final EnumMap<CardinalPoints, Room> adjacentRooms;
     private String name;
-    private List<Item> items;
-    private List<Animal> animals;
-    private EnumMap<CardinalPoints, Door> doors;
 
 
     public Room(String name) {
+        idRoom++;
         this.name = name;
         items = new ArrayList<>();
         animals = new ArrayList<>();
-        doors = new EnumMap<>(CardinalPoints.class);
+        adjacentRooms = new EnumMap<>(CardinalPoints.class);
+    }
+
+    public static int getIdRoom() {
+        return idRoom;
     }
 
     public String getName() {
@@ -35,23 +42,48 @@ public class Room {
         return items;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
     public List<Animal> getAnimals() {
         return animals;
     }
 
-    public void setAnimals(List<Animal> animals) {
-        this.animals = animals;
+    public Map<CardinalPoints, Room> getAdjacentRooms() {
+        return adjacentRooms;
     }
 
-    public Map<CardinalPoints, Door> getDoors() {
-        return doors;
+    public Item getItemByName(String name) {
+        return items.stream()
+                .filter(item -> item.name().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
 
-    public void setDoors(EnumMap<CardinalPoints, Door> doors) {
-        this.doors = doors;
+    private String getItemsListAsString() {
+        return items.stream()
+                .map(Item::name)
+                .collect(Collectors.joining(", "));
+    }
+
+    private String getAnimalsListAsString() {
+        return animals.stream()
+                .map(animal -> String.format("%s(%s)", animal.getName(), animal.getClass().getSimpleName()))
+                .collect(Collectors.joining(", "));
+
+    }
+
+    private String getAdjacentRoomListAsString() {
+        return adjacentRooms.keySet()
+                .stream()
+                .map(CardinalPoints::toString)
+                .collect(Collectors.joining(", "));
+
+    }
+
+    @Override
+    public String toString() {
+        return String.format("You are in room %s%n" +
+                        "Items: %s%n" +
+                        "NPC: %s%n" +
+                        "Doors: %s",
+                name, getItemsListAsString(), getAnimalsListAsString(), getAdjacentRoomListAsString());
     }
 }

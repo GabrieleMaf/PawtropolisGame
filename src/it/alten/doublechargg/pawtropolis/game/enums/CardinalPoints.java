@@ -6,4 +6,5 @@ public enum CardinalPoints {
     SOUTH,
     WEST,
 
+
 }

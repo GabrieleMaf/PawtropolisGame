@@ -29,9 +29,9 @@ public class ZooController {
     }
 
     public void removeAnimal(Animal animal) {
-       if (animals.get(animal.getClass()).remove(animal) && (animals.get(animal.getClass()).isEmpty())) {
-           animals.remove(animal.getClass());
-       }
+        if (animals.get(animal.getClass()).remove(animal) && (animals.get(animal.getClass()).isEmpty())) {
+            animals.remove(animal.getClass());
+        }
     }
 
     public String showAnimals() {
@@ -44,9 +44,9 @@ public class ZooController {
                 .collect(Collectors.joining("\n"));
     }
 
-    public <T extends Animal> List<Animal> getAnimalGroup(Class<T> tClass){
-        if(!Modifier.isAbstract(tClass.getModifiers())){
-                return animals.get(tClass);
+    public <T extends Animal> List<Animal> getAnimalGroup(Class<T> tClass) {
+        if (!Modifier.isAbstract(tClass.getModifiers())) {
+            return animals.get(tClass);
         }
         return animals.entrySet()
                 .stream()
@@ -57,7 +57,7 @@ public class ZooController {
     }
 
     public <T extends Animal> Optional<Animal> getTallestAnimalByClass(Class<T> tClass) {
-        if (Objects.isNull(getAnimalGroup(tClass))){
+        if (Objects.isNull(getAnimalGroup(tClass))) {
             return Optional.empty();
         }
         return getAnimalGroup(tClass)
@@ -67,46 +67,46 @@ public class ZooController {
 
 
     public <T extends Animal> Optional<Animal> getShortestAnimalByClass(Class<T> tClass) {
-        if (Objects.isNull(getAnimalGroup(tClass))){
+        if (Objects.isNull(getAnimalGroup(tClass))) {
             return Optional.empty();
         }
-        return  getAnimalGroup(tClass)
+        return getAnimalGroup(tClass)
                 .stream()
                 .min(Comparator.comparing(Animal::getHeight));
     }
 
     public <T extends Animal> Optional<Animal> getHeaviestAnimalByClass(Class<T> tClass) {
-        if (Objects.isNull(getAnimalGroup(tClass))){
+        if (Objects.isNull(getAnimalGroup(tClass))) {
             return Optional.empty();
         }
-        return  getAnimalGroup(tClass)
+        return getAnimalGroup(tClass)
                 .stream()
                 .max(Comparator.comparing(Animal::getWeight));
     }
 
     public <T extends Animal> Optional<Animal> getLightestAnimalByClass(Class<T> tClass) {
-        if (Objects.isNull(getAnimalGroup(tClass))){
+        if (Objects.isNull(getAnimalGroup(tClass))) {
             return Optional.empty();
         }
-        return  getAnimalGroup(tClass)
+        return getAnimalGroup(tClass)
                 .stream()
                 .min(Comparator.comparing(Animal::getWeight));
     }
 
     public Optional<TailedAnimal> getLongestTailedAnimal() {
-        if (Objects.isNull(getAnimalGroup(TailedAnimal.class))){
+        if (Objects.isNull(getAnimalGroup(TailedAnimal.class))) {
             return Optional.empty();
         }
-        return  getAnimalGroup(TailedAnimal.class)
+        return getAnimalGroup(TailedAnimal.class)
                 .stream()
                 .map(TailedAnimal.class::cast)
                 .max(Comparator.comparing(TailedAnimal::getTailLength));
     }
 
-   public Optional<WingedAnimal> getWidestWingspanAnimal() {
-       if (Objects.isNull(getAnimalGroup(WingedAnimal.class))){
-           return Optional.empty();
-       }
+    public Optional<WingedAnimal> getWidestWingspanAnimal() {
+        if (Objects.isNull(getAnimalGroup(WingedAnimal.class))) {
+            return Optional.empty();
+        }
         return getAnimalGroup(WingedAnimal.class)
                 .stream()
                 .map(WingedAnimal.class::cast)

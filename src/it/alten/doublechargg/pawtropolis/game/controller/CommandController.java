@@ -1,80 +1,30 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
-import it.alten.doublechargg.pawtropolis.game.MyLogger;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
-import it.alten.doublechargg.pawtropolis.game.utilities.BagUtils;
-import it.alten.doublechargg.pawtropolis.game.utilities.ItemUtils;
-import it.alten.doublechargg.pawtropolis.game.utilities.RoomUtils;
+import it.alten.doublechargg.pawtropolis.game.model.Room;
+import it.alten.doublechargg.pawtropolis.game.utilities.MyLogger;
 
+import java.lang.reflect.Method;
+import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class CommandController {
 
     private static final MyLogger logger = MyLogger.getInstance();
+
+    private Map<String, Method> commands;
     private Player player;
+    private Room currentRoom;
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public void goCommand(CardinalPoints cardinalPoint) {
-        if (Objects.nonNull(player.getCurrentRoom().getDoors().get(cardinalPoint))) {
-            player.setCurrentRoom(player.getCurrentRoom().getDoors().get(cardinalPoint).getRoom2());
-            logger.logInfo(String.format("%s entered the room %s%n", player.getName(), player.getCurrentRoom().getName()));
-        } else {
-            logger.logInfo("Not existent door");
-        }
-    }
-
-    public String lookCommand() {
-        return String.format("You are in room %s%n" +
-                        "Items: %s%n" +
-                        "NPC: %s%n" +
-                        "Doors: %s",
-                player.getCurrentRoom().getName(),
-                RoomUtils.getItemsOfCurrentRoom(player),
-                RoomUtils.getAnimalsOfCurrentRoom(player),
-                RoomUtils.getDoorsOfCurrentRoom(player));
-    }
-
-    public String bagCommand() {
-        if (player.getBag().getItems().isEmpty()) {
-            return "Empty bag";
-        }
-        return player.getBag()
-                .getItems()
-                .stream()
-                .map(Item::toString)
-                .collect(Collectors.joining(""));
-    }
-
-    public void getCommand(String itemName) {
-        Item item = ItemUtils.getItemByNameFromRoom(itemName, player);
-        if (player.getCurrentRoom().getItems().contains(item)) {
-            if (item.getWeight() <= BagUtils.getFreeSpace(player)) {
-                player.getBag().getItems().add(item);
-                player.getCurrentRoom().getItems().remove(item);
-                logger.logInfo(String.format("%s got the %s from the room%n", player.getName(), item.getName()));
-            } else {
-                logger.logWarning("Not enough space in bag");
-            }
-        } else {
-            logger.logWarning("Item not present in this room");
-        }
-    }
-
-    public void dropCommand(String itemName) {
-        Item item = ItemUtils.getItemByNameFromBag(itemName, player);
-        if (player.getBag().getItems().remove(item)) {
-            player.getCurrentRoom().getItems().add(item);
-            logger.logInfo(String.format("%s dropped the %s in the room%n", player.getName(), item.getName()));
-        } else {
-            logger.logWarning("Item not present in the bag");
-        }
-    }
+    /*public void associateCommands() {
+        commands.put("go", CommandController.class.getMethod("goCommand", CardinalPoints.class));
+        commands.put("look", CommandController.class.getMethod("lookCommand"));
+        commands.put("bag", CommandController.class.getMethod("bagCommand"));
+        commands.put("get", CommandController.class.getMethod("getCommand", String.class));
+        commands.put("drop", CommandController.class.getMethod("dropCommand", String.class));
+    }*/
 
     public static String helpCommand() {
         return String.format("Command List:%n" +
@@ -85,6 +35,55 @@ public class CommandController {
                 "5) - drop <item>: Drop an item into the room. Command example: drop torch%n" +
                 "6) - help: Prints this command%n" +
                 "7) - exit: Exit from game");
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    public void goCommand(CardinalPoints cardinalPoint) {
+        if (Objects.nonNull(currentRoom.getAdjacentRooms().get(cardinalPoint))) {
+            currentRoom = (currentRoom.getAdjacentRooms().get(cardinalPoint));
+            logger.logInfo(String.format("%s entered the room %s%n", player.getName(), currentRoom.getName()));
+        } else {
+            logger.logInfo("Not existent door");
+        }
+    }
+
+    public String lookCommand() {
+        return currentRoom.toString();
+    }
+
+    public String bagCommand() {
+        return player.getBag().toString();
+    }
+
+    public void getCommand(String itemName) {
+        Item item = currentRoom.getItemByName(itemName);
+        if (currentRoom.getItems().contains(item)) {
+            if (player.getBag().addItem(item)) {
+                currentRoom.getItems().remove(item);
+                logger.logInfo(String.format("%s got the %s from the room%n", player.getName(), item.name()));
+            } else {
+                logger.logWarning("Not enough space in bag");
+            }
+        } else {
+            logger.logWarning("Item not present in this room");
+        }
+    }
+
+    public void dropCommand(String itemName) {
+        Item item = player.getBag().getItemByName(itemName);
+        if (player.getBag().removeItem(item)) {
+            currentRoom.getItems().add(item);
+            logger.logInfo(String.format("%s dropped the %s in the room%n", player.getName(), item.name()));
+        } else {
+            logger.logWarning("Item not present in the bag");
+        }
     }
 
 }

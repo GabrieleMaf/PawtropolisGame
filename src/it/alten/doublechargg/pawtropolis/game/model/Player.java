@@ -3,9 +3,8 @@ package it.alten.doublechargg.pawtropolis.game.model;
 public class Player {
 
     private final String name;
-    private int lifePoint;
     private final Bag bag;
-    private Room currentRoom;
+    private int lifePoint;
 
     public Player(String name) {
         this.name = name;
@@ -27,14 +26,6 @@ public class Player {
 
     public Bag getBag() {
         return bag;
-    }
-
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
     }
 
 }

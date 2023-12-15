@@ -2,6 +2,7 @@ package it.alten.doublechargg.pawtropolis.game.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Bag {
 
@@ -13,13 +14,43 @@ public class Bag {
         items = new ArrayList<>();
     }
 
-    public int getSlot() {
-        return slot;
+    public Item getItemByName(String name) {
+        return items
+                .stream()
+                .filter(item -> item.name().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
 
-    public List<Item> getItems() {
-        return items;
+    public int getTotalWeight() {
+        return items.stream()
+                .mapToInt(Item::weight)
+                .sum();
     }
 
+    public int getFreeSpace() {
+        return slot - getTotalWeight();
+    }
+
+    public boolean addItem(Item item) {
+        if (item.weight() <= getFreeSpace()) {
+            return items.add(item);
+        }
+        return false;
+    }
+
+    public boolean removeItem(Item item) {
+        return items.remove(item);
+    }
+
+    @Override
+    public String toString() {
+        if (items.isEmpty()) {
+            return "Empty bag";
+        }
+        return items.stream()
+                .map(Item::toString)
+                .collect(Collectors.joining(""));
+    }
 
 }

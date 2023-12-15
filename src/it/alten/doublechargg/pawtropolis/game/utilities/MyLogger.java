@@ -1,13 +1,12 @@
-package it.alten.doublechargg.pawtropolis.game;
+package it.alten.doublechargg.pawtropolis.game.utilities;
 
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MyLogger {
-    private static MyLogger instance;
-
     private static final Logger logger = Logger.getLogger("MyLogger");
+    private static MyLogger instance;
 
     private MyLogger() {
 
