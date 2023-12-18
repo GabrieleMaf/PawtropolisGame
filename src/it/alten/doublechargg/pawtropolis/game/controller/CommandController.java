@@ -12,13 +12,9 @@ import java.util.Objects;
 
 public class CommandController {
 
-    private Map<String, Method> commands;
+    private final Map<String, Method> commands = new HashMap<>();
     private Player player;
     private Room currentRoom;
-
-    public CommandController(){
-        commands = new HashMap<>();
-    }
 
     public Map<String, Method> getCommands() {
         return commands;

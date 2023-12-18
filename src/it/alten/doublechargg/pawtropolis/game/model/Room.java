@@ -8,23 +8,24 @@ import java.util.stream.Collectors;
 
 public class Room {
 
-    private static int idRoom = 1;
+    private static Long count = 1L;
+    private String name;
     private final List<Item> items;
     private final List<Animal> animals;
     private final EnumMap<CardinalPoints, Room> adjacentRooms;
-    private String name;
+
 
 
     public Room(String name) {
-        idRoom++;
+        count++;
         this.name = name;
         items = new ArrayList<>();
         animals = new ArrayList<>();
         adjacentRooms = new EnumMap<>(CardinalPoints.class);
     }
 
-    public static int getIdRoom() {
-        return idRoom;
+    public static Long getCountRoom() {
+        return count;
     }
 
     public String getName() {

@@ -9,7 +9,6 @@ import java.util.List;
 
 public class MapController {
     private final List<Room> roomList = new ArrayList<>();
-
     public void createMap(){
         RoomFactory roomFactory = RoomFactory.getInstance();
         for (int i = 0; i <= 10; i++) {

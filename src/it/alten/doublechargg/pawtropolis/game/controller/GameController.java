@@ -13,12 +13,7 @@ public class GameController {
 
     private final MyLogger logger = MyLogger.getInstance();
     private final Scanner scanner = new Scanner(System.in);
-    private final CommandController commandController;
-
-    public GameController() {
-        this.commandController = new CommandController();
-    }
-
+    private final CommandController commandController = new CommandController();
 
     public Player createPlayer() {
         logger.logInfo("Choose your name");

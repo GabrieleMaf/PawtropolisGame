@@ -30,7 +30,7 @@ public class RoomFactory {
     }
 
     public Room createRoom() {
-        Room room = new Room(Integer.toString(Room.getIdRoom()));
+        Room room = new Room(Long.toString(Room.getCountRoom()));
         while (room.getItems().size() <= randomizer.nextInt(4)) {
             room.getItems().add(items[randomizer.nextInt(items.length)]);
 
