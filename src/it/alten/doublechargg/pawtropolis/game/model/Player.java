@@ -24,8 +24,20 @@ public class Player {
         this.lifePoint = lifePoint;
     }
 
-    public Bag getBag() {
-        return bag;
+    public boolean getItem(Item item){
+        return bag.addItem(item);
+    }
+
+    public boolean removeItem(Item item){
+        return bag.removeItem(item);
+    }
+
+    public Item getItemFromBag(String itemName){
+        return bag.getItemByName(itemName);
+    }
+
+    public String showBagContent(){
+        return bag.toString();
     }
 
 }

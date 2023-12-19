@@ -34,7 +34,7 @@ public class GameController {
     }
 
     public void chooseInput(String input) throws InvocationTargetException, IllegalAccessException {
-        String[] command = input.toLowerCase().split("\\s+");
+        String[] command = input.trim().toLowerCase().split("\\s+");
         if (command.length > 0) {
             Method method = commandController.getCommands().get(command[0]);
             if (Objects.nonNull(method)) {
