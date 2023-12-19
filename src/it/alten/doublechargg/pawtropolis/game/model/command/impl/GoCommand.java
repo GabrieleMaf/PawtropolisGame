@@ -5,20 +5,31 @@ import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 import it.alten.doublechargg.pawtropolis.game.model.command.Command;
 
+import java.util.Objects;
+
 public class GoCommand implements Command {
 
-    private CardinalPoints direction;
+    private String cardinalPointName;
     private Player player;
     private Room currentRoom;
 
-    public GoCommand(CardinalPoints direction, Player player, Room room) {
-        this.direction = direction;
+    public GoCommand(String cardinalPointName, Player player, Room room) {
+        this.cardinalPointName = cardinalPointName;
         this.player = player;
         this.currentRoom = room;
     }
 
     @Override
     public String execute() {
-        return null;
+        CardinalPoints cardinalPoint = CardinalPoints.findByName(cardinalPointName);
+        if(Objects.isNull(cardinalPoint)){
+            return "Not valid input";
+        }
+        if (Objects.nonNull(currentRoom.getAdjacentRooms().get(cardinalPoint))) {
+            currentRoom = (currentRoom.getAdjacentRooms().get(cardinalPoint));
+            return String.format("%s entered the room %s%n", player.getName(), currentRoom.getName());
+        } else {
+            return "Not existent door";
+        }
     }
 }

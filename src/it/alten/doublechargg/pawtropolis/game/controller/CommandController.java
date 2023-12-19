@@ -5,6 +5,7 @@ import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 import it.alten.doublechargg.pawtropolis.game.model.command.Command;
+import it.alten.doublechargg.pawtropolis.game.model.command.impl.*;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -13,22 +14,26 @@ import java.util.Objects;
 
 public class CommandController {
 
-    private final Map<String, Command> commands = new HashMap<>();
+    private final Map<String, Class<? extends Command>> commands = new HashMap<>();
     private Player player;
     private Room currentRoom;
 
-    public Map<String, Command> getCommands() {
-        return commands;
+    public void associateCommands(){
+            commands.put("go", GoCommand.class);
+            commands.put("look", LookCommand.class);
+            commands.put("bag", BagCommand.class);
+            commands.put("get", GetCommand.class);
+            commands.put("drop", DropCommand.class);
+            commands.put("help",  HelpCommand.class);
+            commands.put("exit", ExitCommand.class);
     }
 
-    public void associateCommands() throws NoSuchMethodException {
-            commands.put("go", CommandController.class.getMethod("goCommand", String.class));
-            commands.put("look", CommandController.class.getMethod("lookCommand"));
-            commands.put("bag", CommandController.class.getMethod("bagCommand"));
-            commands.put("get", CommandController.class.getMethod("getCommand", String.class));
-            commands.put("drop", CommandController.class.getMethod("dropCommand", String.class));
-            commands.put("help",  CommandController.class.getMethod("helpCommand"));
-            commands.put("exit", CommandController.class.getMethod("exitCommand"));
+    public String executeCommand(Command command){
+        return command.execute();
+    }
+
+    public void createCommand(String commandName) throws NoSuchMethodException {
+        commands.get(commandName).getMethod(commands.get(commandName).getSimpleName()).invoke(this);
     }
 
     public void setPlayer(Player player) {
