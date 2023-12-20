@@ -24,14 +24,19 @@ public class CommandController {
         return commands;
     }
 
-    public void associateCommands() throws NoSuchMethodException {
-            commands.put("go", CommandController.class.getMethod("goCommand", String.class));
-            commands.put("look", CommandController.class.getMethod("lookCommand"));
-            commands.put("bag", CommandController.class.getMethod("bagCommand"));
-            commands.put("get", CommandController.class.getMethod("getCommand", String.class));
-            commands.put("drop", CommandController.class.getMethod("dropCommand", String.class));
-            commands.put("help",  CommandController.class.getMethod("helpCommand"));
-            commands.put("exit", CommandController.class.getMethod("exitCommand"));
+    public void associateCommands(){
+        try {
+        commands.put("go", CommandController.class.getMethod("goCommand", String.class));
+        commands.put("look", CommandController.class.getMethod("lookCommand"));
+        commands.put("bag", CommandController.class.getMethod("bagCommand"));
+        commands.put("get", CommandController.class.getMethod("getCommand", String.class));
+        commands.put("drop", CommandController.class.getMethod("dropCommand", String.class));
+        commands.put("help",  CommandController.class.getMethod("helpCommand"));
+        commands.put("exit", CommandController.class.getMethod("exitCommand"));
+    }catch (NoSuchMethodException e){
+            e.printStackTrace();
+        }
+
     }
 
     public String helpCommand() {
