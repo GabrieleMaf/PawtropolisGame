@@ -1,48 +1,31 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
-import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
-import it.alten.doublechargg.pawtropolis.game.model.Item;
-import it.alten.doublechargg.pawtropolis.game.model.Player;
-import it.alten.doublechargg.pawtropolis.game.model.Room;
-import it.alten.doublechargg.pawtropolis.game.model.command.Command;
-import it.alten.doublechargg.pawtropolis.game.model.command.impl.*;
+import it.alten.doublechargg.pawtropolis.game.command.Command;
+import it.alten.doublechargg.pawtropolis.game.command.impl.*;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class CommandController {
 
-    private final Map<String, Class<? extends Command>> commands = new HashMap<>();
-    private Player player;
-    private Room currentRoom;
+    private final Map<String, Command> commands = new HashMap<>();
+    private GameController gameController;
 
-    public void associateCommands(){
-            commands.put("go", GoCommand.class);
-            commands.put("look", LookCommand.class);
-            commands.put("bag", BagCommand.class);
-            commands.put("get", GetCommand.class);
-            commands.put("drop", DropCommand.class);
-            commands.put("help",  HelpCommand.class);
-            commands.put("exit", ExitCommand.class);
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
     }
 
-    public String executeCommand(Command command){
-        return command.execute();
+    public void associateCommands() {
+        commands.put("go", new GoCommand(gameController));
+        commands.put("look", new LookCommand(gameController));
+        commands.put("bag", new BagCommand(gameController));
+        commands.put("get", new GetCommand(gameController));
+        commands.put("drop", new DropCommand(gameController));
+        commands.put("help", new HelpCommand());
+        commands.put("exit", new ExitCommand(gameController));
     }
 
-    public void createCommand(String commandName) throws NoSuchMethodException {
-        commands.get(commandName).getMethod(commands.get(commandName).getSimpleName()).invoke(this);
+    public Command getCommand(String commandName) {
+        return commands.get(commandName);
     }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
-    }
-
-
 }

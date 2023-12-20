@@ -2,7 +2,7 @@ package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
-import it.alten.doublechargg.pawtropolis.game.utilities.RoomFactory;
+import it.alten.doublechargg.pawtropolis.game.RoomFactory;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package it.alten.doublechargg.pawtropolis.game.utilities;
+package it.alten.doublechargg.pawtropolis.game;
 
 import it.alten.doublechargg.pawtropolis.animals.AnimalFactory;
 import it.alten.doublechargg.pawtropolis.game.model.Item;

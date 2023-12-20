@@ -1,11 +1,11 @@
-package it.alten.doublechargg.pawtropolis.game.model.command.impl;
+package it.alten.doublechargg.pawtropolis.game.command.impl;
 
-import it.alten.doublechargg.pawtropolis.game.model.command.Command;
+import it.alten.doublechargg.pawtropolis.game.command.Command;
 
 public class HelpCommand implements Command {
 
     @Override
-    public String execute() {
+    public String execute(String... args) {
         return String.format("Command List:%n" +
                 "1) - bag: Look the items in your bag%n" +
                 "2) - look: Look around in the room, doors, items and animals%n" +
