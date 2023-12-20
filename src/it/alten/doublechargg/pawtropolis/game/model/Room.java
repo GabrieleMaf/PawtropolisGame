@@ -59,7 +59,7 @@ public class Room {
     }
 
     public void removeAdjacentRoom(CardinalPoints cardinalPoint){
-        adjacentRooms.remove(cardinalPoint)
+        adjacentRooms.remove(cardinalPoint);
     }
 
     public int getAnimalsNumber(){

@@ -1,13 +1,11 @@
 package it.alten.doublechargg.pawtropolis.game.command.impl;
 
-import it.alten.doublechargg.pawtropolis.game.controller.CommandController;
-import it.alten.doublechargg.pawtropolis.game.controller.GameController;
-import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.command.Command;
+import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 
 public class BagCommand implements Command {
 
-    private GameController gameController;
+    private final GameController gameController;
 
     public BagCommand(GameController gameController) {
         this.gameController = gameController;

@@ -5,7 +5,7 @@ import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 
 public class ExitCommand implements Command {
 
-    private GameController gameController;
+    private final GameController gameController;
 
     public ExitCommand(GameController gameController) {
         this.gameController = gameController;

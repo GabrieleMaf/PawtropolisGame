@@ -1,11 +1,8 @@
 package it.alten.doublechargg.pawtropolis.game.command.impl;
 
-import it.alten.doublechargg.pawtropolis.game.controller.CommandController;
+import it.alten.doublechargg.pawtropolis.game.command.Command;
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
-import it.alten.doublechargg.pawtropolis.game.model.Player;
-import it.alten.doublechargg.pawtropolis.game.model.Room;
-import it.alten.doublechargg.pawtropolis.game.command.Command;
 
 import java.util.Objects;
 
@@ -21,10 +18,10 @@ public class GoCommand implements Command {
     @Override
     public String execute(String... args) {
         CardinalPoints cardinalPoint = CardinalPoints.findByName(args[0]);
-        if(Objects.isNull(cardinalPoint)){
+        if (Objects.isNull(cardinalPoint)) {
             return "Not valid input";
         }
-        if (gameController.getCurrentRoom().adjacentRoomExists(cardinalPoint)){
+        if (gameController.getCurrentRoom().adjacentRoomExists(cardinalPoint)) {
             gameController.setCurrentRoom(gameController.getCurrentRoom().getAdjacentRoomByCardinalPoint(cardinalPoint));
             return String.format("%s entered the room %s%n", gameController.getPlayer().getName(), gameController.getCurrentRoom().getName());
         }

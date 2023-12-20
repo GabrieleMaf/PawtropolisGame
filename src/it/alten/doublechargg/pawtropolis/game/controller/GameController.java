@@ -4,6 +4,7 @@ import it.alten.doublechargg.pawtropolis.game.MyLogger;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class GameController {
@@ -20,12 +21,12 @@ public class GameController {
         return player;
     }
 
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
     }
 
     public void setCurrentRoom(Room currentRoom) {
@@ -57,15 +58,19 @@ public class GameController {
 
     public void chooseInput(String input) {
         String[] formattedInput = input.trim().toLowerCase().split("\\s+");
-        switch (formattedInput.length){
+        switch (formattedInput.length) {
             case 1:
-                logger.logInfo(commandController.getCommand(formattedInput[0]).execute());
-                break;
+                if (Objects.nonNull(commandController.getCommand(formattedInput[0]))) {
+                    logger.logInfo(commandController.getCommand(formattedInput[0]).execute());
+                    break;
+                }
             case 2:
-                logger.logInfo(commandController.getCommand(formattedInput[0]).execute(formattedInput[1]));
-                break;
+                if (Objects.nonNull(commandController.getCommand(formattedInput[0]))) {
+                    logger.logInfo(commandController.getCommand(formattedInput[0]).execute(formattedInput[1]));
+                    break;
+                }
             default:
-                logger.logInfo("Not valid Input");
+                logger.logError("Not valid Input");
         }
     }
 }
