@@ -12,7 +12,7 @@ import java.util.Objects;
 public class GoCommand implements Command {
 
 
-    private GameController gameController;
+    private final GameController gameController;
 
     public GoCommand(GameController gameController) {
         this.gameController = gameController;
@@ -24,11 +24,10 @@ public class GoCommand implements Command {
         if(Objects.isNull(cardinalPoint)){
             return "Not valid input";
         }
-        if (Objects.nonNull(gameController.getCurrentRoom().getAdjacentRooms().get(cardinalPoint))) {
-            gameController.setCurrentRoom(gameController.getCurrentRoom().getAdjacentRooms().get(cardinalPoint));
+        if (gameController.getCurrentRoom().adjacentRoomExists(cardinalPoint)){
+            gameController.setCurrentRoom(gameController.getCurrentRoom().getAdjacentRoomByCardinalPoint(cardinalPoint));
             return String.format("%s entered the room %s%n", gameController.getPlayer().getName(), gameController.getCurrentRoom().getName());
-        } else {
-            return "Not existent door";
         }
+        return "Not existent door";
     }
 }

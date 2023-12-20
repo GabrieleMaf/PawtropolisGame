@@ -40,12 +40,45 @@ public class Room {
         return items;
     }
 
-    public List<Animal> getAnimals() {
-        return animals;
-    }
-
     public Map<CardinalPoints, Room> getAdjacentRooms() {
         return adjacentRooms;
+    }
+
+    public int getItemsNumber(){
+        return items.size();
+    }
+    public boolean addItem(Item item){
+        return items.add(item);
+    }
+    public boolean removeItem(Item item){
+        return items.remove(item);
+    }
+
+    public void addAdjacentRoom(CardinalPoints cardinalPoint, Room room){
+        adjacentRooms.put(cardinalPoint, room);
+    }
+
+    public void removeAdjacentRoom(CardinalPoints cardinalPoint){
+        adjacentRooms.remove(cardinalPoint)
+    }
+
+    public int getAnimalsNumber(){
+        return animals.size();
+    }
+
+    public boolean addAnimal(Animal animal){
+        return animals.add(animal);
+    }
+    public boolean removeItem(Animal animal){
+        return animals.remove(animal);
+    }
+
+    public Room getAdjacentRoomByCardinalPoint(CardinalPoints cardinalPoint){
+        return adjacentRooms.get(cardinalPoint);
+    }
+
+    public boolean adjacentRoomExists(CardinalPoints cardinalPoint){
+        return Objects.nonNull(adjacentRooms.get(cardinalPoint));
     }
 
     public Item getItemByName(String name) {

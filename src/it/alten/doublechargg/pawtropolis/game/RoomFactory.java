@@ -31,12 +31,12 @@ public class RoomFactory {
 
     public Room createRoom() {
         Room room = new Room(Long.toString(Room.getCountRoom()));
-        while (room.getItems().size() <= randomizer.nextInt(4)) {
-            room.getItems().add(items[randomizer.nextInt(items.length)]);
+        while (room.getItemsNumber() <= randomizer.nextInt(4)) {
+            room.addItem(items[randomizer.nextInt(items.length)]);
 
         }
-        while (room.getAnimals().size() <= randomizer.nextInt(5)) {
-            room.getAnimals().add(animalFactory.createAnimal());
+        while (room.getAnimalsNumber() <= randomizer.nextInt(5)) {
+            room.addAnimal(animalFactory.createAnimal());
         }
         return room;
     }

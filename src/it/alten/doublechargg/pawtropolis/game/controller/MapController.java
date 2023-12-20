@@ -30,8 +30,8 @@ public class MapController {
     }
 
     public void connectRooms(CardinalPoints cardinalPoint, Room room1, Room room2) {
-        room1.getAdjacentRooms().put(cardinalPoint, room2);
-        room2.getAdjacentRooms().put(CardinalPoints.getOppositeCardinalPoint(cardinalPoint), room1);
+        room1.addAdjacentRoom(cardinalPoint, room2);
+        room2.addAdjacentRoom(CardinalPoints.getOppositeCardinalPoint(cardinalPoint), room1);
     }
 
 }
