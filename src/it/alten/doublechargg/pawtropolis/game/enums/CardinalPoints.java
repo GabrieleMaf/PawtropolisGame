@@ -9,12 +9,9 @@ public enum CardinalPoints {
     WEST("West");
 
     private final String name;
+
     CardinalPoints(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public static CardinalPoints getOppositeCardinalPoint(CardinalPoints cardinalPoint) {
@@ -34,12 +31,15 @@ public enum CardinalPoints {
         }
     }
 
-
-    public static CardinalPoints findByName(String name){
+    public static CardinalPoints findByName(String name) {
         return Arrays.stream(values())
                 .filter(cardinalPoint -> cardinalPoint.name().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
     }
 
+    public String getName() {
+        return name;
     }
+
+}

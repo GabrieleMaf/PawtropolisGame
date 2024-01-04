@@ -9,17 +9,18 @@ import java.util.Random;
 
 public class RoomFactory {
 
+    private static final Random randomizer = new Random();
+    private static RoomFactory instance;
+    private final AnimalFactory animalFactory;
 
-    private static RoomFactory instance = null;
-    private final Random randomizer = new Random();
-    private final AnimalFactory animalFactory = AnimalFactory.getInstance();
-    Item[] items = {
+    private final Item[] items = {
             new Item(1L, "Sword", "A sword", 7),
             new Item(2L, "Knife", "A knife", 4),
             new Item(3L, "Torch", "A Torch", 2)
     };
 
     private RoomFactory() {
+        animalFactory = AnimalFactory.getInstance();
     }
 
     public static synchronized RoomFactory getInstance() {
@@ -31,11 +32,14 @@ public class RoomFactory {
 
     public Room createRoom() {
         Room room = new Room(Long.toString(Room.getCountRoom()));
-        while (room.getItemsNumber() <= randomizer.nextInt(4)) {
-            room.addItem(items[randomizer.nextInt(items.length)]);
-
+        final int MAX_ITEMS = 4;
+        final int availableItemsCount = items.length;
+        while (room.getItemsNumber() <= randomizer.nextInt(MAX_ITEMS + 1)) {
+            int selectedItemIndex = randomizer.nextInt(availableItemsCount);
+            room.addItem(items[selectedItemIndex]);
         }
-        while (room.getAnimalsNumber() <= randomizer.nextInt(5)) {
+        final int MAX_ANIMALS = 5;
+        while (room.getAnimalNumber() <= randomizer.nextInt(MAX_ANIMALS + 1)) {
             room.addAnimal(animalFactory.createAnimal());
         }
         return room;

@@ -6,24 +6,30 @@ import it.alten.doublechargg.pawtropolis.game.model.Room;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MapController {
-    private final List<Room> roomList = new ArrayList<>();
+
+    private static final Random randomizer = new Random();
+    private final List<Room> roomList;
+
+    public MapController() {
+        roomList = new ArrayList<>();
+    }
 
     public void createMap() {
         RoomFactory roomFactory = RoomFactory.getInstance();
-        for (int i = 0; i <= 10; i++) {
+        final int roomNumber = randomizer.nextInt(8, 15);
+        for (int i = 0; i <= roomNumber; i++) {
             roomList.add(roomFactory.createRoom());
         }
-        connectRooms(CardinalPoints.NORTH, roomList.get(0), roomList.get(1));
-        connectRooms(CardinalPoints.WEST, roomList.get(1), roomList.get(2));
-        connectRooms(CardinalPoints.NORTH, roomList.get(1), roomList.get(3));
-        connectRooms(CardinalPoints.NORTH, roomList.get(3), roomList.get(4));
-        connectRooms(CardinalPoints.EAST, roomList.get(4), roomList.get(5));
-        connectRooms(CardinalPoints.SOUTH, roomList.get(5), roomList.get(6));
-        connectRooms(CardinalPoints.EAST, roomList.get(6), roomList.get(7));
-        connectRooms(CardinalPoints.EAST, roomList.get(7), roomList.get(8));
-        connectRooms(CardinalPoints.EAST, roomList.get(8), roomList.get(9));
+        for (int i = 0; i < roomNumber - 1; i++) {
+            int selectedCardinalPointIndex = randomizer.nextInt(CardinalPoints.values().length);
+            while (roomList.get(i).adjacentRoomExists(CardinalPoints.values()[selectedCardinalPointIndex])) {
+                selectedCardinalPointIndex = randomizer.nextInt(CardinalPoints.values().length);
+            }
+            connectRooms(CardinalPoints.values()[selectedCardinalPointIndex], roomList.get(i), roomList.get(i + 1));
+        }
     }
 
     public List<Room> getRoomList() {

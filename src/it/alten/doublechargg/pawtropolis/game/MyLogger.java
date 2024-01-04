@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MyLogger {
-    private static final Logger logger = Logger.getLogger("MyLogger");
+    private static final Logger logger = Logger.getLogger("Logger");
     private static MyLogger instance;
 
     private MyLogger() {
@@ -23,7 +23,7 @@ public class MyLogger {
         logger.log(Level.INFO, "\u001B[37m" + "{0}" + "\u001B[0m", message);
     }
 
-    public void logWarning(String message) {
+    public void logWarn(String message) {
         logger.log(Level.WARNING, "\u001B[33m" + "{0}" + "\u001B[0m", message);
     }
 

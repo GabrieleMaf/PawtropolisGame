@@ -9,11 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ZooController {
-    private final Map<Class<? extends Animal>, List<Animal>> animals;
-
-    public ZooController() {
-        this.animals = new HashMap<>();
-    }
+    private final Map<Class<? extends Animal>, List<Animal>> animals = new HashMap<>();
 
     public Map<Class<? extends Animal>, List<Animal>> getAnimals() {
         return animals;

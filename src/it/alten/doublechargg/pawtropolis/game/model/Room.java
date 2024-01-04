@@ -3,17 +3,19 @@ package it.alten.doublechargg.pawtropolis.game.model;
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Room {
 
     private static Long count = 1L;
-    private String name;
     private final List<Item> items;
     private final List<Animal> animals;
     private final EnumMap<CardinalPoints, Room> adjacentRooms;
-
+    private String name;
 
 
     public Room(String name) {
@@ -36,50 +38,50 @@ public class Room {
         this.name = name;
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public Map<CardinalPoints, Room> getAdjacentRooms() {
-        return adjacentRooms;
-    }
-
-    public int getItemsNumber(){
+    public int getItemsNumber() {
         return items.size();
     }
-    public boolean addItem(Item item){
+
+    public boolean addItem(Item item) {
         return items.add(item);
     }
-    public boolean removeItem(Item item){
+
+    public boolean removeItem(Item item) {
         return items.remove(item);
     }
 
-    public void addAdjacentRoom(CardinalPoints cardinalPoint, Room room){
+    public boolean containsItem(Item item) {
+        return items.contains(item);
+    }
+
+    public void addAdjacentRoom(CardinalPoints cardinalPoint, Room room) {
         adjacentRooms.put(cardinalPoint, room);
     }
 
-    public void removeAdjacentRoom(CardinalPoints cardinalPoint){
+    public void removeAdjacentRoom(CardinalPoints cardinalPoint) {
         adjacentRooms.remove(cardinalPoint);
     }
 
-    public int getAnimalsNumber(){
+    public boolean adjacentRoomExists(CardinalPoints cardinalPoint) {
+        return Objects.nonNull(adjacentRooms.get(cardinalPoint));
+    }
+
+    public int getAnimalNumber() {
         return animals.size();
     }
 
-    public boolean addAnimal(Animal animal){
+    public boolean addAnimal(Animal animal) {
         return animals.add(animal);
     }
-    public boolean removeItem(Animal animal){
+
+    public boolean removeItem(Animal animal) {
         return animals.remove(animal);
     }
 
-    public Room getAdjacentRoomByCardinalPoint(CardinalPoints cardinalPoint){
+    public Room getAdjacentRoomByCardinalPoint(CardinalPoints cardinalPoint) {
         return adjacentRooms.get(cardinalPoint);
     }
 
-    public boolean adjacentRoomExists(CardinalPoints cardinalPoint){
-        return Objects.nonNull(adjacentRooms.get(cardinalPoint));
-    }
 
     public Item getItemByName(String name) {
         return items.stream()

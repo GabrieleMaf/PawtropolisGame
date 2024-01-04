@@ -6,11 +6,12 @@ import java.util.stream.Collectors;
 
 public class Bag {
 
+    private static final int DEFAULT_SLOTS = 10;
     private final List<Item> items;
     private final int slot;
 
     public Bag() {
-        slot = 10;
+        slot = DEFAULT_SLOTS;
         items = new ArrayList<>();
     }
 

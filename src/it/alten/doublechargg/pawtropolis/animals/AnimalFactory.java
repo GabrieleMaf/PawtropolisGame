@@ -56,7 +56,7 @@ public class AnimalFactory {
     }
 
     public Animal createAnimal() {
-        return switch (randomizer.nextInt(2)) {
+        return switch (randomizer.nextInt(3)) {
             case 0 -> createEagle();
             case 1 -> createLion();
             default -> createTiger();

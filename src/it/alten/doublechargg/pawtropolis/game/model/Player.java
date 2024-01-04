@@ -2,13 +2,14 @@ package it.alten.doublechargg.pawtropolis.game.model;
 
 public class Player {
 
+    private static final int DEFAULT_LIFEPOINTS = 20;
     private final String name;
     private final Bag bag;
-    private int lifePoint;
+    private int lifePoints;
 
     public Player(String name) {
         this.name = name;
-        this.lifePoint = 20;
+        this.lifePoints = DEFAULT_LIFEPOINTS;
         this.bag = new Bag();
     }
 
@@ -16,27 +17,27 @@ public class Player {
         return name;
     }
 
-    public int getLifePoint() {
-        return lifePoint;
+    public int getLifePoints() {
+        return lifePoints;
     }
 
-    public void setLifePoint(int lifePoint) {
-        this.lifePoint = lifePoint;
+    public void setLifePoints(int lifePoints) {
+        this.lifePoints = lifePoints;
     }
 
-    public boolean getItem(Item item){
+    public boolean addItem(Item item) {
         return bag.addItem(item);
     }
 
-    public boolean removeItem(Item item){
+    public boolean removeItem(Item item) {
         return bag.removeItem(item);
     }
 
-    public Item getItemFromBag(String itemName){
+    public Item getItemFromBag(String itemName) {
         return bag.getItemByName(itemName);
     }
 
-    public String showBagContent(){
+    public String showBagContent() {
         return bag.toString();
     }
 

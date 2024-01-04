@@ -7,8 +7,8 @@ public class ExitCommand implements Command {
 
     private final GameController gameController;
 
-    public ExitCommand(GameController gameController) {
-        this.gameController = gameController;
+    public ExitCommand() {
+        gameController = GameController.getInstance();
     }
 
     @Override
