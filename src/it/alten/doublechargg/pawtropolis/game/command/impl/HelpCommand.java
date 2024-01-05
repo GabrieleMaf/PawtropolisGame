@@ -1,11 +1,12 @@
 package it.alten.doublechargg.pawtropolis.game.command.impl;
 
 import it.alten.doublechargg.pawtropolis.game.command.Command;
+import it.alten.doublechargg.pawtropolis.game.command.CommandWithoutParam;
 
-public class HelpCommand implements Command {
+public class HelpCommand implements CommandWithoutParam {
 
     @Override
-    public String execute(String... args) {
+    public String execute() {
         return String.format("Command List:%n" +
                 "1) - bag: Look the items in your bag%n" +
                 "2) - look: Look around in the room, doors, items and animals%n" +

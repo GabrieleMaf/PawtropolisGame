@@ -1,12 +1,13 @@
 package it.alten.doublechargg.pawtropolis.game.command.impl;
 
 import it.alten.doublechargg.pawtropolis.game.command.Command;
+import it.alten.doublechargg.pawtropolis.game.command.CommandWithParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 
-public class GetCommand implements Command {
+public class GetCommand implements CommandWithParam {
 
     private final Player player;
     private final Room currentRoom;
@@ -17,17 +18,14 @@ public class GetCommand implements Command {
     }
 
     @Override
-    public String execute(String... args) {
-        Item item = currentRoom.getItemByName(args[0]);
+    public String execute(String arg) {
+        Item item = currentRoom.getItemByName(arg);
         if (currentRoom.containsItem(item)) {
             if (player.addItem(item)) {
                 currentRoom.removeItem(item);
                 return String.format("%s got the %s from the room%n", player.getName(), item.name());
-            } else {
-                return "Not enough space in bag";
             }
-        } else {
-            return "Item not present in this room";
         }
-    }
+        return "Item not present in this room";
+        }
 }

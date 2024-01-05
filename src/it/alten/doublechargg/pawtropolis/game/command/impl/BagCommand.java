@@ -1,10 +1,11 @@
 package it.alten.doublechargg.pawtropolis.game.command.impl;
 
 import it.alten.doublechargg.pawtropolis.game.command.Command;
+import it.alten.doublechargg.pawtropolis.game.command.CommandWithoutParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 
-public class BagCommand implements Command {
+public class BagCommand implements CommandWithoutParam {
 
     private final Player player;
 
@@ -13,7 +14,7 @@ public class BagCommand implements Command {
     }
 
     @Override
-    public String execute(String... args) {
+    public String execute() {
         return player.showBagContent();
     }
 }

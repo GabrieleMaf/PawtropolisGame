@@ -1,6 +1,8 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.MyLogger;
+import it.alten.doublechargg.pawtropolis.game.command.CommandFactory;
+import it.alten.doublechargg.pawtropolis.game.command.CommandWithoutParam;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 
@@ -14,14 +16,14 @@ public class GameController {
     private static final Scanner scanner = new Scanner(System.in);
     private static GameController instance;
 
-    private final CommandController commandController;
+    private final InputController inputController;
     private boolean gameEnded;
     private Player player;
     private Room currentRoom;
 
     private GameController() {
         gameEnded = false;
-        commandController = new CommandController();
+        inputController = InputController.getInstance();
     }
 
     public static synchronized GameController getInstance() {
@@ -61,24 +63,25 @@ public class GameController {
         map.createMap();
         setPlayer(createPlayer());
         setCurrentRoom(map.getRoomList().getFirst());
-        commandController.associateCommands();
         try {
-            logger.logInfo(commandController.createCommand("help").execute());
+            logger.logInfo(((CommandWithoutParam) CommandFactory.getInstance().createCommand("Help")).execute());
         } catch (InvocationTargetException |
                  NoSuchMethodException |
                  InstantiationException |
-                 IllegalAccessException e) {
+                 IllegalAccessException |
+                 ClassNotFoundException e) {
             e.printStackTrace();
         }
         while (!gameEnded) {
             logger.logInfo("Write your action");
             try {
-                commandController.chooseInput(scanner.nextLine());
+                inputController.chooseInput(scanner.nextLine());
             } catch (InvocationTargetException |
                      NoSuchMethodException |
                      InstantiationException |
-                     IllegalAccessException e) {
-                e.printStackTrace();
+                     IllegalAccessException |
+                     ClassNotFoundException e) {
+                logger.logError("Not valid Input");
             }
         }
     }
