@@ -1,10 +1,10 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.MyLogger;
-import it.alten.doublechargg.pawtropolis.game.command.Command;
-import it.alten.doublechargg.pawtropolis.game.command.CommandFactory;
-import it.alten.doublechargg.pawtropolis.game.command.CommandWithParam;
-import it.alten.doublechargg.pawtropolis.game.command.CommandWithoutParam;
+import it.alten.doublechargg.pawtropolis.game.command.interfaces.Command;
+import it.alten.doublechargg.pawtropolis.game.CommandFactory;
+import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithParam;
+import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithoutParam;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ public class InputController {
         return instance;
     }
 
-    public void chooseInput(String input) throws
+    public void handleInput(String input) throws
             InvocationTargetException,
             NoSuchMethodException,
             InstantiationException,

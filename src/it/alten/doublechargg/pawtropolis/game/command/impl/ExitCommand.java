@@ -1,7 +1,6 @@
 package it.alten.doublechargg.pawtropolis.game.command.impl;
 
-import it.alten.doublechargg.pawtropolis.game.command.Command;
-import it.alten.doublechargg.pawtropolis.game.command.CommandWithParam;
+import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 
 public class ExitCommand implements CommandWithParam {

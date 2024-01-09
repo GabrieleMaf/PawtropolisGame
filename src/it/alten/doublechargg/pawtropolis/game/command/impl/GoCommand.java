@@ -1,7 +1,6 @@
 package it.alten.doublechargg.pawtropolis.game.command.impl;
 
-import it.alten.doublechargg.pawtropolis.game.command.Command;
-import it.alten.doublechargg.pawtropolis.game.command.CommandWithParam;
+import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
@@ -29,7 +28,7 @@ public class GoCommand implements CommandWithParam {
             GameController.getInstance().setCurrentRoom(currentRoom.getAdjacentRoomByCardinalPoint(cardinalPoint));
             return String.format("%s entered the room %s%n", player.getName(), GameController.getInstance().getCurrentRoom().getName());
         }
-        return "Not existent door";
+        return "Not existent room";
 
     }
 }

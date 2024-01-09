@@ -1,6 +1,8 @@
-package it.alten.doublechargg.pawtropolis.game.command;
+package it.alten.doublechargg.pawtropolis.game;
 
-import it.alten.doublechargg.pawtropolis.game.MyLogger;
+import it.alten.doublechargg.pawtropolis.game.command.interfaces.Command;
+import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithParam;
+import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithoutParam;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
@@ -19,7 +21,7 @@ public class CommandFactory {
         }
         return instance;
     }
-
+//TODO CORREGGERE ECCEZIONI
     public Command createCommand(String commandName) throws
             NoSuchMethodException,
             InvocationTargetException,
@@ -30,24 +32,5 @@ public class CommandFactory {
         return (Command) Class.forName(String.format("it.alten.doublechargg.pawtropolis.game.command.impl.%sCommand", commandName)).getConstructor().newInstance();
     }
 
-    public void chooseInput(String input) throws
-            InvocationTargetException,
-            NoSuchMethodException,
-            InstantiationException,
-            IllegalAccessException,
-            ClassNotFoundException{
-        List<String> formattedInput = Arrays.asList(input.trim().toLowerCase().split("\\s+"));
-        Command command = createCommand(formattedInput.getFirst());
-        switch(command){
-            case CommandWithoutParam commandWithoutParam:
-                logger.logInfo(commandWithoutParam.execute());
-                break;
-            case CommandWithParam commandWithParam:
-                logger.logInfo(commandWithParam.execute(formattedInput.getLast()));
-                break;
-            default:
-               logger.logError("Not Valid Input");
-        }
-        }
     }
 

@@ -1,14 +1,15 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.MyLogger;
-import it.alten.doublechargg.pawtropolis.game.command.CommandFactory;
-import it.alten.doublechargg.pawtropolis.game.command.CommandWithoutParam;
+import it.alten.doublechargg.pawtropolis.game.CommandFactory;
+import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithoutParam;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 import java.util.Scanner;
+
 
 public class GameController {
 
@@ -75,7 +76,7 @@ public class GameController {
         while (!gameEnded) {
             logger.logInfo("Write your action");
             try {
-                inputController.chooseInput(scanner.nextLine());
+                inputController.handleInput(scanner.nextLine());
             } catch (InvocationTargetException |
                      NoSuchMethodException |
                      InstantiationException |
