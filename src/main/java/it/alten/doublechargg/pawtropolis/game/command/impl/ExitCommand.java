@@ -3,17 +3,13 @@ package it.alten.doublechargg.pawtropolis.game.command.impl;
 import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Data
-@Component
 public class ExitCommand implements CommandWithParam {
 
 
     private GameController gameController;
 
-    @Autowired
+
     public ExitCommand(GameController gameController) {
         this.gameController = gameController;
     }

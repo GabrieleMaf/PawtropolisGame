@@ -4,16 +4,11 @@ import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithoutP
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Data
-@Component
 public class BagCommand implements CommandWithoutParam {
 
     private Player player;
 
-    @Autowired
     public BagCommand(GameController gameController) {
         player = gameController.getPlayer();
     }

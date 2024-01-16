@@ -6,17 +6,12 @@ import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Data
-@Component
 public class DropCommand implements CommandWithParam {
 
     private final Player player;
     private final Room currentRoom;
 
-    @Autowired
     public DropCommand(GameController gameController) {
         player = gameController.getPlayer();
         currentRoom = gameController.getCurrentRoom();

@@ -6,20 +6,14 @@ import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Objects;
-
-@Data
-@Component
 public class GoCommand implements CommandWithParam {
 
     private GameController gameController;
     private Player player;
     private Room currentRoom;
 
-    @Autowired
     public GoCommand(GameController gameController) {
         this.gameController = gameController;
         player = gameController.getPlayer();
