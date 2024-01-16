@@ -5,7 +5,6 @@ import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.model.Item;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
-import lombok.Data;
 
 public class GetCommand implements CommandWithParam {
 

@@ -5,7 +5,6 @@ import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
-import lombok.Data;
 
 import java.util.Objects;
 public class GoCommand implements CommandWithParam {

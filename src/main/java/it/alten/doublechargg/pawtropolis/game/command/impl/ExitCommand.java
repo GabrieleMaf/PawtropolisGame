@@ -2,7 +2,6 @@ package it.alten.doublechargg.pawtropolis.game.command.impl;
 
 import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
-import lombok.Data;
 
 public class ExitCommand implements CommandWithParam {
 

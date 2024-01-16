@@ -3,7 +3,6 @@ package it.alten.doublechargg.pawtropolis.game.command.impl;
 import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithoutParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
-import lombok.Data;
 
 public class BagCommand implements CommandWithoutParam {
 

@@ -2,7 +2,6 @@ package it.alten.doublechargg.pawtropolis.game.command.impl;
 
 import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithoutParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
-import lombok.Data;
 
 public class HelpCommand implements CommandWithoutParam {
 
