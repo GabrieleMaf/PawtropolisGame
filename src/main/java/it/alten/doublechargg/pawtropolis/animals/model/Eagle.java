@@ -1,7 +1,9 @@
 package it.alten.doublechargg.pawtropolis.animals.model;
 
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.WingedAnimal;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
 

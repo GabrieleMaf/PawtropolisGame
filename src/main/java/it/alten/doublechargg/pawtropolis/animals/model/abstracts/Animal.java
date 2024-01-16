@@ -1,6 +1,9 @@
 package it.alten.doublechargg.pawtropolis.animals.model.abstracts;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 

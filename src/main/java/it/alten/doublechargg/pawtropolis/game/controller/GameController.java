@@ -5,23 +5,23 @@ import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithoutP
 import it.alten.doublechargg.pawtropolis.game.exceptions.CommandFailedException;
 import it.alten.doublechargg.pawtropolis.game.model.Player;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
-import java.util.Objects;
 import java.util.Scanner;
-import java.util.logging.Level;
 
 @Log
 @Component
 public class GameController implements CommandLineRunner {
 
     private static final Scanner scanner = new Scanner(System.in);
+    private final MapController mapController;
+    private final InputController inputController;
+    private final CommandFactory commandFactory;
     @Setter
     @Getter
     private boolean gameEnded;
@@ -31,9 +31,6 @@ public class GameController implements CommandLineRunner {
     @Setter
     @Getter
     private Room currentRoom;
-    private final MapController mapController;
-    private final InputController inputController;
-    private final CommandFactory commandFactory;
 
     @Autowired
     public GameController(InputController inputController, MapController mapController, CommandFactory commandFactory) {
@@ -48,7 +45,7 @@ public class GameController implements CommandLineRunner {
         return new Player(scanner.nextLine());
     }
 
-    public void startGame(){
+    public void startGame() {
         mapController.createMap();
         setPlayer(createPlayer());
         setCurrentRoom(mapController.getRoomList().getFirst());
@@ -69,7 +66,7 @@ public class GameController implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-    startGame();
+        startGame();
     }
 }
 

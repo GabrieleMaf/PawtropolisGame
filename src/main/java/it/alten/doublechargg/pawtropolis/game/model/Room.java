@@ -4,8 +4,6 @@ import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.EnumMap;

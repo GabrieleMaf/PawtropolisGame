@@ -4,9 +4,7 @@ import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithoutP
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Data
@@ -14,6 +12,7 @@ import org.springframework.stereotype.Component;
 public class LookCommand implements CommandWithoutParam {
 
     private Room currentRoom;
+
     @Autowired
     public LookCommand(GameController gameController) {
         this.currentRoom = gameController.getCurrentRoom();

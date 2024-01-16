@@ -3,40 +3,40 @@ package it.alten.doublechargg.pawtropolis.game.controller;
 import it.alten.doublechargg.pawtropolis.game.RoomFactory;
 import it.alten.doublechargg.pawtropolis.game.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.model.Room;
-import lombok.*;
+import lombok.Getter;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 @Getter
 @Component
 public class MapController {
 
-    private static final Random randomizer = new Random();
-    private final List<Room> roomList = new ArrayList<>();
-    private RoomFactory roomFactory;
+    private static final Random RANDOMIZER = new Random();
+    private final List<Room> roomList;
+    private final RoomFactory roomFactory;
+
+    @Autowired
     private MapController(RoomFactory roomFactory) {
         this.roomFactory = roomFactory;
+        roomList = new ArrayList<>();
     }
 
     public void createMap() {
-
-        val minimumRooms = 8;
-        val maximumRooms = 15;
-        final int roomNumber = randomizer.nextInt(minimumRooms, maximumRooms+1);
+        val MINIMUM_ROOMS = 8;
+        val MAXIMUM_ROOMS = 15;
+        final int roomNumber = RANDOMIZER.nextInt(MINIMUM_ROOMS, MAXIMUM_ROOMS + 1);
         for (int i = 0; i <= roomNumber; i++) {
             roomList.add(roomFactory.createRoom());
         }
         for (int i = 0; i < roomNumber - 1; i++) {
-            int selectedCardinalPointIndex = randomizer.nextInt(CardinalPoints.values().length);
+            var selectedCardinalPointIndex = RANDOMIZER.nextInt(CardinalPoints.values().length);
             while (roomList.get(i).adjacentRoomExists(CardinalPoints.values()[selectedCardinalPointIndex])) {
-                selectedCardinalPointIndex = randomizer.nextInt(CardinalPoints.values().length);
+                selectedCardinalPointIndex = RANDOMIZER.nextInt(CardinalPoints.values().length);
             }
             connectRooms(CardinalPoints.values()[selectedCardinalPointIndex], roomList.get(i), roomList.get(i + 1));
         }

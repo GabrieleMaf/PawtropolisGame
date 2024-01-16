@@ -6,11 +6,9 @@ import it.alten.doublechargg.pawtropolis.animals.model.Tiger;
 import it.alten.doublechargg.pawtropolis.animals.model.abstracts.Animal;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.Synchronized;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 import static it.alten.doublechargg.pawtropolis.animals.utilities.FactoryUtils.*;
 
@@ -18,7 +16,7 @@ import static it.alten.doublechargg.pawtropolis.animals.utilities.FactoryUtils.*
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AnimalFactory {
 
-    public Tiger createTiger(){
+    public Tiger createTiger() {
         return Tiger.builder()
                 .name(names[randomizer.nextInt(names.length)])
                 .favoriteFood(favoriteFoods[randomizer.nextInt(favoriteFoods.length)])
@@ -30,7 +28,7 @@ public class AnimalFactory {
                 .build();
     }
 
-    public Lion createLion(){
+    public Lion createLion() {
         return Lion.builder()
                 .name(names[randomizer.nextInt(names.length)])
                 .favoriteFood(favoriteFoods[randomizer.nextInt(favoriteFoods.length)])
@@ -42,7 +40,7 @@ public class AnimalFactory {
                 .build();
     }
 
-    public Eagle createEagle(){
+    public Eagle createEagle() {
         return Eagle.builder()
                 .name(names[randomizer.nextInt(names.length)])
                 .favoriteFood(favoriteFoods[randomizer.nextInt(favoriteFoods.length)])

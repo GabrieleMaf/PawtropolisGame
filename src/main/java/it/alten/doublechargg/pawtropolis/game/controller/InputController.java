@@ -6,17 +6,12 @@ import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithPara
 import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithoutParam;
 import it.alten.doublechargg.pawtropolis.game.exceptions.CommandFailedException;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.Synchronized;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Level;
 
 @Log

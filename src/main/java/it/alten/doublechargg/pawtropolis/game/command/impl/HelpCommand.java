@@ -4,7 +4,6 @@ import it.alten.doublechargg.pawtropolis.game.command.interfaces.CommandWithoutP
 import it.alten.doublechargg.pawtropolis.game.controller.GameController;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Data

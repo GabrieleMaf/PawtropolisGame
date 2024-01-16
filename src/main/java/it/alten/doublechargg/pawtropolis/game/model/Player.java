@@ -1,8 +1,6 @@
 package it.alten.doublechargg.pawtropolis.game.model;
 
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @ToString
 @EqualsAndHashCode
