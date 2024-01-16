@@ -16,8 +16,8 @@ public class ExitCommand implements CommandWithParam {
 
     private GameController gameController;
     @Autowired
-    public ExitCommand(ApplicationContext context) {
-        gameController = context.getBean(GameController.class);
+    public ExitCommand(GameController gameController) {
+        this.gameController = gameController;
     }
 
     @Override

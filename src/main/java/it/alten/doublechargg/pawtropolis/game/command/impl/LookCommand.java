@@ -15,8 +15,8 @@ public class LookCommand implements CommandWithoutParam {
 
     private Room currentRoom;
     @Autowired
-    public LookCommand(ApplicationContext context) {
-        this.currentRoom = context.getBean(GameController.class).getCurrentRoom();
+    public LookCommand(GameController gameController) {
+        this.currentRoom = gameController.getCurrentRoom();
     }
 
     public String execute() {

@@ -16,14 +16,14 @@ import java.util.Objects;
 @Component
 public class GoCommand implements CommandWithParam {
 
-    private ApplicationContext context;
+    private GameController gameController;
     private Player player;
     private Room currentRoom;
     @Autowired
-    public GoCommand(ApplicationContext context) {
-        this.context = context;
-        player = context.getBean(GameController.class).getPlayer();
-        currentRoom = context.getBean(GameController.class).getCurrentRoom();
+    public GoCommand(GameController gameController) {
+        this.gameController = gameController;
+        player = gameController.getPlayer();
+        currentRoom = gameController.getCurrentRoom();
 
     }
 
@@ -34,8 +34,8 @@ public class GoCommand implements CommandWithParam {
             return "Not valid input";
         }
         if (currentRoom.adjacentRoomExists(cardinalPoint)) {
-            context.getBean(GameController.class).setCurrentRoom(currentRoom.getAdjacentRoomByCardinalPoint(cardinalPoint));
-            return String.format("%s entered the room %s%n", player.getName(), context.getBean(GameController.class).getCurrentRoom().getName());
+            gameController.setCurrentRoom(currentRoom.getAdjacentRoomByCardinalPoint(cardinalPoint));
+            return String.format("%s entered the room %s%n", player.getName(), gameController.getCurrentRoom().getName());
         }
         return "Not existent room";
 

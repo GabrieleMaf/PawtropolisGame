@@ -18,9 +18,9 @@ public class DropCommand implements CommandWithParam {
     private final Room currentRoom;
 
     @Autowired
-    public DropCommand(ApplicationContext context) {
-        player = context.getBean(GameController.class).getPlayer();
-        currentRoom = context.getBean(GameController.class).getCurrentRoom();
+    public DropCommand(GameController gameController) {
+        player = gameController.getPlayer();
+        currentRoom = gameController.getCurrentRoom();
     }
 
     @Override

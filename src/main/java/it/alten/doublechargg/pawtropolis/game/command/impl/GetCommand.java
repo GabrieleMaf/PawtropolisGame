@@ -18,9 +18,9 @@ public class GetCommand implements CommandWithParam {
     private final Room currentRoom;
 
     @Autowired
-    public GetCommand(ApplicationContext context) {
-        player= context.getBean(GameController.class).getPlayer();
-        currentRoom = context.getBean(GameController.class).getCurrentRoom();
+    public GetCommand(GameController gameController) {
+        player= gameController.getPlayer();
+        currentRoom = gameController.getCurrentRoom();
     }
 
     @Override

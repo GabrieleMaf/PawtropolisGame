@@ -16,8 +16,8 @@ public class BagCommand implements CommandWithoutParam {
     private Player player;
 
     @Autowired
-    public BagCommand(ApplicationContext context) {
-        player = context.getBean(GameController.class).getPlayer();
+    public BagCommand(GameController gameController) {
+        player = gameController.getPlayer();
     }
 
     @Override
