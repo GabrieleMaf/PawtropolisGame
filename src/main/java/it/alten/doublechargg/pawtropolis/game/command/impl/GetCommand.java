@@ -23,6 +23,8 @@ public class GetCommand implements CommandWithParam {
             if (player.addItem(item)) {
                 currentRoom.removeItem(item);
                 return String.format("%s got the %s from the room%n", player.getName(), item.name());
+            } else if (item.weight() > player.getBagFreeSpace()) {
+                return "Not enough space";
             }
         }
         return "Item not present in this room";

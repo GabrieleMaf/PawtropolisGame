@@ -32,6 +32,10 @@ public class Player {
         return bag.getItemByName(itemName);
     }
 
+    public int getBagFreeSpace(){
+        return bag.getFreeSpace();
+    }
+
     public String showBagContent() {
         return bag.toString();
     }
