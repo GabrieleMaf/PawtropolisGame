@@ -11,13 +11,10 @@ import java.util.stream.Collectors;
 public class ZooController {
     private final Map<Class<? extends Animal>, List<Animal>> animals = new HashMap<>();
 
-<<<<<<<< HEAD:src/it/alten/doublechargg/pawtropolis/animals/ZooController.java
     public Map<Class<? extends Animal>, List<Animal>> getAnimals() {
         return animals;
     }
 
-========
->>>>>>>> FEAT/SpringRework:src/main/java/it/alten/doublechargg/pawtropolis/animals/ZooController.java
     public void addAnimal(Animal animal) {
         if (!animals.containsKey(animal.getClass())) {
             animals.put(animal.getClass(), new ArrayList<>());
