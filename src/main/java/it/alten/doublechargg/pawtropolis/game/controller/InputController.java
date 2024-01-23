@@ -16,7 +16,6 @@ import java.util.logging.Level;
 
 @Log
 @Component
-@Data
 public class InputController {
 
     private CommandFactory commandFactory;
