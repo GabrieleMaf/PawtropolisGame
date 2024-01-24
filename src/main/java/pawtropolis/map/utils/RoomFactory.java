@@ -1,36 +1,34 @@
 package pawtropolis.map.utils;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import pawtropolis.animals.domain.Animal;
 import pawtropolis.animals.utils.AnimalFactory;
 import pawtropolis.game.domain.Item;
 import pawtropolis.game.utils.ItemFactory;
 import pawtropolis.map.domain.Direction;
+import pawtropolis.map.domain.Door;
 import pawtropolis.map.domain.Room;
 
 import java.util.*;
 
+@Component
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class RoomFactory {
-    private static RoomFactory instance = null;
     private static final Random random = new Random();
     private static final int DEFAULT_ROOM_ANIMALS_QUANTITY = 3;
     private static final int DEFAULT_ROOM_ITEMS_QUANTITY = 5;
 
-    private RoomFactory() {
-    }
-
-    public static RoomFactory getInstance() {
-        if (instance == null) {
-            instance = new RoomFactory();
-        }
-        return instance;
-    }
+    private final ItemFactory itemFactory;
+    private final AnimalFactory animalFactory;
 
     public Room generateGameMap(int depth) {
         String name = "Room" + random.nextInt(100);
-        Set<Item> items = ItemFactory.getInstance().getRandomItemsSet(DEFAULT_ROOM_ITEMS_QUANTITY);
-        Set<Animal> animals = AnimalFactory.getInstance().getRandomAnimalsSet(DEFAULT_ROOM_ANIMALS_QUANTITY);
-        Map<Direction, Room> adjacentRooms = new EnumMap<>(Direction.class);
-        Room newRoom = new Room(name, items, animals, adjacentRooms);
+        Set<Item> items = itemFactory.getRandomItemsSet(DEFAULT_ROOM_ITEMS_QUANTITY);
+        Set<Animal> animals = animalFactory.getRandomAnimalsSet(DEFAULT_ROOM_ANIMALS_QUANTITY);
+        Map<Direction, Door> adjacentDoors = new EnumMap<>(Direction.class);
+        Room newRoom = new Room(name, items, animals, adjacentDoors);
 
         if (depth == 0) {
             return newRoom;
@@ -44,10 +42,19 @@ public class RoomFactory {
             Direction newDirection = availableDirections.remove(randomIndex);
 
             Room linkedRoom = generateGameMap(depth - 1);
-            newRoom.putAdjacentRoom(newDirection, linkedRoom);
-            linkedRoom.putAdjacentRoom(Direction.getOppositeDirection(newDirection), newRoom);
+
+            connectRoom(newDirection, linkedRoom, newRoom);
         }
 
         return newRoom;
+    }
+
+    public void connectRoom(Direction direction, Room room1, Room room2){
+        Door door = new Door(room1, room2, random.nextBoolean());
+        room1.putAdjacentRoom(direction, door);
+        Room savedRoom = door.getRoom1();
+        door.setRoom1(room2);
+        door.setRoom2(savedRoom);
+        room2.putAdjacentRoom(Direction.getOppositeDirection(direction), door);
     }
 }

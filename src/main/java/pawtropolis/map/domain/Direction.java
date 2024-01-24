@@ -1,10 +1,12 @@
 package pawtropolis.map.domain;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 import java.util.Optional;
 
+@Getter
 @RequiredArgsConstructor
 public enum Direction {
     NORTH("north"),

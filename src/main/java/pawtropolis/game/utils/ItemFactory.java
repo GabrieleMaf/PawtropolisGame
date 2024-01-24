@@ -1,11 +1,15 @@
 package pawtropolis.game.utils;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.domain.Item;
 
 import java.util.*;
 
+@Component
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class ItemFactory {
-    private static ItemFactory instance = null;
     private static final Random random = new Random();
     private final Map<String, Integer> itemsMap = Map.of(
             "Knife", 1,
@@ -17,18 +21,7 @@ public class ItemFactory {
             "Masterball", 10,
             "Ultraball", 7,
             "Potion", 4,
-            "Antidote", 4
-    );
-
-    private ItemFactory() {
-    }
-
-    public static ItemFactory getInstance() {
-        if (instance == null) {
-            instance = new ItemFactory();
-        }
-        return instance;
-    }
+            "Key", 2);
 
     public Item getRandomItem() {
         List<String> keys = new ArrayList<>(itemsMap.keySet());

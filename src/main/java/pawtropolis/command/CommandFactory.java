@@ -13,7 +13,6 @@ import java.util.Map;
 
 @Component
 public class CommandFactory {
-
     private final ListableBeanFactory beanFactory;
 
     @Autowired

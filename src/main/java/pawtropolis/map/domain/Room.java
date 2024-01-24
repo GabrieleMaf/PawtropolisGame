@@ -12,7 +12,7 @@ public class Room {
     private final String name;
     private final Set<Item> items;
     private final Set<Animal> animals;
-    private final Map<Direction, Room> adjacentRooms;
+    private final Map<Direction, Door> adjacentDoors;
 
     public Optional<Item> getItemByName(String itemName) {
         return items.stream()
@@ -20,12 +20,12 @@ public class Room {
                 .findAny();
     }
 
-    public Room getAdjacentRoomByDirection(Direction direction) {
-        return adjacentRooms.get(direction);
+    public Door getAdjacentDoorByDirection(Direction direction) {
+        return adjacentDoors.get(direction);
     }
 
-    public void putAdjacentRoom(Direction linkedDirection, Room linkedRoom) {
-        adjacentRooms.put(linkedDirection, linkedRoom);
+    public void putAdjacentRoom(Direction linkedDirection, Door door) {
+        adjacentDoors.put(linkedDirection, door);
     }
 
     public void removeItem(Item item) {
@@ -44,8 +44,13 @@ public class Room {
 
         String animalsString = animals.stream()
                 .map(animal -> animal.getName().concat("(" + animal.getClass().getSimpleName() + ")"))
-                .collect(Collectors.joining(", ", "NPC: ", ""));
+                .collect(Collectors.joining(", ", "NPC: ", "\n"));
 
-        return "You are in " + name + "\n" + itemsString + animalsString;
+        String doors =  adjacentDoors.keySet()
+                .stream()
+                .map(direction -> String.format("%s[%s]",direction.getLabel(),getAdjacentDoorByDirection(direction).showState()))
+                .collect(Collectors.joining(", ", "DOORS:", "\n"));
+
+        return String.format("You are in %s%n%s%s%s", name, itemsString, animalsString, doors);
     }
 }

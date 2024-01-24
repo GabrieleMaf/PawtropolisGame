@@ -1,14 +1,19 @@
 package pawtropolis.command.implementations;
 
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
+import pawtropolis.game.console.InputController;
 import pawtropolis.map.domain.Direction;
+import pawtropolis.map.domain.Door;
 import pawtropolis.map.domain.Room;
 
 import java.util.Optional;
+import java.util.logging.Level;
 
 @Component
+@Log
 public class GoCommand extends AbstractParametrizedCommand {
     @Autowired
     private GoCommand(GameController gameController) {
@@ -24,9 +29,24 @@ public class GoCommand extends AbstractParametrizedCommand {
             System.out.println("Invalid direction");
             return;
         }
-
         Direction direction = directionOptional.get();
-        Room destinationRoom = gameController.getCurrentRoom().getAdjacentRoomByDirection(direction);
+        Door door = gameController.getCurrentRoom().getAdjacentDoorByDirection(direction);
+        if(door.getLocked()){
+            log.log(Level.FINE, "The door is locked: would you like to use an item to unlock it?");
+            String answer = InputController.readString();
+            if(answer.equalsIgnoreCase("y")){
+                log.log(Level.FINE, "Type the name of the chosen item");
+                answer = InputController.readString();
+                if(answer.equalsIgnoreCase("key")){
+                    log.log(Level.FINE,"You unlocked the door!");
+                }
+            }
+            else{
+                return;
+            }
+        }
+
+        Room destinationRoom = door.getRoom2();
         if (destinationRoom != null) {
             System.out.println(destinationRoom);
             gameController.setCurrentRoom(destinationRoom);
