@@ -51,6 +51,6 @@ public class Room {
                 .map(direction -> String.format("%s[%s]",direction.getLabel(),getAdjacentDoorByDirection(direction).showState()))
                 .collect(Collectors.joining(", ", "DOORS:", "\n"));
 
-        return String.format("You are in %s%n%s%s%s", name, itemsString, animalsString, doors);
+        return String.format("You are in %s%n %s%s%s", name, itemsString, animalsString, doors);
     }
 }

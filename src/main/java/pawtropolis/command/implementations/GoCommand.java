@@ -10,7 +10,6 @@ import pawtropolis.map.domain.Door;
 import pawtropolis.map.domain.Room;
 
 import java.util.Optional;
-import java.util.logging.Level;
 
 @Component
 @Log
@@ -31,14 +30,14 @@ public class GoCommand extends AbstractParametrizedCommand {
         }
         Direction direction = directionOptional.get();
         Door door = gameController.getCurrentRoom().getAdjacentDoorByDirection(direction);
-        if(door.getLocked()){
-            log.log(Level.FINE, "The door is locked: would you like to use an item to unlock it?");
+        if(Boolean.TRUE.equals(door.getLocked())){
+            System.out.println("The door is locked: would you like to use an item to unlock it?");
             String answer = InputController.readString();
             if(answer.equalsIgnoreCase("y")){
-                log.log(Level.FINE, "Type the name of the chosen item");
+                System.out.println("Type the name of the chosen item");
                 answer = InputController.readString();
                 if(answer.equalsIgnoreCase("key")){
-                    log.log(Level.FINE,"You unlocked the door!");
+                    System.out.println("You unlocked the door!");
                 }
             }
             else{
@@ -46,11 +45,10 @@ public class GoCommand extends AbstractParametrizedCommand {
             }
         }
 
-        Room destinationRoom = door.getRoom2();
+        Room destinationRoom = door.getDestinationRoom();
         if (destinationRoom != null) {
             System.out.println(destinationRoom);
             gameController.setCurrentRoom(destinationRoom);
-            return;
         }
         System.out.println("The " + direction.toString().toLowerCase() + " room doesn't exist.");
     }
