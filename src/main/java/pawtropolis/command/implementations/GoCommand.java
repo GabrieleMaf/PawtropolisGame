@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 import pawtropolis.game.console.InputController;
+import pawtropolis.game.domain.Player;
 import pawtropolis.map.domain.Direction;
 import pawtropolis.map.domain.Door;
 import pawtropolis.map.domain.Room;
@@ -19,6 +20,8 @@ public class GoCommand extends AbstractParametrizedCommand {
         super(gameController);
     }
 
+
+
     @Override
     public void execute() {
         String selectedDirectionName = String.join(" ", parameters);
@@ -30,26 +33,37 @@ public class GoCommand extends AbstractParametrizedCommand {
         }
         Direction direction = directionOptional.get();
         Door door = gameController.getCurrentRoom().getAdjacentDoorByDirection(direction);
-        if(Boolean.TRUE.equals(door.getLocked())){
-            System.out.println("The door is locked: would you like to use an item to unlock it?");
-            String answer = InputController.readString();
-            if(answer.equalsIgnoreCase("y")){
-                System.out.println("Type the name of the chosen item");
-                answer = InputController.readString();
-                if(answer.equalsIgnoreCase("key")){
-                    System.out.println("You unlocked the door!");
-                }
-            }
-            else{
-                return;
-            }
-        }
 
-        Room destinationRoom = door.getDestinationRoom();
-        if (destinationRoom != null) {
-            System.out.println(destinationRoom);
-            gameController.setCurrentRoom(destinationRoom);
+        if (door.getLocked()) {
+           if (!unlockDoor(door)){
+               return;
+           }
         }
-        System.out.println("The " + direction.toString().toLowerCase() + " room doesn't exist.");
+        Room destinationRoom = door.changeRoom();
+        System.out.println(destinationRoom);
+        gameController.setCurrentRoom(destinationRoom);
+    }
+
+private boolean unlockDoor(Door door){
+
+        System.out.println("The door is locked: would you like to use an item to unlock it?(y/n)");
+        String answer = InputController.readString();
+        Player player = gameController.getPlayer();
+
+    if(answer.equalsIgnoreCase("y")) {
+        System.out.println("Type the name of the chosen item");
+        answer = InputController.readString();
+
+        if (answer.equalsIgnoreCase("key") && player.getItemByName("key").isPresent()) {
+            door.setLocked(false);
+            player.removeItem(player.getItemByName("key").get());
+            System.out.println("You unlocked the door!");
+            return true;
+            }
+        else {
+            System.out.println("You don't have a key!");
+        }
+        }
+    return false;
     }
 }

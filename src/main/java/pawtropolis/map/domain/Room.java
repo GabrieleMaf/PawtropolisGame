@@ -24,7 +24,7 @@ public class Room {
         return adjacentDoors.get(direction);
     }
 
-    public void putAdjacentRoom(Direction linkedDirection, Door door) {
+    public void putDoor(Direction linkedDirection, Door door) {
         adjacentDoors.put(linkedDirection, door);
     }
 

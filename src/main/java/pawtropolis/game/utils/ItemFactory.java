@@ -21,7 +21,7 @@ public class ItemFactory {
             "Masterball", 10,
             "Ultraball", 7,
             "Potion", 4,
-            "Key", 2);
+            "Key", 1);
 
     public Item getRandomItem() {
         List<String> keys = new ArrayList<>(itemsMap.keySet());

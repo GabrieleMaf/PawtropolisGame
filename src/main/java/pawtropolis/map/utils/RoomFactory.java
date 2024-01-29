@@ -49,11 +49,9 @@ public class RoomFactory {
         return newRoom;
     }
 
-    public void connectRoom(Direction direction, Room startRoom, Room destinationRoom){
-        Door door = new Door(startRoom, destinationRoom, random.nextBoolean());
-        startRoom.putAdjacentRoom(direction, door);
-        door.setStartRoom(destinationRoom);
-        door.setDestinationRoom(startRoom);
-        destinationRoom.putAdjacentRoom(Direction.getOppositeDirection(direction), door);
+    public void connectRoom(Direction direction, Room roomA, Room roomB) {
+        Door door = new Door(roomA, roomB, random.nextBoolean());
+        roomA.putDoor(direction, door);
+        roomB.putDoor(Direction.getOppositeDirection(direction), door);
     }
 }

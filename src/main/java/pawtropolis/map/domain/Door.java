@@ -2,25 +2,30 @@ package pawtropolis.map.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Door {
-    private Room startRoom;
-    private Room destinationRoom;
+
+    @NonNull
+    private Room roomA;
+    @NonNull
+    private Room roomB;
+    @NonNull
     private Boolean locked;
+
+    private boolean used;
 
     //TERNARY OPERATOR USING
     public String showState(){
         return !locked ? "OPEN" : "CLOSED";
     }
 
-    /*public Room changeRoom(){
-        //I use this variable to save the room1, otherwise the value would be lost.
-        Room savedRoom = room1;
-        room1 = room2;
-        room2 = savedRoom;
-        return room1;
-    }*/
+    public Room changeRoom(){
+        used = !used;
+        return !used ? roomB : roomA;
+    }
 
 }
