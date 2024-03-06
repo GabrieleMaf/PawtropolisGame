@@ -1,8 +1,8 @@
 package it.alten.doublechargg.pawtropolis.game.map;
 
 import it.alten.doublechargg.pawtropolis.game.animals.AnimalFactory;
-import it.alten.doublechargg.pawtropolis.game.player.domain.Item;
 import it.alten.doublechargg.pawtropolis.game.map.domain.Room;
+import it.alten.doublechargg.pawtropolis.game.player.domain.Item;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -15,16 +15,14 @@ import java.util.Random;
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class RoomFactory {
 
-    private static final Random RANDOMIZER = new Random();
-    private static int count = 0;
-    private final AnimalFactory animalFactory;
     public static final List<Item> items = List.of(
-            new Item( "Sword", "A sword", 7),
+            new Item("Sword", "A sword", 7),
             new Item("Knife", "A knife", 4),
             new Item("Torch", "A Torch", 2),
             new Item("Key", "A key", 1));
-
-
+    private static final Random RANDOMIZER = new Random();
+    private static int count = 0;
+    private final AnimalFactory animalFactory;
 
     public Room createRoom() {
         count++;

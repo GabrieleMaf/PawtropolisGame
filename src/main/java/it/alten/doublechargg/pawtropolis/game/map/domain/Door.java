@@ -15,13 +15,14 @@ public class Door {
 
     private boolean used = false;
 
-    public Room changeRoom(){
+    public Room changeRoom() {
         used = !used;
         return used ? roomB : roomA;
     }
 
-    public String showState(){
-        return Boolean.TRUE.equals(locked) ? "[OPEN]" : "[CLOSED]";
+    public String showState() {
+        return !locked ? "OPEN" : "CLOSED";
     }
+
 
 }

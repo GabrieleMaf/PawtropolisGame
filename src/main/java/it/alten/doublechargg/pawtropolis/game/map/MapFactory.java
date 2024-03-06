@@ -51,7 +51,7 @@ public class MapFactory {
     public void connectRooms(CardinalPoints cardinalPoint, Room roomA, Room roomB) {
         var door = new Door(roomA, roomB, RANDOMIZER.nextBoolean());
 
-        if (door.isLocked()){
+        if (door.getLocked()) {
             roomA.addItem(RoomFactory.items.get(3));
         }
         roomA.addDoor(cardinalPoint, door);

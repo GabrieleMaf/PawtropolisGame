@@ -6,6 +6,7 @@ import it.alten.doublechargg.pawtropolis.game.map.domain.Room;
 import it.alten.doublechargg.pawtropolis.game.player.domain.Item;
 import it.alten.doublechargg.pawtropolis.game.player.domain.Player;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -15,6 +16,7 @@ import java.util.logging.Level;
 @Log
 public class GetCommand extends CommandWithParam {
 
+    @Autowired
     protected GetCommand(GameManager gameManager) {
         super(gameManager);
     }
@@ -28,7 +30,7 @@ public class GetCommand extends CommandWithParam {
 
             var item = currentRoom.getItemByName(arg).get();
             var commandResult = player.addItem(item) && currentRoom.removeItem(item) ?
-                    STR."\{player.getName()} got the \{item.name()} from the room." :
+                    "%s got the %s from the room.".formatted(player.getName(), item.name()) :
                     "Not enough space in bag.";
 
             log.log(Level.INFO, commandResult);
