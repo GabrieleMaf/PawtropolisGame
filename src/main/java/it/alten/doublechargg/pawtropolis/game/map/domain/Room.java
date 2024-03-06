@@ -84,7 +84,7 @@ public class Room {
 
     private String getAnimalsListAsString() {
         return animals.stream()
-                .map(animal -> STR."\{animal.getName()}(\{animal.getClass().getSimpleName()})")
+                .map(animal -> "%s(%s)".formatted(animal.getName(), animal.getClass().getSimpleName()))
                 .collect(Collectors.joining(", "));
 
     }
@@ -99,11 +99,15 @@ public class Room {
 
     @Override
     public String toString() {
-        return STR."""
-                        You are in room \{name}
-                        Items: \{getItemsListAsString()}
-                        NPC: \{getAnimalsListAsString()}
-                        Doors: \{getAdjacentRoomListAsString()}""";
+        return  """
+                        You are in room %s
+                        Items: %s
+                        NPC: %s
+                        Doors: %s"""
+                .formatted(name,
+                        getItemsListAsString(),
+                        getAnimalsListAsString(),
+                        getAdjacentRoomListAsString());
 
     }
 }

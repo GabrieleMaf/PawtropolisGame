@@ -28,7 +28,7 @@ public class GetCommand extends CommandWithParam {
 
             var item = currentRoom.getItemByName(arg).get();
             var commandResult = player.addItem(item) && currentRoom.removeItem(item) ?
-                    STR."\{player.getName()} got the \{item.name()} from the room." :
+                    "%s got the %s from the room.".formatted(player.getName(), item.name()) :
                     "Not enough space in bag.";
 
             log.log(Level.INFO, commandResult);

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.logging.Level;
 
+import static java.lang.StringTemplate.STR;
+
 @Component
 @Log
 public class DropCommand extends CommandWithParam {
@@ -19,12 +21,12 @@ public class DropCommand extends CommandWithParam {
     @Override
     public void execute(String arg) {
 
-        val player = gameManager.getPlayer();
-        val currentRoom = gameManager.getCurrentRoom();
-        val item = player.getItemFromBag(arg);
+        var player = gameManager.getPlayer();
+        var currentRoom = gameManager.getCurrentRoom();
+        var item = player.getItemFromBag(arg);
 
-        val commandResult = player.removeItem(item) && currentRoom.addItem(item) ?
-                STR."\{player.getName()} dropped the \{item.name()} in the room." :
+        var commandResult = player.removeItem(item) && currentRoom.addItem(item) ?
+                "%s dropped the %s in the room.".formatted(player.getName(), item.name()) :
                 "Item not present in the bag.";
 
         log.log(Level.INFO, commandResult);

@@ -20,7 +20,7 @@ public class CommandFactory {
     public Command createCommand(String commandName) throws CommandFailedException {
         commandName = commandName.substring(0, 1).toUpperCase() + commandName.substring(1);
         try {
-            return (Command) Class.forName(STR."it.alten.doublechargg.pawtropolis.game.command.impl.\{commandName}Command")
+            return (Command) Class.forName("it.alten.doublechargg.pawtropolis.game.command.impl.%sCommand".formatted(commandName))
                     .getConstructor(GameManager.class)
                     .newInstance(context.getBean(GameManager.class));
         } catch (InvocationTargetException |
@@ -28,7 +28,7 @@ public class CommandFactory {
                  InstantiationException |
                  IllegalAccessException |
                  ClassNotFoundException e) {
-            throw new CommandFailedException("There was an error in command execution", e);
+           throw new CommandFailedException("There was an error in command execution", e);
         }
     }
 
