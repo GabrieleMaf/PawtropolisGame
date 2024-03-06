@@ -3,6 +3,7 @@ package it.alten.doublechargg.pawtropolis.game.command.domain;
 import it.alten.doublechargg.pawtropolis.game.command.domain.abstracts.CommandWithParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameManager;
 import it.alten.doublechargg.pawtropolis.game.controller.utils.InputReader;
+import it.alten.doublechargg.pawtropolis.game.map.domain.Door;
 import it.alten.doublechargg.pawtropolis.game.map.enums.CardinalPoints;
 import it.alten.doublechargg.pawtropolis.game.player.domain.Player;
 import lombok.extern.java.Log;
@@ -20,7 +21,7 @@ public class GoCommand extends CommandWithParam {
         super(gameManager);
     }
 
-    public void unlockDoor(Player player){
+    public boolean unlockDoor(Player player, Door door){
         log.info("The door is locked: would you like to use an item to unlock it?(y/n)");
         var answer = InputReader.readString();
 
@@ -29,12 +30,18 @@ public class GoCommand extends CommandWithParam {
             var answer2 = InputReader.readString();
 
             if (answer2.equalsIgnoreCase("key")){
-                var result = player.removeItem(player.getItemFromBag("key")) ?
-                        "You unlocked the door!" :
-                        "You don't have a key!";
-                log.info(result);
+
+                if (player.removeItem(player.getItemFromBag("key"))){
+                    door.setLocked(false);
+                    log.info("You unlocked the door!");
+                    return true;
+                }else {
+                    log.info("You don't have a key!");
+                    return false;
+                }
             }
         }
+        return false;
     }
 
 
@@ -51,14 +58,15 @@ public class GoCommand extends CommandWithParam {
         }
 
         if (currentRoom.adjacentRoomExists(cardinalPoint)) {
-            var door = currentRoom.getAdjacentDoorByCardinalPoint(cardinalPoint);
+            var door = currentRoom.getDoorByCardinalPoint(cardinalPoint);
 
-            if (door.getLocked()){
-                unlockDoor(player);
+            if (door.getLocked() && !unlockDoor(player, door)){
+                return;
             }
 
             gameManager.setCurrentRoom(door.changeRoom());
             log.log(Level.INFO, "%s entered the room %s".formatted(player.getName(), gameManager.getCurrentRoom()));
+            return;
         }
        log.log(Level.SEVERE, "Not existent room");
 
