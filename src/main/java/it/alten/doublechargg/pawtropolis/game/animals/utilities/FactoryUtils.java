@@ -1,5 +1,8 @@
 package it.alten.doublechargg.pawtropolis.game.animals.utilities;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
@@ -8,24 +11,22 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FactoryUtils {
 
-    public static final DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
-    public static final DecimalFormat decimalFormat = new DecimalFormat("#.##", symbols);
-    public static final Random randomizer = new Random();
-    public static final List<String> names = List.of(
-            "Jose", "Teixeira", "Denis", "Lian", "Luffy", "Titti",
-            "Pippo", "Pluto", "Paperino", "Monkey", "Tabasco", "Shadow",
+    public static final DecimalFormatSymbols SYMBOLS = new DecimalFormatSymbols(Locale.US);
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.##", SYMBOLS);
+    public static final Random RANDOMIZER = new Random();
+    public static final List<String> NAMES = List.of(
+            "Jose", "Teixeira", "Denis", "Lian", "Luff", "Tutti",
+            "Pippo", "Pluto", "Papering", "Monkey", "Tabasco", "Shadow",
             "Mr Dirty", "Vanilla", "Pebbles", "Ashley", "Charcoal", "Puffin",
-            "Stewie", "Nermal", "Cinder", "Stormy", "Pebble", "Sputnik", "Bagpuss",
-            "Licorice", "Tiddles", "Dusty", "Ismael", "Abraham", "Ash", "Duncan");
-    public static final List<String> favoriteFoods = List.of(
+            "Stew", "Normal", "Cinder", "Stormy", "Pebble", "Sputnik", "Bagpipes",
+            "Licorice", "Middles", "Dusty", "Ismael", "Abraham", "Ash", "Duncan");
+    public static final List<String> FAVORITE_FOODS = List.of(
             "Humans", "Carrots", "Potatoes", "Chicken", "Fish",
             "Cheese", "Egg", "Butter", "Margarine", "Yogurt",
             "Sandwich", "Sausage", "Hamburger");
-
-    private FactoryUtils() {
-    }
 
     public static LocalDate between(LocalDate startInclusive, LocalDate endExclusive) {
         long startEpochDay = startInclusive.toEpochDay();
