@@ -65,7 +65,7 @@ public class Room {
         return animals.remove(animal);
     }
 
-    public Door getAdjacentDoorByCardinalPoint(CardinalPoints cardinalPoint) {
+    public Door getDoorByCardinalPoint(CardinalPoints cardinalPoint) {
         return adjacentRooms.get(cardinalPoint);
     }
 
@@ -89,10 +89,10 @@ public class Room {
 
     }
 
-    private String getAdjacentRoomListAsString() {
-        return adjacentRooms.keySet()
+    private String getDoorListAsString() {
+        return adjacentRooms.entrySet()
                 .stream()
-                .map(CardinalPoints::getName)
+                .map(entry -> "%s[%s]".formatted(entry.getKey(), entry.getValue().showState()))
                 .collect(Collectors.joining(", "));
 
     }
@@ -107,7 +107,7 @@ public class Room {
                 .formatted(name,
                         getItemsListAsString(),
                         getAnimalsListAsString(),
-                        getAdjacentRoomListAsString());
+                        getDoorListAsString());
 
     }
 }
