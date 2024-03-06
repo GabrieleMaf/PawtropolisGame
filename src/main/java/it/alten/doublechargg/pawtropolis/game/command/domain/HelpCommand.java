@@ -3,12 +3,14 @@ package it.alten.doublechargg.pawtropolis.game.command.domain;
 import it.alten.doublechargg.pawtropolis.game.command.domain.abstracts.CommandWithoutParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameManager;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 @Log
 public class HelpCommand extends CommandWithoutParam {
 
+    @Autowired
     protected HelpCommand(GameManager gameManager) {
         super(gameManager);
     }

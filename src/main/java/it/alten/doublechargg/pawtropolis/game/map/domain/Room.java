@@ -99,11 +99,11 @@ public class Room {
 
     @Override
     public String toString() {
-        return  """
-                        You are in room %s
-                        Items: %s
-                        NPC: %s
-                        Doors: %s"""
+        return """
+                You are in room %s
+                Items: %s
+                NPC: %s
+                Doors: %s"""
                 .formatted(name,
                         getItemsListAsString(),
                         getAnimalsListAsString(),

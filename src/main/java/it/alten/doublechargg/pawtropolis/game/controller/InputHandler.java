@@ -1,7 +1,6 @@
 package it.alten.doublechargg.pawtropolis.game.controller;
 
 import it.alten.doublechargg.pawtropolis.game.command.CommandFactory;
-import it.alten.doublechargg.pawtropolis.game.command.domain.abstracts.Command;
 import it.alten.doublechargg.pawtropolis.game.command.domain.abstracts.CommandWithParam;
 import it.alten.doublechargg.pawtropolis.game.command.domain.abstracts.CommandWithoutParam;
 import it.alten.doublechargg.pawtropolis.game.command.exceptions.CommandFailedException;

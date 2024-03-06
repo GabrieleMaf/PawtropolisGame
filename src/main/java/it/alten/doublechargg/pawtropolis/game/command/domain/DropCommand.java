@@ -3,17 +3,16 @@ package it.alten.doublechargg.pawtropolis.game.command.domain;
 import it.alten.doublechargg.pawtropolis.game.command.domain.abstracts.CommandWithParam;
 import it.alten.doublechargg.pawtropolis.game.controller.GameManager;
 import lombok.extern.java.Log;
-import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.logging.Level;
-
-import static java.lang.StringTemplate.STR;
 
 @Component
 @Log
 public class DropCommand extends CommandWithParam {
 
+    @Autowired
     protected DropCommand(GameManager gameManager) {
         super(gameManager);
     }
