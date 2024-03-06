@@ -4,10 +4,10 @@ public record Item(String name, String description, int weight) {
 
     @Override
     public String toString() {
-        return STR."""
-                       Item{Name:\{name},
-                        Description:\{description}
-                        Weight:\{weight}
-                        """;
+        return """
+                       Item{Name:%s,
+                        Description:%s
+                        Weight: %s
+                        """.formatted(name, description, weight);
     }
 }
