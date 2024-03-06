@@ -37,9 +37,6 @@ public class ZooManager {
     }
 
     public <T extends Animal> List<Animal> getAnimalGroup(Class<T> tClass) {
-        if (!Modifier.isAbstract(tClass.getModifiers())) {
-            return animals.get(tClass);
-        }
         return animals.entrySet()
                 .stream()
                 .filter(classListEntry -> tClass.isAssignableFrom(classListEntry.getKey()))

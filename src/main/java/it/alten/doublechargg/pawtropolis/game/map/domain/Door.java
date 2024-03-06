@@ -21,7 +21,7 @@ public class Door {
     }
 
     public String showState() {
-        return !locked ? "OPEN" : "CLOSED";
+        return Boolean.FALSE.equals(locked) ? "OPEN" : "CLOSED";
     }
 
 
