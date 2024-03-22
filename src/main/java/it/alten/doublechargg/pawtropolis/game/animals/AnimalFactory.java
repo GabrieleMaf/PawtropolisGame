@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-import static it.alten.doublechargg.pawtropolis.game.animals.utilities.FactoryUtils.*;
+import static it.alten.doublechargg.pawtropolis.game.animals.utils.FactoryUtils.*;
 
 @Component
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

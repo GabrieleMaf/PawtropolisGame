@@ -1,4 +1,4 @@
-package it.alten.doublechargg.pawtropolis.game.animals.utilities;
+package it.alten.doublechargg.pawtropolis.game.animals.utils;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
